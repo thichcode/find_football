@@ -1,0 +1,1 @@
+{"dependencies":{"puppeteer":"^25.10.0"},"name":"find-football","scripts":{"crawl":"node crawler.js","serve":"npx serve .","start":"node server.js","test":"node --test tests/*.mjs"},"type":"module","version":"0.1.0"}

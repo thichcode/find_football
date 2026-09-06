@@ -1,0 +1,8 @@
+body { font-family: system-ui, sans-serif; margin: 0; background: #0f1115; color: #eee; }
+header { display: flex; gap: 8px; padding: 12px; position: sticky; top: 0; background: #0f1115; }
+input, select, button { padding: 8px 10px; border-radius: 8px; border: 1px solid #333; background: #1a1e26; color: #eee; }
+main { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.card { border: 1px solid #2a2f3a; border-radius: 10px; padding: 10px; background: #171b22; }
+.live { background: #e53e3e; color: #fff; border-radius: 12px; padding: 2px 8px; font-size: 12px; }
+.card a { color: #7dd3fc; margin-right: 8px; }
+.fav { float: right; cursor: pointer; }

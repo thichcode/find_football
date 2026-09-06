@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: find-football
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      # PORT do Render tự cấp, server.js đã đọc process.env.PORT
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: ALLOWED_CHAT_IDS
+        sync: false

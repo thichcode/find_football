@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Secrets (token bot Telegram để trong env, không commit)
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Brainstorm session files (mockup nội bộ, không cần deploy)
+.superpowers/

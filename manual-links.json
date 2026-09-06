@@ -1,0 +1,9 @@
+[
+  {
+    "home": "Viet Nam",
+    "away": "Thai Lan",
+    "kickoffISO": "2026-09-06T19:30:00+07:00",
+    "league": "AFF Cup",
+    "links": [{ "label": "Link dự phòng", "url": "https://example.com/vn-vs-thai" }]
+  }
+]

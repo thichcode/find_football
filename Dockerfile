@@ -19,27 +19,29 @@ RUN apt-get update \
 # ---------- Puppeteer Chromium path ----------
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
-# ---------- Copy find_football ----------
 WORKDIR /app
+
+# ---------- Copy find_football source ----------
+COPY find_football /app/find_football
+
+# ---------- Copy tizenbrew-kit backend source ----------
+COPY tizenbrew-kit/backend/yt-dlp-resolver /app/tizenbrew-kit/backend/yt-dlp-resolver
+
+# ---------- Install Node.js deps ----------
 COPY find_football/package*.json ./find_football/
-RUN cd find_football && npm install --omit=dev
+RUN cd /app/find_football && npm install --omit=dev
 
-# ---------- Copy tizenbrew-kit backend (Python FastAPI) ----------
+# ---------- Install Python deps ----------
 COPY tizenbrew-kit/backend/yt-dlp-resolver/requirements.txt /tmp/requirements.txt
-RUN pip install --no-cache-dir -r /tmp/requirements.txt
-RUN pip install --no-cache-dir yt-dlp
-
-# ---------- Copy application source code ----------
-COPY find_football ./find_football
-COPY tizenbrew-kit/backend/yt-dlp-resolver/app.py /app/yt-dlp-resolver/app.py
-
-# ---------- Expose ports ----------
-EXPOSE 80 8000 3000
+RUN pip install --no-cache-dir -r /tmp/requirements.txt && pip install --no-cache-dir yt-dlp
 
 # ---------- Nginx reverse proxy config ----------
 COPY nginx.conf /etc/nginx/nginx.conf
 
+# ---------- Expose ports ----------
+EXPOSE 80 8000 3000
+
 # ---------- Start both services ----------
 # find_football runs on $PORT (Render assigns)
 # tizenbrew-kit backend runs on 8000
-CMD ["sh", "-c", "nginx && node /app/find_football/server.js & uvicorn app:app --host 0.0.0.0 --port 8000 & wait"]
+CMD ["sh", "-c", "nginx && node /app/find_football/server.js & uvicorn /app/tizenbrew-kit/backend/yt-dlp-resolver/app:app --host 0.0.0.0 --port 8000 & wait"]

@@ -3,9 +3,10 @@
 // Resolver proxy qua Node (:8000 nội bộ). AI gọi OpenRouter trực tiếp.
 
 const MAX_MSG = 3800;
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const esc = (s) => String(s).replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
 const OPENROUTER_KEY = process.env.OPENROUTER_API_KEY || '';
 const AI_MODEL = process.env.AI_MODEL || 'mistralai/mistral-7b-instruct:free';
+const AI_PROVIDER_URL = process.env.AI_PROVIDER_URL || 'https://openrouter.ai/api/v1/chat/completions';
 
 export function parseCommand(text) {
   const t = String(text || '').trim();
@@ -240,7 +241,7 @@ function handleDebug(chatId, send, arg) {
 // ── AI (OpenRouter) ─────────────────────────────────────────────
 
 async function aiChat(messages) {
-  const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+  const res = await fetch(AI_PROVIDER_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

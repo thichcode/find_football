@@ -20,3 +20,5 @@ services:
         sync: false
       - key: AI_MODEL
         value: openai/gpt-3.5-turbo
+      - key: AI_PROVIDER_URL
+        value: https://openrouter.ai/api/v1/chat/completions

@@ -16,6 +16,32 @@ const MIME = {
 
 let crawling = false;
 
+// Prefix route do Python FastAPI (yt-dlp-resolver) phục vụ.
+const PY_PREFIXES = ['/resolve', '/play', '/dash', '/debug', '/health'];
+const PY_PORT = Number(process.env.RESOLVER_PORT || 8000);
+
+// Proxy 1-1 sang Python nội bộ, giữ nguyên method/query/headers/body (kể cả stream video).
+function proxyPython(req, res) {
+  const proxy = http.request(
+    {
+      host: '127.0.0.1',
+      port: PY_PORT,
+      path: req.url,
+      method: req.method,
+      headers: { ...req.headers, host: `127.0.0.1:${PY_PORT}` },
+    },
+    (up) => {
+      res.writeHead(up.statusCode || 502, up.headers);
+      up.pipe(res);
+    },
+  );
+  proxy.on('error', () => {
+    if (!res.headersSent) res.writeHead(502, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'resolver offline' }));
+  });
+  req.pipe(proxy);
+}
+
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://localhost');
 
@@ -37,6 +63,12 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(code, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: String((e && e.message) || e) }));
     }
+    return;
+  }
+
+  // Route của yt-dlp-resolver (Python :8000) -> proxy qua Node (front-door $PORT).
+  if (PY_PREFIXES.some((p) => url.pathname === p || url.pathname.startsWith(p + '/'))) {
+    proxyPython(req, res);
     return;
   }
 

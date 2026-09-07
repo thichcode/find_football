@@ -1,47 +1,33 @@
-# Combined Dockerfile: find_football (Node+Puppeteer) + tizenbrew-kit (Python yt-dlp-resolver)
-# Render free tier: one container running both services via nginx reverse proxy
+# Gộp 2 service vào 1 container (Render free chỉ cho 1 port public $PORT):
+# - Node (find_football) bind $PORT, làm front-door + proxy route python
+# - Python (yt-dlp-resolver) chạy nội bộ port 8000
 FROM node:22-slim
 
-# ---------- Install system deps for both runtimes ----------
+# Chromium (Puppeteer) + Python + ffmpeg + yt-dlp deps
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     chromium \
     python3 \
     python3-pip \
     ffmpeg \
-    nginx \
     curl \
-  && rm -rf /var/lib/apt/lists/* \
-  && ln -sf /usr/bin/chromium /usr/local/bin/chromium \
-  && ln -sf /usr/bin/python3 /usr/local/bin/python \
-  && ln -sf /usr/bin/pip3 /usr/local/bin/pip
+  && rm -rf /var/lib/apt/lists/*
 
-# ---------- Puppeteer Chromium path ----------
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
-WORKDIR /app
+# ---------- find_football (code nằm ở ROOT repo) ----------
+WORKDIR /app/football
+COPY package*.json ./
+RUN npm install --omit=dev
+COPY . .
 
-# ---------- Copy find_football source ----------
-COPY find_football /app/find_football
-
-# ---------- Copy tizenbrew-kit backend source ----------
-COPY tizenbrew-kit/backend/yt-dlp-resolver /app/tizenbrew-kit/backend/yt-dlp-resolver
-
-# ---------- Install Node.js deps ----------
-COPY find_football/package*.json ./find_football/
-RUN cd /app/find_football && npm install --omit=dev
-
-# ---------- Install Python deps ----------
+# ---------- yt-dlp-resolver (Python FastAPI) ----------
 COPY tizenbrew-kit/backend/yt-dlp-resolver/requirements.txt /tmp/requirements.txt
-RUN pip install --no-cache-dir -r /tmp/requirements.txt && pip install --no-cache-dir yt-dlp
+RUN pip install --break-system-packages --no-cache-dir -r /tmp/requirements.txt \
+  && pip install --break-system-packages --no-cache-dir yt-dlp
+COPY tizenbrew-kit/backend/yt-dlp-resolver/app.py /app/resolver/app.py
 
-# ---------- Nginx reverse proxy config ----------
-COPY nginx.conf /etc/nginx/nginx.conf
+EXPOSE 3000
 
-# ---------- Expose ports ----------
-EXPOSE 80 8000 3000
-
-# ---------- Start both services ----------
-# find_football runs on $PORT (Render assigns)
-# tizenbrew-kit backend runs on 8000
-CMD ["sh", "-c", "nginx && node /app/find_football/server.js & uvicorn /app/tizenbrew-kit/backend/yt-dlp-resolver/app:app --host 0.0.0.0 --port 8000 & wait"]
+# Python chạy nền nội bộ :8000, Node chạy foreground giữ container sống
+CMD ["sh", "-c", "python3 -m uvicorn app:app --app-dir /app/resolver --host 127.0.0.1 --port 8000 & exec node /app/football/server.js"]

@@ -3,7 +3,7 @@ services:
     name: find-football-tizenbrew
     runtime: docker
     plan: free
-    healthCheckPath: /health
+    healthCheckPath: /api/health
     envVars:
       # find_football
       - key: HOST
@@ -12,9 +12,6 @@ services:
         sync: false
       - key: ALLOWED_CHAT_IDS
         sync: false
-      # tizenbrew-kit
+      # tizenbrew-kit (yt-dlp-resolver đọc từ env, không hardcode)
       - key: API_KEY
-        sync: false
-      # Optional: if tizenbrew-kit requires additional env vars
-      - key: YT_DLP_PATH
         sync: false

@@ -19,4 +19,4 @@ services:
       - key: OPENROUTER_API_KEY
         sync: false
       - key: AI_MODEL
-        value: mistralai/mistral-7b-instruct:free
+        value: openai/gpt-3.5-turbo

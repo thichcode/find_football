@@ -3,7 +3,7 @@
 // Resolver proxy qua Node (:8000 nội bộ). AI gọi OpenRouter trực tiếp.
 
 const MAX_MSG = 3800;
-const esc = (s) => String(s).replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const OPENROUTER_KEY = process.env.OPENROUTER_API_KEY || '';
 const AI_MODEL = process.env.AI_MODEL || 'mistralai/mistral-7b-instruct:free';
 const AI_PROVIDER_URL = process.env.AI_PROVIDER_URL || 'https://openrouter.ai/api/v1/chat/completions';

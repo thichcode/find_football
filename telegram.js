@@ -1,9 +1,11 @@
 // telegram.js — bot Telegram fetch có sẵn, KHÔNG thêm dependency.
-// Lệnh: /help /live /tomorrow /next /stats /web /fav /favs /crawl /cancel /resolve /debug
-// Resolver proxy qua Node (:8000 nội bộ).
+// Lệnh: /help /live /tomorrow /next /stats /web /fav /favs /crawl /cancel /resolve /debug /ai /ask
+// Resolver proxy qua Node (:8000 nội bộ). AI gọi OpenRouter trực tiếp.
 
 const MAX_MSG = 3800;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const OPENROUTER_KEY = process.env.OPENROUTER_API_KEY || '';
+const AI_MODEL = process.env.AI_MODEL || 'mistralai/mistral-7b-instruct:free';
 
 export function parseCommand(text) {
   const t = String(text || '').trim();
@@ -122,6 +124,8 @@ const COMMANDS = [
   ['/cancel', 'Huỷ crawl đang chạy'],
   ['/resolve <url>', 'Lấy link video trực tiếp'],
   ['/debug <url>', 'Debug yt-dlp output'],
+  ['/ai <câu hỏi>', 'Chat AI về bóng đá'],
+  ['/ask <url>', 'AI phân tích video'],
 ];
 
 function handleHelp(chatId, send) {
@@ -233,6 +237,61 @@ function handleDebug(chatId, send, arg) {
     .catch((e) => send(chatId, '❌ Resolver offline: ' + String(e.message).slice(0, 200)));
 }
 
+// ── AI (OpenRouter) ─────────────────────────────────────────────
+
+async function aiChat(messages) {
+  const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${OPENROUTER_KEY}`,
+    },
+    body: JSON.stringify({ model: AI_MODEL, messages, max_tokens: 1024 }),
+    signal: AbortSignal.timeout(60_000),
+  });
+  const j = await res.json();
+  return j.choices?.[0]?.message?.content || j.error?.message || 'AI không trả lời.';
+}
+
+function buildMatchContext(readMatches) {
+  const matches = readMatches().slice(0, 30);
+  if (!matches.length) return 'Không có trận nào.';
+  return matches.map((m) => {
+    const t = timeStr(m.kickoffISO);
+    return `${m.home} vs ${m.away} (${m.league || '?'}) lúc ${t}`;
+  }).join('\n');
+}
+
+async function handleAI(chatId, send, arg, readMatches) {
+  if (!OPENROUTER_KEY) return send(chatId, 'Chưa set OPENROUTER_API_KEY.');
+  if (!arg) return send(chatId, 'Cú pháp: <code>/ai câu hỏi</code>\nVí dụ: /ai MU đá trận nào sắp tới?');
+  const context = buildMatchContext(readMatches);
+  const reply = await aiChat([
+    { role: 'system', content: `Bạn là trợ lý bóng đá. Dữ liệu trận hiện tại:\n${context}\nTrả lời ngắn gọn bằng tiếng Việt.` },
+    { role: 'user', content: arg },
+  ]);
+  return send(chatId, `🤖 <b>AI:</b>\n${esc(reply)}`);
+}
+
+async function handleAsk(chatId, send, arg, readMatches) {
+  if (!OPENROUTER_KEY) return send(chatId, 'Chua set OPENROUTER_API_KEY.');
+  if (!arg) return send(chatId, 'Cu phap: <code>/ask url video</code>\nHo tro: YouTube, TikTok, Facebook, BiliBili');
+  let videoInfo = null;
+  try {
+    const r = await resolverFetch('/resolve', { url: arg });
+    if (r.ok && r.resolved) videoInfo = r.resolved;
+  } catch {}
+  const context = buildMatchContext(readMatches);
+  const prompt = videoInfo
+    ? `Video: ${videoInfo.title}\nURL: ${videoInfo.videoUrl}\nAuthor: ${videoInfo.author || '?'}\n\nDu lieu bong da hien co:\n${context}`
+    : `URL: ${arg}\nResolve that bai. Du lieu bong da hien co:\n${context}`;
+  const reply = await aiChat([
+    { role: 'system', content: 'Ban la tro ly bong da. Phan tich video/tin hoi va lien he den bong da. Tra loi bang tieng Viet, ngan gon.' },
+    { role: 'user', content: prompt },
+  ]);
+  return send(chatId, `🤖 <b>AI phan tich:</b>\n${esc(reply)}`);
+}
+
 // ── formatMatches (export cho test + dùng chung) ────────────────
 
 export function formatMatches(matches, q, limit = 8) {
@@ -287,6 +346,8 @@ export function startTelegram({ token, allowedChats = [], readMatches, onCrawl }
       case 'cancel':   return send(chatId, '🛑 Đã gửi tín hiệu huỷ crawl.');
       case 'resolve':  return handleResolve(chatId, send, parsed.arg);
       case 'debug':    return handleDebug(chatId, send, parsed.arg);
+      case 'ai':       return handleAI(chatId, send, parsed.arg, readMatches);
+      case 'ask':      return handleAsk(chatId, send, parsed.arg, readMatches);
       default:         return send(chatId, 'Lệnh lạ. Gõ /help để xem danh sách.');
     }
   }

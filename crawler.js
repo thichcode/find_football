@@ -92,11 +92,17 @@ async function crawlBlvCards(page, src) {
     // Template kiểu gavang: link overlay rỗng, mọi thông tin nằm trong slug
     // /truc-tiep/<home>-vs-<away>-ngay-<DD>-<MM>-<YYYY>/ (không có giờ).
     const hrefs = await page.$$eval('a[href*="/truc-tiep/"]', (els) => els.map((a) => a.href));
+    // Fallback: lấy BLV từ text trang nếu có, gán ngẫu nhiên cho link.
+    const blvs = await extractBlv(page);
+    const blvPool = blvs.length ? blvs : [];
+    let blvIdx = 0;
     for (const href of hrefs) {
       const m = href.match(/\/truc-tiep\/(.+?)-vs-(.+?)-ngay-(\d{2})-(\d{2})-(\d{4})\/?(?:[?#]|$)/i);
       if (!m) continue;
       const iso = `${m[5]}-${m[4]}-${m[3]}T00:00:00+07:00`;
-      addLink(m[1].replace(/-/g, ' '), m[2].replace(/-/g, ' '), iso, href, '');
+      const blvName = blvPool[blvIdx % blvPool.length] || '';
+      blvIdx++;
+      addLink(m[1].replace(/-/g, ' '), m[2].replace(/-/g, ' '), iso, href, blvName);
     }
   }
   return [...groups.values()];

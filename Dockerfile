@@ -19,7 +19,11 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 WORKDIR /app/football
 COPY package*.json ./
 RUN npm install --omit=dev
-COPY . .
+
+# Copy source find_football (không copy node_modules/docs/.superpowers)
+COPY app.js server.js crawler.js sources.js telegram.js ./
+COPY lib ./lib
+COPY matches.json manual-links.json discovered.json ./
 
 # ---------- yt-dlp-resolver (Python FastAPI) ----------
 COPY tizenbrew-kit/backend/yt-dlp-resolver/requirements.txt /tmp/requirements.txt

@@ -58,7 +58,7 @@ function render() {
     const star = f.includes(m.home) ? '★' : '☆';
     div.innerHTML = `<span class="fav" data-t="${m.home}">${star}</span>
       <div>${m.isLive ? '<span class="live">🔴 LIVE</span> ' : ''}<b>${fmtTime(m.kickoffISO)}</b> — ${m.home} vs ${m.away} <small>(${m.league})</small></div>
-      <div>${(m.links || []).map((l) => `<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join('')}<a href="${googleUrl(m)}" target="_blank" rel="noopener">🔍 Google</a></div>`;
+      <div>${(m.links || []).map((l) => `<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>` + (l.streamUrl ? `<a href="player.html?src=${encodeURIComponent(l.streamUrl)}&t=${encodeURIComponent(m.home + ' vs ' + m.away)}" target="_blank" rel="noopener">▶</a>` : '')).join('')}<a href="${googleUrl(m)}" target="_blank" rel="noopener">🔍 Google</a></div>`;
     div.querySelector('.fav').onclick = (e) => toggleFav(e.target.dataset.t);
     listEl.appendChild(div);
   }

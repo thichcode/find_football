@@ -21,7 +21,7 @@ COPY package*.json ./
 RUN npm install --omit=dev
 
 # Copy source find_football (không copy node_modules/docs/.superpowers)
-COPY app.js server.js crawler.js sources.js telegram.js ./
+COPY app.js server.js crawler.js sources.js telegram.js index.html style.css player.html ./
 COPY lib ./lib
 COPY matches.json manual-links.json discovered.json ./
 

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Player — FindFootball</title>
+<style>
+  body { background: #141414; color: #eee; font-family: system-ui, sans-serif; margin: 0; padding: 16px; }
+  a { color: #7db4ff; }
+  #wrap { max-width: 960px; margin: 0 auto; }
+  video { width: 100%; max-height: 70vh; background: #000; }
+  .row { display: flex; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+  input, select, button { padding: 8px; font-size: 14px; }
+  input, select { flex: 1; min-width: 200px; background: #222; color: #eee; border: 1px solid #444; }
+  button { cursor: pointer; }
+  #status { min-height: 1.5em; color: #ffb84d; }
+  .hint { color: #999; font-size: 13px; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <p><a href="index.html">← Lịch đấu</a></p>
+  <h2 id="title">Player</h2>
+  <video id="v" controls playsinline></video>
+  <div class="row">
+    <input id="src" placeholder="Dán link .m3u8 (F12 → Network → lọc m3u8 lúc đang xem)">
+    <button id="play">▶ Phát</button>
+  </div>
+  <div class="row">
+    <select id="saved"><option value="">— Hoặc chọn stream đã lưu —</option></select>
+  </div>
+  <p id="status"></p>
+  <p class="hint">Token stream hết hạn sau vài tiếng — mỗi lần xem sniff lại link mới. Nếu báo lỗi CORS/403, chạy qua <code>/api/proxy?url=</code> (bước 2).</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.18/dist/hls.min.js"></script>
+<script>
+(function () {
+  const v = document.getElementById('v');
+  const srcEl = document.getElementById('src');
+  const savedEl = document.getElementById('saved');
+  const statusEl = document.getElementById('status');
+  const titleEl = document.getElementById('title');
+  let hls = null;
+
+  const q = new URLSearchParams(location.search);
+  const say = (t) => { statusEl.textContent = t; };
+
+  function play(url, label) {
+    if (!url) return;
+    if (hls) { hls.destroy(); hls = null; }
+    titleEl.textContent = label || 'Player';
+    if (/\.m3u8(\?|#|$)/i.test(url) && window.Hls && Hls.isSupported()) {
+      hls = new Hls();
+      hls.on(Hls.Events.ERROR, (_, data) => { say('Lỗi phát: ' + (data.details || data.type)); });
+      hls.loadSource(url);
+      hls.attachMedia(v);
+      say('Đang tải stream…');
+    } else {
+      v.src = url;
+      say('Phát trực tiếp (native)…');
+    }
+    v.play().catch(() => {});
+  }
+
+  document.getElementById('play').onclick = () => play(srcEl.value.trim(), 'Link dán tay');
+
+  // Nạp các streamUrl đã lưu trong matches.json (do bot sniff giờ đá hoặc dán tay qua API).
+  fetch('matches.json').then((r) => r.json()).then((all) => {
+    const items = [];
+    for (const m of all) for (const l of (m.links || [])) {
+      if (l.streamUrl) items.push({ t: `${m.home} vs ${m.away} — ${l.label}`, u: l.streamUrl });
+    }
+    for (const it of items.slice(0, 100)) {
+      const o = document.createElement('option');
+      o.value = it.u; o.textContent = it.t;
+      savedEl.appendChild(o);
+    }
+    if (!items.length) say('Chưa có stream nào được lưu — dán link tay ở trên.');
+  }).catch(() => say('Không đọc được matches.json.'));
+
+  savedEl.onchange = () => {
+    const o = savedEl.selectedOptions[0];
+    if (o && o.value) { srcEl.value = o.value; play(o.value, o.textContent); }
+  };
+
+  if (q.get('src')) { srcEl.value = q.get('src'); play(q.get('src'), q.get('t') || 'Player'); }
+})();
+</script>
+</body>
+</html>

@@ -1,3 +1,15 @@
 node_modules
 .superpowers
 *.log
+*.json.map
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+*.swp
+.env
+.env.*
+favs.json
+__pycache__
+*.pyc
+docs/

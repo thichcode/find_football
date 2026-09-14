@@ -195,12 +195,21 @@ async function discoverDomains(browser, src) {
 async function tryParseUrl(browser, src, url) {
   const page = await browser.newPage();
   try {
+    // UA thật + viewport desktop: giảm tỉ lệ dính challenge Cloudflare.
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36').catch(() => {});
+    await page.setViewport({ width: 1366, height: 768 }).catch(() => {});
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
     // Site tự redirect bằng JS (vd socoliveo -> socoliven): đợi rồi bám theo URL cuối.
     await new Promise((r) => setTimeout(r, 2500));
     if (page.url() !== url) {
       await page.goto(page.url(), { waitUntil: 'domcontentloaded', timeout: 15000 }).catch(() => {});
       await new Promise((r) => setTimeout(r, 1500));
+    }
+    // Challenge Cloudflare ("Just a moment..."): đợi tối đa ~20s cho nó tự qua.
+    for (let i = 0; i < 10; i++) {
+      const t = await page.title().catch(() => '');
+      if (!/just a moment|attention required|security challenge/i.test(t)) break;
+      await new Promise((r) => setTimeout(r, 2000));
     }
     const finalUrl = page.url();
     // Chẩn đoán template ngay khi frame còn tươi (trước khi parse có thể redirect tiếp).

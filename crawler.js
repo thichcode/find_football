@@ -196,6 +196,30 @@ async function tryParseUrl(browser, src, url) {
   const page = await browser.newPage();
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    // Site tự redirect bằng JS (vd socoliveo -> socoliven): đợi rồi bám theo URL cuối.
+    await new Promise((r) => setTimeout(r, 2500));
+    if (page.url() !== url) {
+      await page.goto(page.url(), { waitUntil: 'domcontentloaded', timeout: 15000 }).catch(() => {});
+      await new Promise((r) => setTimeout(r, 1500));
+    }
+    const finalUrl = page.url();
+    // Chẩn đoán template ngay khi frame còn tươi (trước khi parse có thể redirect tiếp).
+    const diag = await page.evaluate(() => {
+      try {
+        const tt = [...document.querySelectorAll('a[href*="truc-tiep"]')];
+        const dd = document.querySelectorAll('a.dropdown-item').length;
+        const aria = [...document.querySelectorAll('a[aria-label*="Tr"]')].slice(0, 2)
+          .map((a) => (a.getAttribute('aria-label') || '').slice(0, 80));
+        return JSON.stringify({
+          title: document.title.slice(0, 60),
+          finalUrl: location.href.slice(0, 100),
+          trucTiep: tt.length,
+          dropdownItem: dd,
+          sample: tt.slice(0, 4).map((a) => a.href.slice(0, 120)),
+          aria,
+        });
+      } catch (e) { return 'diag-fail:' + e.message; }
+    }).catch((e) => 'diag-fail:' + e.message);
     const blv = await extractBlv(page).catch(() => []);
     const tag = blv.length >= 3 ? `trang phù hợp (${blv.length} BLV)` : 'không thấy BLV (có thể là trang SEO)';
     // Thử lần lượt: card BLV (trang phù hợp) -> JSON-LD -> anchor chung.
@@ -243,23 +267,7 @@ async function tryParseUrl(browser, src, url) {
       return rows;
     }
     console.warn(`WARN source ${src.id}: ${url} khong thay tran (${tag}), thu tiep`);
-    // Chẩn đoán template: trang chủ có bao nhiêu link truc-tiep, selector nào?
-    const diag = await page.evaluate(() => {
-      try {
-        const tt = [...document.querySelectorAll('a[href*="truc-tiep"]')];
-        const dd = document.querySelectorAll('a.dropdown-item').length;
-        const aria = [...document.querySelectorAll('a[aria-label*="Tr"]')].slice(0, 2)
-          .map((a) => (a.getAttribute('aria-label') || '').slice(0, 80));
-        return JSON.stringify({
-          title: document.title.slice(0, 60),
-          trucTiep: tt.length,
-          dropdownItem: dd,
-          sample: tt.slice(0, 4).map((a) => a.href.slice(0, 120)),
-          aria,
-        });
-      } catch (e) { return 'diag-fail:' + e.message; }
-    }).catch((e) => 'diag-fail:' + e.message);
-    logAttempt(src.id, url, 'empty', [], tag + ' | ' + diag);
+    logAttempt(src.id, url, 'empty', [], tag + ' | final=' + finalUrl.slice(0, 100) + ' | ' + diag);
     return [];
   } catch (e) {
     console.warn(`WARN source ${src.id} loi (${url}): ${e.message}`);

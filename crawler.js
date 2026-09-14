@@ -4,6 +4,19 @@ import puppeteer from 'puppeteer';
 import { SOURCES } from './sources.js';
 import { dedupeMatches, groupMatches } from './lib/normalize.js';
 
+// Log từng URL đã thử trong 1 lần crawl (để /api/crawl trả debug về client).
+// tryParseUrl push vào đây, runCrawl đọc + xóa.
+const attemptLog = [];
+function logAttempt(source, url, strategy, rows, note = '') {
+  const links = (rows || []).flatMap((m) => m.links || []).map((l) => l.url);
+  attemptLog.push({
+    source, url, strategy,
+    count: (rows || []).length,
+    sample: [...new Set(links)].slice(0, 3),
+    note: String(note || '').slice(0, 160),
+  });
+}
+
 function eventsFromJsonLd(json) {
   const out = [];
   const push = (obj) => {
@@ -191,6 +204,7 @@ async function tryParseUrl(browser, src, url) {
     if (viaBlv.length) {
       console.log(`OK source ${src.id}: ${url} — trang phù hợp (${viaBlv.length} trận, có tên BLV)`);
       await page.close().catch(() => {});
+      logAttempt(src.id, url, 'blv-cards', viaBlv);
       return viaBlv;
     }
     {
@@ -198,6 +212,7 @@ async function tryParseUrl(browser, src, url) {
       if (viaJson.length) {
         console.log(`OK source ${src.id}: ${url} — ${tag}`);
         await page.close().catch(() => {});
+        logAttempt(src.id, url, 'jsonld', viaJson, tag);
         return viaJson;
       }
     }
@@ -224,13 +239,16 @@ async function tryParseUrl(browser, src, url) {
     await page.close().catch(() => {});
     if (rows.length) {
       console.log(`OK source ${src.id}: ${url} — ${tag}`);
+      logAttempt(src.id, url, 'anchors', rows, tag);
       return rows;
     }
     console.warn(`WARN source ${src.id}: ${url} khong thay tran (${tag}), thu tiep`);
+    logAttempt(src.id, url, 'empty', [], tag);
     return [];
   } catch (e) {
     console.warn(`WARN source ${src.id} loi (${url}): ${e.message}`);
     await page.close().catch(() => {});
+    logAttempt(src.id, url, 'error', [], e.message);
     return [];
   }
 }
@@ -257,10 +275,11 @@ async function crawlSource(browser, src, discovered) {
   return [];
 }
 
-// Chạy toàn bộ quy trình crawl, trả về {count}. Dùng chung cho CLI và nút web.
+// Chạy toàn bộ quy trình crawl, trả về {count, debug}. Dùng chung cho CLI và nút web.
 export async function runCrawl() {
   // Container (Render/Docker) chạy root nên cần --no-sandbox.
   // PUPPETEER_EXECUTABLE_PATH để trỏ sang Chromium cài bằng apt.
+  attemptLog.length = 0;
   const browser = await puppeteer.launch({
     headless: true,
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
@@ -276,13 +295,20 @@ export async function runCrawl() {
   await browser.close();
   saveDiscovered(discovered);
 
+  // Gom debug theo nguồn: url nào thắng + toàn bộ attempt.
+  const debug = SOURCES.map((src) => {
+    const tries = attemptLog.filter((a) => a.source === src.id);
+    const won = tries.find((a) => a.count > 0);
+    return { source: src.id, usedUrl: won ? won.url : null, strategy: won ? won.strategy : null, attempts: tries };
+  });
+
   const manual = JSON.parse(fs.readFileSync('manual-links.json', 'utf8'));
   const prev = JSON.parse(fs.readFileSync('matches.json', 'utf8'));
   const merged = groupMatches(dedupeMatches([...all, ...manual, ...prev]));
   fs.writeFileSync('matches.json', JSON.stringify(merged.slice(0, 100), null, 2));
   const count = Math.min(merged.length, 100);
   console.log(`OK ghi ${count} tran vao matches.json`);
-  return { count };
+  return { count, debug };
 }
 
 // Chỉ chạy crawl khi gọi trực tiếp (node crawler.js), để test import được helper.

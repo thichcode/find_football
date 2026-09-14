@@ -57,7 +57,7 @@ const server = http.createServer(async (req, res) => {
     try {
       const r = await doCrawl();
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ ok: true, count: r.count }));
+      res.end(JSON.stringify({ ok: true, count: r.count, debug: r.debug }));
     } catch (e) {
       const code = e && e.code === 409 ? 409 : 500;
       res.writeHead(code, { 'Content-Type': 'application/json' });

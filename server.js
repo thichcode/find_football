@@ -97,13 +97,20 @@ const HOST = process.env.HOST || '127.0.0.1';
 server.listen(PORT, HOST, () => console.log(`Web: http://${HOST}:${PORT}`));
 
 // Bot Telegram dùng chung logic crawl (chống chạy chồng).
+// Lock tự hết hạn sau 15 phút: crawl kẹt (treo) không khóa server vĩnh viễn.
+let crawlStartedAt = 0;
+const CRAWL_LOCK_MS = 15 * 60 * 1000;
 async function doCrawl() {
   if (crawling) {
-    const err = new Error('Đang crawl, thử lại sau ít phút');
-    err.code = 409;
-    throw err;
+    if (Date.now() - crawlStartedAt < CRAWL_LOCK_MS) {
+      const err = new Error('Đang crawl, thử lại sau ít phút');
+      err.code = 409;
+      throw err;
+    }
+    console.log('Crawl lock quá hạn, coi như run cũ đã chết, cho chạy lại.');
   }
   crawling = true;
+  crawlStartedAt = Date.now();
   try {
     return await runCrawl();
   } finally {

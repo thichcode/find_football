@@ -13,7 +13,7 @@ function logAttempt(source, url, strategy, rows, note = '') {
     source, url, strategy,
     count: (rows || []).length,
     sample: [...new Set(links)].slice(0, 3),
-    note: String(note || '').slice(0, 160),
+    note: String(note || '').slice(0, 600),
   });
 }
 
@@ -243,7 +243,23 @@ async function tryParseUrl(browser, src, url) {
       return rows;
     }
     console.warn(`WARN source ${src.id}: ${url} khong thay tran (${tag}), thu tiep`);
-    logAttempt(src.id, url, 'empty', [], tag);
+    // Chẩn đoán template: trang chủ có bao nhiêu link truc-tiep, selector nào?
+    const diag = await page.evaluate(() => {
+      try {
+        const tt = [...document.querySelectorAll('a[href*="truc-tiep"]')];
+        const dd = document.querySelectorAll('a.dropdown-item').length;
+        const aria = [...document.querySelectorAll('a[aria-label*="Tr"]')].slice(0, 2)
+          .map((a) => (a.getAttribute('aria-label') || '').slice(0, 80));
+        return JSON.stringify({
+          title: document.title.slice(0, 60),
+          trucTiep: tt.length,
+          dropdownItem: dd,
+          sample: tt.slice(0, 4).map((a) => a.href.slice(0, 120)),
+          aria,
+        });
+      } catch (e) { return 'diag-fail:' + e.message; }
+    }).catch((e) => 'diag-fail:' + e.message);
+    logAttempt(src.id, url, 'empty', [], tag + ' | ' + diag);
     return [];
   } catch (e) {
     console.warn(`WARN source ${src.id} loi (${url}): ${e.message}`);

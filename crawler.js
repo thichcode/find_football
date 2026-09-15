@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import puppeteer from 'puppeteer';
 import { SOURCES } from './sources.js';
 import { dedupeMatches, groupMatches, buildBlvGroups, eventsFromJsonLd } from './lib/normalize.js';
-import { scrapeHtml, parseBlvCardsFromHtml, parseJsonLdFromHtml } from './lib/firecrawl.js';
+import { scrapeHtml, parseBlvCardsFromHtml, parseJsonLdFromHtml, parseGoogleHosts } from './lib/firecrawl.js';
 
 // Log từng URL đã thử trong 1 lần crawl (để /api/crawl trả debug về client).
 // tryParseUrl push vào đây, runCrawl đọc + xóa.
@@ -141,10 +141,24 @@ export function hostFromBingResult(href, cite) {
     return u.hostname.toLowerCase();
   } catch { return ''; }
 }
-// Tự tìm domain mới qua Bing (DuckDuckGo/Mojeek đều chặn bot headless).
+// Tự tìm domain mới: Google qua Firecrawl trước (đúng hành vi người dùng:
+// search Google, bấm link đầu chứa từ khóa), Bing trực tiếp làm dự phòng.
 // Chỉ gọi khi toàn bộ URL cứng đều chết, để crawl thường không bị chậm.
 async function discoverDomains(browser, src) {
   if (!src.discovery) return [];
+  const found = [];
+  // 1) Google qua Firecrawl (vượt chặn bot).
+  try {
+    const html = await scrapeHtml(`https://www.google.com/search?q=${encodeURIComponent(src.discovery.query)}&num=10`);
+    if (html) {
+      const g = parseGoogleHosts(html, src.discovery.keyword);
+      console.log(`Discovery ${src.id} (google): ${g.join(', ') || 'khong co'}`);
+      found.push(...g);
+    }
+  } catch (e) {
+    console.warn(`WARN discovery ${src.id} google loi: ${e.message}`);
+  }
+  // 2) Bing trực tiếp làm dự phòng.
   const page = await browser.newPage();
   try {
     const q = encodeURIComponent(src.discovery.query);
@@ -157,8 +171,11 @@ async function discoverDomains(browser, src) {
     );
     const hosts = rows.map((r) => hostFromBingResult(r.href, r.cite));
     const cands = filterCandidateHosts(hosts, src.discovery.keyword);
-    console.log(`Discovery ${src.id}: tim thay ${cands.length} domain (${cands.join(', ') || 'khong co'})`);
-    return cands.map((h) => `https://${h}/`);
+    console.log(`Discovery ${src.id} (bing): tim thay ${cands.length} domain (${cands.join(', ') || 'khong co'})`);
+    found.push(...cands);
+    const uniq = [...new Set(found)].slice(0, 8);
+    console.log(`Discovery ${src.id}: tong ${uniq.length} domain (${uniq.join(', ') || 'khong co'})`);
+    return uniq.map((h) => `https://${h}/`);
   } catch (e) {
     console.warn(`WARN discovery ${src.id} loi: ${e.message}`);
     return [];

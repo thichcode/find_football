@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { parseBlvAria, pickBlvName, buildBlvGroups } from '../lib/normalize.js';
-import { parseBlvCardsFromHtml, parseJsonLdFromHtml, scrapeHtml } from '../lib/firecrawl.js';
+import { parseBlvCardsFromHtml, parseJsonLdFromHtml, parseGoogleHosts, scrapeHtml } from '../lib/firecrawl.js';
 
 const SRC = { id: 'socolive', name: 'Socolive' };
 
@@ -57,4 +57,14 @@ test('scrapeHtml trả null khi chưa có key', async () => {
   delete process.env.FIRECRAWL_API_KEY;
   assert.equal(await scrapeHtml('https://example.com/'), null);
   if (old !== undefined) process.env.FIRECRAWL_API_KEY = old;
+});
+
+test('parseGoogleHosts giữ đúng thứ tự, lọc youtube/facebook', () => {
+  const html = `
+    <a href="/url?q=https://socoliven.tv/truc-tiep&amp;sa=U">Socolive</a>
+    <a href="/url?q=https://www.youtube.com/watch%3Fv%3Dabc&amp;sa=U">YT</a>
+    <a href="/url?q=https://socolivexyz.blog/lich&amp;sa=U">blog</a>
+    <cite>https://socoliven.tv › truc-tiep</cite>`;
+  assert.deepEqual(parseGoogleHosts(html, 'socolive'), ['socoliven.tv', 'socolivexyz.blog']);
+  assert.deepEqual(parseGoogleHosts(html, 'xoilac'), []);
 });

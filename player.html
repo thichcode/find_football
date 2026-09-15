@@ -65,18 +65,24 @@
   document.getElementById('play').onclick = () => play(srcEl.value.trim(), 'Link dán tay');
 
   // Nạp các streamUrl đã lưu trong matches.json (do bot sniff giờ đá hoặc dán tay qua API).
-  fetch('matches.json').then((r) => r.json()).then((all) => {
-    const items = [];
-    for (const m of all) for (const l of (m.links || [])) {
-      if (l.streamUrl) items.push({ t: `${m.home} vs ${m.away} — ${l.label}`, u: l.streamUrl });
-    }
-    for (const it of items.slice(0, 100)) {
-      const o = document.createElement('option');
-      o.value = it.u; o.textContent = it.t;
-      savedEl.appendChild(o);
-    }
-    if (!items.length) say('Chưa có stream nào được lưu — dán link tay ở trên.');
-  }).catch(() => say('Không đọc được matches.json.'));
+  // Refresh mỗi 60s để bắt link sniff nền mới nhất.
+  function loadSaved() {
+    fetch('matches.json').then((r) => r.json()).then((all) => {
+      const items = [];
+      for (const m of all) for (const l of (m.links || [])) {
+        if (l.streamUrl) items.push({ t: `${m.home} vs ${m.away} — ${l.label}`, u: l.streamUrl });
+      }
+      savedEl.innerHTML = '<option value="">— Hoặc chọn stream đã lưu —</option>';
+      for (const it of items.slice(0, 100)) {
+        const o = document.createElement('option');
+        o.value = it.u; o.textContent = it.t;
+        savedEl.appendChild(o);
+      }
+      if (!items.length) say('Chưa có stream nào được lưu — dán link tay ở trên.');
+    }).catch(() => say('Không đọc được matches.json.'));
+  }
+  loadSaved();
+  setInterval(loadSaved, 60000);
 
   savedEl.onchange = () => {
     const o = savedEl.selectedOptions[0];

@@ -125,6 +125,7 @@ const COMMANDS = [
   ['/cancel', 'Huỷ crawl đang chạy'],
   ['/resolve <url>', 'Lấy link video trực tiếp'],
   ['/debug <url>', 'Debug yt-dlp output'],
+  ['/sniff <url trận>', 'Sniff link stream (.m3u8) của trang trận'],
   ['/ai <câu hỏi>', 'Chat AI về bóng đá'],
   ['/ask <url>', 'AI phân tích video'],
 ];
@@ -307,7 +308,7 @@ export function formatMatches(matches, q, limit = 8) {
 
 // ── main export ──────────────────────────────────────────────────
 
-export function startTelegram({ token, allowedChats = [], readMatches, onCrawl }) {
+export function startTelegram({ token, allowedChats = [], readMatches, onCrawl, onSniff }) {
   if (!token) {
     console.log('Telegram: chưa có TELEGRAM_BOT_TOKEN, bỏ qua bot.');
     return null;
@@ -315,6 +316,7 @@ export function startTelegram({ token, allowedChats = [], readMatches, onCrawl }
 
   let offset = 0;
   let stopped = false;
+  const chats = new Set();
 
   const api = (method, body) =>
     fetch(`https://api.telegram.org/bot${token}/${method}`, {
@@ -331,6 +333,7 @@ export function startTelegram({ token, allowedChats = [], readMatches, onCrawl }
   async function handle(msg) {
     const chatId = msg.chat.id;
     if (!allowed(chatId)) return;
+    chats.add(String(chatId));
     const parsed = parseCommand(msg.text);
     if (!parsed) return;
 
@@ -347,6 +350,7 @@ export function startTelegram({ token, allowedChats = [], readMatches, onCrawl }
       case 'cancel':   return send(chatId, '🛑 Đã gửi tín hiệu huỷ crawl.');
       case 'resolve':  return handleResolve(chatId, send, parsed.arg);
       case 'debug':    return handleDebug(chatId, send, parsed.arg);
+      case 'sniff':    return handleSniff(chatId, send, parsed.arg, onSniff);
       case 'ai':       return handleAI(chatId, send, parsed.arg, readMatches);
       case 'ask':      return handleAsk(chatId, send, parsed.arg, readMatches);
       default:         return send(chatId, 'Lệnh lạ. Gõ /help để xem danh sách.');
@@ -368,5 +372,25 @@ export function startTelegram({ token, allowedChats = [], readMatches, onCrawl }
     }
   })();
 
-  return { stop() { stopped = true; } };
+  return {
+    stop() { stopped = true; },
+    notify(text) {
+      for (const id of chats) send(id, text).catch(() => {});
+    },
+  };
+}
+
+async function handleSniff(chatId, send, arg, onSniff) {
+  if (!/^https?:/i.test(String(arg || ''))) {
+    return send(chatId, 'Cú pháp: <code>/sniff url trang trận</code>\nVd: /sniff https://xoilacd.tv/truc-tiep/...');
+  }
+  if (!onSniff) return send(chatId, 'Server chưa bật sniff.');
+  await send(chatId, '🎣 Đang sniff stream (20-30s)…');
+  try {
+    const s = await onSniff(arg.trim());
+    if (!s) return send(chatId, '❌ Không thấy stream. Trận chưa đá hoặc bị chặn.');
+    return send(chatId, `✅ Có link! Mở player:\n<code>${esc(s.slice(0, 300))}</code>`);
+  } catch (e) {
+    return send(chatId, '❌ Sniff lỗi: ' + String((e && e.message) || e).slice(0, 200));
+  }
 }

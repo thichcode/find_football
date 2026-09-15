@@ -5,6 +5,45 @@ import { SOURCES } from './sources.js';
 import { dedupeMatches, groupMatches, buildBlvGroups, eventsFromJsonLd } from './lib/normalize.js';
 import { scrapeHtml, parseBlvCardsFromHtml, parseJsonLdFromHtml, parseGoogleHosts } from './lib/firecrawl.js';
 
+// URL playlist stream (HLS/DASH) — dùng chung cho probe lẫn auto-sniff.
+const STREAM_RE = /\.(m3u8|mpd)(\?|#|$)/i;
+export function isStreamUrl(u) {
+  return STREAM_RE.test(String(u || ''));
+}
+
+// Mở trang trận đấu, hứng request playlist đầu tiên (.m3u8/.mpd).
+// Trả về URL stream hoặc null. Chạy browser riêng, tự đóng.
+export async function sniffStreamUrl(pageUrl, timeoutMs = 25000) {
+  if (!/^https?:/i.test(String(pageUrl || ''))) return null;
+  const browser = await puppeteer.launch({
+    headless: true,
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
+    protocolTimeout: 60000,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+  });
+  try {
+    const page = await browser.newPage();
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36').catch(() => {});
+    await page.setViewport({ width: 1366, height: 768 }).catch(() => {});
+    let found = null;
+    const grab = (u) => { if (!found && isStreamUrl(u)) found = u; };
+    page.on('request', (req) => grab(req.url()));
+    page.on('response', (res) => grab(res.url()));
+    await page.goto(pageUrl, { waitUntil: 'domcontentloaded', timeout: 20000 }).catch(() => {});
+    const t0 = Date.now();
+    while (!found && Date.now() - t0 < timeoutMs) {
+      // Kích player tự chạy (nhiều trang chỉ load stream sau khi play).
+      await page.evaluate(() => {
+        document.querySelectorAll('video').forEach((v) => { v.muted = true; v.play().catch(() => {}); });
+      }).catch(() => {});
+      await new Promise((r) => setTimeout(r, 2000));
+    }
+    return found;
+  } finally {
+    await browser.close().catch(() => {});
+  }
+}
+
 // Log từng URL đã thử trong 1 lần crawl (để /api/crawl trả debug về client).
 // tryParseUrl push vào đây, runCrawl đọc + xóa.
 const attemptLog = [];

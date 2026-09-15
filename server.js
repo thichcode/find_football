@@ -45,6 +45,16 @@ function proxyPython(req, res) {
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://localhost');
 
+  // CORS cho TV app / client ngoài (TizenBrew module fetch cross-origin).
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
+
   if (req.method === 'GET' && url.pathname === '/api/health') {
     let count = -1;
     try { count = JSON.parse(fs.readFileSync(path.join(ROOT, 'matches.json'), 'utf8')).length; } catch {}
@@ -63,6 +73,13 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(code, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: String((e && e.message) || e) }));
     }
+    return;
+  }
+
+  // Trạng thái crawl (TV poll tiến trình thay vì treo đợi POST /api/crawl).
+  if (req.method === 'GET' && url.pathname === '/api/crawl-status') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ crawling, startedAt: crawlStartedAt || null }));
     return;
   }
 

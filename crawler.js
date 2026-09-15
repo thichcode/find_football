@@ -2,7 +2,8 @@
 import fs from 'node:fs';
 import puppeteer from 'puppeteer';
 import { SOURCES } from './sources.js';
-import { dedupeMatches, groupMatches } from './lib/normalize.js';
+import { dedupeMatches, groupMatches, buildBlvGroups, eventsFromJsonLd } from './lib/normalize.js';
+import { scrapeHtml, parseBlvCardsFromHtml, parseJsonLdFromHtml } from './lib/firecrawl.js';
 
 // Log từng URL đã thử trong 1 lần crawl (để /api/crawl trả debug về client).
 // tryParseUrl push vào đây, runCrawl đọc + xóa.
@@ -15,30 +16,6 @@ function logAttempt(source, url, strategy, rows, note = '') {
     sample: [...new Set(links)].slice(0, 3),
     note: String(note || '').slice(0, 600),
   });
-}
-
-function eventsFromJsonLd(json) {
-  const out = [];
-  const push = (obj) => {
-    if (!obj || typeof obj !== 'object') return;
-    if (Array.isArray(obj)) { obj.forEach(push); return; }
-    if (obj['@graph']) { push(obj['@graph']); return; }
-    const type = String(obj['@type'] || '');
-    const teams = obj.performer || obj.competitor || [];
-    const names = (Array.isArray(teams) ? teams : [teams])
-      .map((t) => t && t.name).filter(Boolean);
-    if ((type === 'BroadcastEvent' || type === 'SportsEvent') && names.length >= 2 && obj.startDate) {
-      out.push({
-        home: String(names[0]).trim(),
-        away: String(names[1]).trim(),
-        league: (obj.partOfSeries && obj.partOfSeries.name) || 'Tong hop',
-        kickoffISO: obj.startDate,
-        isLive: obj.isLiveBroadcast === true || /live/i.test(obj.eventStatus || ''),
-      });
-    }
-  };
-  push(json);
-  return out;
 }
 
 async function crawlJsonLd(page, src) {
@@ -71,18 +48,7 @@ async function extractBlv(page) {
 // <a class="dropdown-item" href=".../truc-tiep/<home>-vs-<away>-<date>/?blv=..."
 //    aria-label="BLV Link Trực Tiếp <home> vs <away> vào lúc <HH:MM> <DD/MM[/YYYY]>">
 // Template xoilacd.tv tương tự nhưng tên BLV nằm rải rác trong span/img,
-// lẫn với chữ trang trí ("BLV đông nhưng chất"...): lọc theo blocklist.
-const BLV_JUNK = /trực tiếp|truc tiep|^xem|live|chất|chat|đông|dong|hd|full|miễn phí|mien phi|bóng đá|bong da|tốc độ|toc do|socolive|xoilac|gavang|bình luận|binh luan|việt|viet/i;
-function pickBlvName(cands) {
-  for (let c of cands) {
-    c = String(c || '').replace(/^BLV\s+/i, '').trim().replace(/\s+/g, ' ');
-    if (c.length < 2 || c.length > 24) continue;
-    if (BLV_JUNK.test(c)) continue;
-    if ((c.match(/\d/g) || []).length > 4) continue;
-    return c;
-  }
-  return '';
-}
+// lẫn với chữ trang trí ("BLV đông nhưng chất"...): lọc theo blocklist (xem normalize.js).
 async function crawlBlvCards(page, src) {
   const items = await page.$$eval('a.dropdown-item[href*="/truc-tiep/"]', (els) =>
     els.map((a) => ({
@@ -92,30 +58,25 @@ async function crawlBlvCards(page, src) {
       url: a.href
     }))
   );
-  const groups = new Map();
+  const groups = buildBlvGroups(items, src.id, src.name);
+  const groupMap = new Map(groups.map((g) => [`${g.home}|${g.away}|${g.kickoffISO}`, g]));
   const addLink = (home, away, iso, url, blvName) => {
     const key = `${home.trim().toLowerCase()}|${away.trim().toLowerCase()}|${iso}`;
-    if (!groups.has(key)) {
-      groups.set(key, {
+    if (!groupMap.has(key)) {
+      const g = {
         home: home.trim(), away: away.trim(), league: 'Tong hop',
         kickoffISO: iso, isLive: false, source: src.id, links: []
-      });
+      };
+      groups.push(g);
+      groupMap.set(key, g);
     }
-    const g = groups.get(key);
+    const g = groupMap.get(key);
     if (!g.links.some((l) => l.url === url)) {
       g.links.push({ label: blvName ? `BLV ${blvName}` : src.name, url });
       if (blvName && !g.blv) g.blv = blvName;
     }
   };
-  for (const it of items) {
-    const m = it.label.match(/Trực Tiếp\s+(.+?)\s+vs\s+(.+?)\s+vào lúc\s+(\d{1,2}:\d{2})\s+(\d{1,2}\/\d{1,2}(?:\/\d{4})?)/i);
-    if (!m) continue;
-    const timeParts = m[4].split('/');
-    const iso = `${timeParts[2] || new Date().getFullYear()}-${String(timeParts[1]).padStart(2, '0')}-${String(timeParts[0]).padStart(2, '0')}T${m[3]}:00+07:00`;
-    const blvName = pickBlvName([...(it.texts || []), ...(it.imgs || [])]);
-    addLink(m[1], m[2], iso, it.url, blvName);
-  }
-  if (!groups.size) {
+  if (!groups.length) {
     // Template kiểu gavang: link overlay rỗng, mọi thông tin nằm trong slug
     // /truc-tiep/<home>-vs-<away>-ngay-<DD>-<MM>-<YYYY>/ (không có giờ).
     const hrefs = await page.$$eval('a[href*="/truc-tiep/"]', (els) => els.map((a) => a.href));
@@ -132,7 +93,7 @@ async function crawlBlvCards(page, src) {
       addLink(m[1].replace(/-/g, ' '), m[2].replace(/-/g, ' '), iso, href, blvName);
     }
   }
-  return [...groups.values()];
+  return groups;
 }
 
 // Lọc host ứng viên từ kết quả tìm kiếm: giữ domain chứa từ khóa
@@ -291,11 +252,47 @@ async function tryParseUrl(browser, src, url) {
     }
     console.warn(`WARN source ${src.id}: ${url} khong thay tran (${tag}), thu tiep`);
     logAttempt(src.id, url, 'empty', [], tag + ' | final=' + finalUrl.slice(0, 100) + ' | ' + diag);
+    // Puppeteer trắng tay (challenge/timeout) -> thử Firecrawl Cloud nếu có key.
+    const viaFire = await tryFirecrawl(src, url, finalUrl);
+    if (viaFire.length) return viaFire;
     return [];
   } catch (e) {
     console.warn(`WARN source ${src.id} loi (${url}): ${e.message}`);
     await page.close().catch(() => {});
     logAttempt(src.id, url, 'error', [], e.message);
+    // Lỗi navigation cũng thử Firecrawl.
+    const viaFire = await tryFirecrawl(src, url, url);
+    if (viaFire.length) return viaFire;
+    return [];
+  }
+}
+
+// Fallback cuối: lấy HTML qua Firecrawl Cloud API (vượt challenge),
+// parse bằng cùng parser BLV/JSON-LD. Trả [] nếu không có key hoặc thất bại.
+async function tryFirecrawl(src, url, pageUrl) {
+  if (!process.env.FIRECRAWL_API_KEY) return [];
+  try {
+    const html = await scrapeHtml(url);
+    if (!html) {
+      logAttempt(src.id, url, 'firecrawl-error', [], 'API tra ve rong');
+      return [];
+    }
+    const viaBlv = parseBlvCardsFromHtml(html, pageUrl, src);
+    if (viaBlv.length) {
+      console.log(`OK source ${src.id}: ${url} — firecrawl (${viaBlv.length} trận, có tên BLV)`);
+      logAttempt(src.id, url, 'firecrawl', viaBlv);
+      return viaBlv;
+    }
+    const viaJson = parseJsonLdFromHtml(html, pageUrl, src);
+    if (viaJson.length) {
+      console.log(`OK source ${src.id}: ${url} — firecrawl jsonld (${viaJson.length} trận)`);
+      logAttempt(src.id, url, 'firecrawl-jsonld', viaJson);
+      return viaJson;
+    }
+    logAttempt(src.id, url, 'firecrawl-empty', [], `html ${html.length} chars, khong parse duoc tran`);
+    return [];
+  } catch (e) {
+    logAttempt(src.id, url, 'firecrawl-error', [], String((e && e.message) || e));
     return [];
   }
 }

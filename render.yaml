@@ -15,6 +15,9 @@ services:
       # tizenbrew-kit (yt-dlp-resolver đọc từ env, không hardcode)
       - key: API_KEY
         sync: false
+      # Firecrawl Cloud API (vượt Cloudflare khi Puppeteer bị chặn, sync:false)
+      - key: FIRECRAWL_API_KEY
+        sync: false
       # AI (OpenRouter, model free mặc định, có thể đổi qua env AI_MODEL)
       - key: OPENROUTER_API_KEY
         sync: false

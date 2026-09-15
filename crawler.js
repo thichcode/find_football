@@ -70,11 +70,25 @@ async function extractBlv(page) {
 // Template kiểu socoliveo.tv: mỗi trận có nhiều link, mỗi link gắn 1 BLV.
 // <a class="dropdown-item" href=".../truc-tiep/<home>-vs-<away>-<date>/?blv=..."
 //    aria-label="BLV Link Trực Tiếp <home> vs <away> vào lúc <HH:MM> <DD/MM[/YYYY]>">
+// Template xoilacd.tv tương tự nhưng tên BLV nằm rải rác trong span/img,
+// lẫn với chữ trang trí ("BLV đông nhưng chất"...): lọc theo blocklist.
+const BLV_JUNK = /trực tiếp|truc tiep|^xem|live|chất|chat|đông|dong|hd|full|miễn phí|mien phi|bóng đá|bong da|tốc độ|toc do|socolive|xoilac|gavang|bình luận|binh luan|việt|viet/i;
+function pickBlvName(cands) {
+  for (let c of cands) {
+    c = String(c || '').replace(/^BLV\s+/i, '').trim().replace(/\s+/g, ' ');
+    if (c.length < 2 || c.length > 24) continue;
+    if (BLV_JUNK.test(c)) continue;
+    if ((c.match(/\d/g) || []).length > 4) continue;
+    return c;
+  }
+  return '';
+}
 async function crawlBlvCards(page, src) {
   const items = await page.$$eval('a.dropdown-item[href*="/truc-tiep/"]', (els) =>
     els.map((a) => ({
       label: a.getAttribute('aria-label') || '',
-      blv: ((a.querySelector('span') || {}).textContent || (a.querySelector('img') || {}).alt || '').trim(),
+      texts: [...a.querySelectorAll('span')].map((s) => (s.textContent || '').trim()).filter(Boolean),
+      imgs: [...a.querySelectorAll('img')].map((i) => (i.alt || '').trim()).filter(Boolean),
       url: a.href
     }))
   );
@@ -98,7 +112,7 @@ async function crawlBlvCards(page, src) {
     if (!m) continue;
     const timeParts = m[4].split('/');
     const iso = `${timeParts[2] || new Date().getFullYear()}-${String(timeParts[1]).padStart(2, '0')}-${String(timeParts[0]).padStart(2, '0')}T${m[3]}:00+07:00`;
-    const blvName = (it.blv || '').replace(/^BLV\s+/i, '').trim();
+    const blvName = pickBlvName([...(it.texts || []), ...(it.imgs || [])]);
     addLink(m[1], m[2], iso, it.url, blvName);
   }
   if (!groups.size) {
@@ -339,6 +353,13 @@ export async function runCrawl() {
   const manual = JSON.parse(fs.readFileSync('manual-links.json', 'utf8'));
   const prev = JSON.parse(fs.readFileSync('matches.json', 'utf8'));
   const merged = groupMatches(dedupeMatches([...all, ...manual, ...prev]));
+  // Tính lại cờ LIVE từ giờ đá (không kế thừa flag cũ đã hết hạn):
+  // live = đã đá mà chưa quá 120 phút.
+  const now = Date.now();
+  for (const m of merged) {
+    const t = new Date(m.kickoffISO).getTime();
+    m.isLive = !Number.isNaN(t) && t <= now && now - t < 120 * 60 * 1000;
+  }
   fs.writeFileSync('matches.json', JSON.stringify(merged.slice(0, 100), null, 2));
   const count = Math.min(merged.length, 100);
   console.log(`OK ghi ${count} tran vao matches.json`);

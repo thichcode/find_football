@@ -141,24 +141,24 @@ export function hostFromBingResult(href, cite) {
     return u.hostname.toLowerCase();
   } catch { return ''; }
 }
-// Tự tìm domain mới: Google qua Firecrawl trước (đúng hành vi người dùng:
-// search Google, bấm link đầu chứa từ khóa), Bing trực tiếp làm dự phòng.
-// Chỉ gọi khi toàn bộ URL cứng đều chết, để crawl thường không bị chậm.
-async function discoverDomains(browser, src) {
+// Google qua Firecrawl (vượt chặn bot): trả về URL theo đúng thứ tự Google xếp.
+// Không cần browser. Trả [] nếu không có key Firecrawl hoặc lỗi.
+async function discoverGoogle(src) {
   if (!src.discovery) return [];
-  const found = [];
-  // 1) Google qua Firecrawl (vượt chặn bot).
   try {
     const html = await scrapeHtml(`https://www.google.com/search?q=${encodeURIComponent(src.discovery.query)}&num=10`);
-    if (html) {
-      const g = parseGoogleHosts(html, src.discovery.keyword);
-      console.log(`Discovery ${src.id} (google): ${g.join(', ') || 'khong co'}`);
-      found.push(...g);
-    }
+    if (!html) return [];
+    const g = parseGoogleHosts(html, src.discovery.keyword);
+    console.log(`Discovery ${src.id} (google): ${g.join(', ') || 'khong co'}`);
+    return g.map((h) => `https://${h}/`);
   } catch (e) {
     console.warn(`WARN discovery ${src.id} google loi: ${e.message}`);
+    return [];
   }
-  // 2) Bing trực tiếp làm dự phòng.
+}
+// Bing trực tiếp (không cần key): dự phòng khi Google/Firecrawl lỗi.
+async function discoverBing(browser, src) {
+  if (!src.discovery) return [];
   const page = await browser.newPage();
   try {
     const q = encodeURIComponent(src.discovery.query);
@@ -172,12 +172,9 @@ async function discoverDomains(browser, src) {
     const hosts = rows.map((r) => hostFromBingResult(r.href, r.cite));
     const cands = filterCandidateHosts(hosts, src.discovery.keyword);
     console.log(`Discovery ${src.id} (bing): tim thay ${cands.length} domain (${cands.join(', ') || 'khong co'})`);
-    found.push(...cands);
-    const uniq = [...new Set(found)].slice(0, 8);
-    console.log(`Discovery ${src.id}: tong ${uniq.length} domain (${uniq.join(', ') || 'khong co'})`);
-    return uniq.map((h) => `https://${h}/`);
+    return cands.map((h) => `https://${h}/`);
   } catch (e) {
-    console.warn(`WARN discovery ${src.id} loi: ${e.message}`);
+    console.warn(`WARN discovery ${src.id} bing loi: ${e.message}`);
     return [];
   } finally {
     await page.close().catch(() => {});
@@ -315,7 +312,11 @@ async function tryFirecrawl(src, url, pageUrl) {
 }
 
 async function crawlSource(browser, src, discovered) {
-  const urls = [src.scheduleUrl, ...((discovered && discovered[src.id]) || []), ...(src.fallbacks || [])];
+  // Domain nhảy liên tục: Google (kết quả mới nhất, đúng hành vi người dùng) đi TRƯỚC,
+  // URL cứng + discovered làm dự phòng. Dừng ở URL đầu tiên ra trận.
+  const googleUrls = await discoverGoogle(src);
+  const hardUrls = [src.scheduleUrl, ...((discovered && discovered[src.id]) || []), ...(src.fallbacks || [])];
+  const urls = [...googleUrls, ...hardUrls.filter((u) => !googleUrls.includes(u))];
   for (const url of urls) {
     const rows = await tryParseUrl(browser, src, url);
     if (rows.length) {
@@ -323,8 +324,8 @@ async function crawlSource(browser, src, discovered) {
       return rows;
     }
   }
-  // Toàn bộ URL cứng chết -> tự tìm domain mới, thử và lưu lại cho lần sau.
-  const cands = await discoverDomains(browser, src);
+  // Toàn bộ trên chết -> Bing dự phòng, thử và lưu lại cho lần sau.
+  const cands = await discoverBing(browser, src);
   for (const url of cands) {
     if (urls.includes(url)) continue;
     const rows = await tryParseUrl(browser, src, url);

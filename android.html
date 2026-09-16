@@ -50,6 +50,8 @@
     var polling=false;
     var screen='home';
     var hls=null;
+    var backCount=0;
+    var backTimer=null;
 
     function $(id){return document.getElementById(id)}
 
@@ -243,6 +245,7 @@
 
     document.addEventListener('keydown',function(e){
       var key=e.key&&e.key!=='Unidentified'?e.key:({13:'Enter',27:'Escape',32:' ',37:'ArrowLeft',38:'ArrowUp',39:'ArrowRight',40:'ArrowDown',10009:'Escape',10190:'MediaPlayPause',10252:'MediaPlayPause'}[e.keyCode]);
+      if(key!=='Backspace'&&key!=='Escape')backCount=0;
       switch(key){
         case'ArrowUp':case'ChannelUp':e.preventDefault();moveFocus(-1);break;
         case'ArrowDown':case'ChannelDown':e.preventDefault();moveFocus(1);break;
@@ -258,6 +261,18 @@
         case'Backspace':case'Escape':e.preventDefault();
           if(screen==='player'){stopPlayer();return}
           if(screen==='list'){renderHome();return}
+          if(screen==='home'){
+            backCount++;
+            if(backCount>=5){
+              if(confirm('Thoat app?'))window.close();
+              backCount=0;
+            }else{
+              setStatus('Nhan Back '+backCount+'/5 lan de thoat');
+              clearTimeout(backTimer);
+              backTimer=setTimeout(function(){backCount=0;if(statusEl)statusEl.textContent=''},3000);
+            }
+            return;
+          }
           break;
         default:
           if(key&&key>='1'&&key<='9'){

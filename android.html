@@ -115,11 +115,10 @@
             '<span class="match-time">'+esc(fmtTime(m.kickoffISO))+'</span>'+
             '<span class="match-title">'+esc(m.home+' vs '+m.away)+'</span>'+
             badge+'</div>'+
-            '<div class="match-league">'+esc(m.league||'')+'</div>'+play;
-          if(hasStream){
-            row.querySelector('.play-btn').addEventListener('click',function(e){e.stopPropagation();playMatch(idx)});
-          }
-          row.addEventListener('click',function(){if(hasStream)playMatch(idx)});
+            '<div class="match-league">'+esc(m.league||'')+'</div>'+
+            '<button class="play-btn" data-idx="'+idx+'">&#9654;</button>';
+          row.querySelector('.play-btn').addEventListener('click',function(e){e.stopPropagation();playMatch(idx)});
+          row.addEventListener('click',function(){playMatch(idx)});
           el.appendChild(row);
         })(i);
       }
@@ -129,11 +128,24 @@
       var m=matches[idx];if(!m)return;
       var url=null;
       for(var j=0;j<(m.links||[]).length;j++){if(m.links[j].streamUrl){url=m.links[j].streamUrl;break}}
-      if(!url)return;
+      if(url){openPlayer(url);return}
+      // Chua co stream -> sniff tu link dau tien
+      var linkUrl=null;
+      for(var j=0;j<(m.links||[]).length;j++){if(m.links[j].url){linkUrl=m.links[j].url;break}}
+      if(!linkUrl)return;
+      setStatus('Dang tim stream...');
+      request('POST','/api/sniff',{url:linkUrl},function(err,r){
+        if(err||!r||!r.streamUrl){setStatus('Khong tim thay stream');return}
+        openPlayer(r.streamUrl);
+      });
+    }
+
+    function openPlayer(url){
       screen='player';
       var v=$('player');v.style.display='block';
-      var listScreen=$('list-screen');if(listScreen)listScreen.style.display='none';
-      if(Hls.isSupported()){
+      var ls=$('list-screen');if(ls)ls.style.display='none';
+      var hdr=document.querySelector('.list-header');if(hdr)hdr.style.display='none';
+      if(typeof Hls!=='undefined'&&Hls.isSupported()){
         if(hls){hls.destroy();hls=null}
         hls=new Hls();
         hls.loadSource(url);

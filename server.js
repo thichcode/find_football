@@ -106,6 +106,13 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Android TV shortcut
+  if (req.method === 'GET' && url.pathname === '/android') {
+    res.writeHead(302, { Location: '/android.html' });
+    res.end();
+    return;
+  }
+
   let p = decodeURIComponent(url.pathname);
   if (p === '/') p = '/index.html';
   const file = path.join(ROOT, path.normalize(p).replace(/^[/\\]+/, ''));

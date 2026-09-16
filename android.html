@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FindFootball TV</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#0a0a0a;color:#eee;font-family:system-ui,sans-serif;height:100vh;overflow:hidden}
+    #home-screen{display:flex;align-items:center;justify-content:center;height:100vh;background:linear-gradient(135deg,#0a1628,#1a0a2e)}
+    .home-center{text-align:center}
+    .home-center h1{font-size:48px;color:#ffd600;margin-bottom:40px;font-weight:700}
+    #btn-crawl{padding:28px 72px;font-size:32px;font-weight:700;background:#ffd600;color:#000;border:none;border-radius:16px;cursor:pointer;outline:none;transition:transform .15s,box-shadow .15s}
+    #btn-crawl:focus{transform:scale(1.05);box-shadow:0 0 0 4px #ffd600,0 0 30px rgba(255,214,0,.4)}
+    #btn-crawl:active{transform:scale(.97)}
+    #btn-crawl:disabled{opacity:.5;cursor:default;transform:none;box-shadow:none}
+    #st{margin-top:20px;font-size:22px;color:#888}
+    #list-screen{display:flex;flex-direction:column;height:100vh}
+    .list-header{display:flex;gap:12px;align-items:center;padding:14px 24px;background:#111;border-bottom:1px solid #333}
+    .list-header button{padding:12px 28px;font-size:22px;font-weight:600;background:#222;color:#fff;border:2px solid #555;border-radius:8px;cursor:pointer;outline:none}
+    .list-header button:focus{border-color:#ffd600;color:#ffd600;background:#333}
+    #list{flex:1;overflow-y:auto;padding:12px 0}
+    .match-row{display:flex;align-items:center;gap:16px;padding:16px 28px;border:2px solid transparent;border-bottom:1px solid #222;cursor:pointer;outline:none;transition:background .1s}
+    .match-row:focus{background:#1a1a2e;border-color:#ffd600}
+    .match-row:hover{background:#1a1a1a}
+    .match-info{display:flex;align-items:center;gap:12px;flex:1}
+    .match-time{color:#7db4ff;font-size:20px;font-weight:600;min-width:100px}
+    .match-title{font-size:24px;color:#fff}
+    .match-league{font-size:16px;color:#666;min-width:120px;text-align:right}
+    .live{background:#e53935;color:#fff;font-size:14px;font-weight:700;padding:3px 10px;border-radius:4px;text-transform:uppercase}
+    .play-btn{padding:12px 24px;font-size:24px;background:#ffd600;color:#000;border:none;border-radius:8px;cursor:pointer;font-weight:700;outline:none}
+    .play-btn:focus{box-shadow:0 0 0 3px #ffd600,0 0 20px rgba(255,214,0,.3)}
+    .play-btn:active{transform:scale(.95)}
+    .empty{padding:40px;text-align:center;color:#666;font-size:24px}
+    #player{position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000;z-index:999;display:none}
+    #list::-webkit-scrollbar{width:8px}
+    #list::-webkit-scrollbar-track{background:#0a0a0a}
+    #list::-webkit-scrollbar-thumb{background:#444;border-radius:4px}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    var BASE='https://find-football-tizenbrew.onrender.com';
+    var matches=[];
+    var focusIdx=0;
+    var polling=false;
+    var screen='home';
+    var hls=null;
+
+    function $(id){return document.getElementById(id)}
+
+    function request(method,path,body,cb){
+      var x=new XMLHttpRequest();
+      x.open(method,BASE+path,true);
+      x.setRequestHeader('Content-Type','application/json');
+      x.onreadystatechange=function(){
+        if(x.readyState!==4)return;
+        if(x.status>=200&&x.status<300){
+          try{cb(null,JSON.parse(x.responseText||'{}'))}catch(e){cb(e)}
+        }else cb(new Error('HTTP '+x.status));
+      };
+      x.onerror=function(){cb(new Error('Network error'))};
+      x.send(body===undefined?null:JSON.stringify(body));
+    }
+
+    function fmtTime(iso){
+      var d=new Date(iso);if(isNaN(d.getTime()))return'';
+      var h=d.getHours(),m=d.getMinutes(),dd=d.getDate(),mo=d.getMonth()+1;
+      return(h<10?'0':'')+h+':'+(m<10?'0':'')+m+' '+(dd<10?'0':'')+dd+'/'+(mo<10?'0':'')+mo;
+    }
+    function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+    function renderHome(){
+      screen='home';
+      document.body.innerHTML=
+        '<div id="home-screen"><div class="home-center">'+
+        '<h1>FindFootball</h1>'+
+        '<button id="btn-crawl">Quet lich moi</button>'+
+        '<div id="st"></div>'+
+        '</div></div>';
+      $('btn-crawl').addEventListener('click',onCrawl);
+      setTimeout(function(){$('btn-crawl').focus()},100);
+    }
+
+    function renderList(){
+      screen='list';
+      document.body.innerHTML=
+        '<div id="list-screen">'+
+        '<div class="list-header">'+
+        '<button id="btn-back">Quay lai</button>'+
+        '<button id="btn-crawl2">Quet lai</button>'+
+        '<span id="st"></span>'+
+        '</div>'+
+        '<div id="list"></div></div>'+
+        '<video id="player" playsinline style="display:none"></video>';
+      $('btn-back').addEventListener('click',renderHome);
+      $('btn-crawl2').addEventListener('click',onCrawl);
+      buildList();
+      setTimeout(focusFirst,100);
+    }
+
+    function buildList(){
+      var el=$('list');if(!el)return;
+      el.innerHTML='';
+      if(!matches.length){el.innerHTML='<div class="empty">Chua co tran nao. Quet lich moi.</div>';return}
+      for(var i=0;i<matches.length;i++){
+        (function(idx){
+          var m=matches[idx];var hasStream=false;
+          for(var j=0;j<(m.links||[]).length;j++){if(m.links[j].streamUrl){hasStream=true;break}}
+          var row=document.createElement('div');
+          row.className='match-row';row.setAttribute('tabindex','0');
+          var badge=m.isLive?'<span class="live">LIVE</span>':'';
+          var play=hasStream?'<button class="play-btn" data-idx="'+idx+'">&#9654;</button>':'';
+          row.innerHTML=
+            '<div class="match-info">'+
+            '<span class="match-time">'+esc(fmtTime(m.kickoffISO))+'</span>'+
+            '<span class="match-title">'+esc(m.home+' vs '+m.away)+'</span>'+
+            badge+'</div>'+
+            '<div class="match-league">'+esc(m.league||'')+'</div>'+play;
+          if(hasStream){
+            row.querySelector('.play-btn').addEventListener('click',function(e){e.stopPropagation();playMatch(idx)});
+          }
+          row.addEventListener('click',function(){if(hasStream)playMatch(idx)});
+          el.appendChild(row);
+        })(i);
+      }
+    }
+
+    function playMatch(idx){
+      var m=matches[idx];if(!m)return;
+      var url=null;
+      for(var j=0;j<(m.links||[]).length;j++){if(m.links[j].streamUrl){url=m.links[j].streamUrl;break}}
+      if(!url)return;
+      screen='player';
+      var v=$('player');v.style.display='block';
+      var listScreen=$('list-screen');if(listScreen)listScreen.style.display='none';
+      if(Hls.isSupported()){
+        if(hls){hls.destroy();hls=null}
+        hls=new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(v);
+        hls.on(Hls.Events.MANIFEST_PARSED,function(){v.play().catch(function(){})});
+      }else if(v.canPlayType('application/vnd.apple.mpegurl')){
+        v.src=url;v.play().catch(function(){});
+      }
+    }
+
+    function stopPlayer(){
+      if(hls){hls.destroy();hls=null}
+      var v=$('player');
+      if(v){try{v.pause();v.removeAttribute('src');v.load()}catch(e){}v.style.display='none'}
+      var ls=$('list-screen');if(ls)ls.style.display='';
+      screen='list';
+    }
+
+    function onCrawl(){
+      if(polling)return;
+      var st=$('st');if(st)st.textContent='Dang quet lich...';
+      polling=true;
+      var btn=$('btn-crawl');if(btn)btn.disabled=true;
+      request('POST','/api/crawl',undefined,function(err,r){
+        if(err){polling=false;if(st)st.textContent='Loi. Thu lai.';if(btn)btn.disabled=false;return}
+        if(st)st.textContent=r.ok?'Quet xong: '+(r.count||'?')+' tran':'Loi crawl';
+        polling=false;if(btn)btn.disabled=false;
+        loadMatches();
+      });
+    }
+
+    function loadMatches(){
+      request('GET','/matches.json',undefined,function(err,data){
+        if(err)return;
+        matches=Array.isArray(data)?data:[];
+        if(screen==='home'){if(matches.length)renderList();else{var st=$('st');if(st)st.textContent='Chua co tran. Quet lai.'}}
+        else buildList();
+      });
+    }
+
+    function getAllFocusable(){
+      var els=[];
+      if(screen==='home'){var b=$('btn-crawl');if(b)els.push(b)}
+      else if(screen==='list'){
+        var rows=document.querySelectorAll('.match-row');
+        for(var i=0;i<rows.length;i++)els.push(rows[i]);
+      }
+      return els;
+    }
+    function focusFirst(){var els=getAllFocusable();if(els.length)els[0].focus()}
+    function moveFocus(d){
+      var els=getAllFocusable();if(!els.length)return;
+      focusIdx=((focusIdx+d)%els.length+els.length)%els.length;
+      els[focusIdx].focus();els[focusIdx].scrollIntoView(false);
+    }
+
+    document.addEventListener('keydown',function(e){
+      var key=e.key&&e.key!=='Unidentified'?e.key:({13:'Enter',27:'Escape',32:' ',37:'ArrowLeft',38:'ArrowUp',39:'ArrowRight',40:'ArrowDown',10009:'Escape',10190:'MediaPlayPause'}[e.keyCode]);
+      switch(key){
+        case'ArrowUp':e.preventDefault();moveFocus(-1);break;
+        case'ArrowDown':e.preventDefault();moveFocus(1);break;
+        case'ArrowLeft':e.preventDefault();moveFocus(-3);break;
+        case'ArrowRight':e.preventDefault();moveFocus(3);break;
+        case'Enter':e.preventDefault();
+          var el=document.activeElement;
+          if(el&&(el.tagName==='BUTTON'||el.classList.contains('match-row')))el.click();
+          break;
+        case' ':case'MediaPlayPause':e.preventDefault();
+          if(screen==='player'){var v=$('player');if(v){if(v.paused)v.play().catch(function(){});else v.pause()}}
+          break;
+        case'Backspace':case'Escape':e.preventDefault();
+          if(screen==='player'){stopPlayer();return}
+          if(screen==='list'){renderHome();return}
+          break;
+      }
+    });
+
+    renderHome();loadMatches();
+  </script>
+</head>
+<body></body>
+</html>

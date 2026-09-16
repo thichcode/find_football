@@ -36,6 +36,11 @@
     #list::-webkit-scrollbar{width:8px}
     #list::-webkit-scrollbar-track{background:#0a0a0a}
     #list::-webkit-scrollbar-thumb{background:#444;border-radius:4px}
+    #loading-overlay{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,.85);z-index:1000;display:flex;align-items:center;justify-content:center}
+    .loading-box{text-align:center}
+    .spinner{width:60px;height:60px;border:6px solid #333;border-top-color:#ffd600;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 20px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .loading-msg{color:#ffd600;font-size:24px}
   </style>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
@@ -52,6 +57,7 @@
       var x=new XMLHttpRequest();
       x.open(method,BASE+path,true);
       x.setRequestHeader('Content-Type','application/json');
+      x.timeout=90000;
       x.onreadystatechange=function(){
         if(x.readyState!==4)return;
         if(x.status>=200&&x.status<300){
@@ -59,6 +65,7 @@
         }else cb(new Error('HTTP '+x.status));
       };
       x.onerror=function(){cb(new Error('Network error'))};
+      x.ontimeout=function(){cb(new Error('Timeout'))};
       x.send(body===undefined?null:JSON.stringify(body));
     }
 
@@ -129,15 +136,32 @@
       var url=null;
       for(var j=0;j<(m.links||[]).length;j++){if(m.links[j].streamUrl){url=m.links[j].streamUrl;break}}
       if(url){openPlayer(url);return}
-      // Chua co stream -> sniff tu link dau tien
-      var linkUrl=null;
-      for(var j=0;j<(m.links||[]).length;j++){if(m.links[j].url){linkUrl=m.links[j].url;break}}
-      if(!linkUrl)return;
-      setStatus('Dang tim stream...');
-      request('POST','/api/sniff',{url:linkUrl},function(err,r){
-        if(err||!r||!r.streamUrl){setStatus('Khong tim thay stream');return}
-        openPlayer(r.streamUrl);
+      // Chua co stream -> sniff tung link
+      var links=[];
+      for(var j=0;j<(m.links||[]).length;j++){if(m.links[j].url)links.push(m.links[j])}
+      if(!links.length)return;
+      showLoading('Dang tim stream: '+m.home+' vs '+m.away);
+      sniffNext(links,0);
+    }
+
+    function sniffNext(links,i){
+      if(i>=links.length){hideLoading();setStatus('Khong tim thay stream');return}
+      setStatus('Dang tim stream ('+links[i].label+')...');
+      request('POST','/api/sniff',{url:links[i].url},function(err,r){
+        if(!err&&r&&r.streamUrl){hideLoading();openPlayer(r.streamUrl);return}
+        sniffNext(links,i+1);
       });
+    }
+
+    function showLoading(msg){
+      var d=document.createElement('div');
+      d.id='loading-overlay';
+      d.innerHTML='<div class="loading-box"><div class="spinner"></div><div class="loading-msg">'+esc(msg)+'</div></div>';
+      document.body.appendChild(d);
+    }
+    function hideLoading(){
+      var d=document.getElementById('loading-overlay');
+      if(d)d.remove();
     }
 
     function openPlayer(url){

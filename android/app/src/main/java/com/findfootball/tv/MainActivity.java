@@ -39,8 +39,6 @@ public class MainActivity extends Activity {
 
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
-
-        // Enable hardware acceleration for video
         webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
 
         webView.loadUrl(URL);
@@ -48,8 +46,12 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
-            webView.goBack();
+        // Back button -> gui event vao JS de xu ly, khong finish activity
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            webView.evaluateJavascript(
+                "document.dispatchEvent(new KeyboardEvent('keydown',{keyCode:27,key:'Escape'}))",
+                null
+            );
             return true;
         }
         return super.onKeyDown(keyCode, event);

@@ -146,8 +146,12 @@
 
     function sniffNext(links,i){
       if(i>=links.length){hideLoading();setStatus('Khong tim thay stream');return}
-      setStatus('Dang tim stream ('+links[i].label+')...');
+      showLoading('Dang tim stream ('+links[i].label+') ['+(i+1)+'/'+links.length+']');
+      var done=false;
+      var timer=setTimeout(function(){if(!done){done=true;sniffNext(links,i+1)}},20000);
       request('POST','/api/sniff',{url:links[i].url},function(err,r){
+        if(done)return;
+        done=true;clearTimeout(timer);
         if(!err&&r&&r.streamUrl){hideLoading();openPlayer(r.streamUrl);return}
         sniffNext(links,i+1);
       });

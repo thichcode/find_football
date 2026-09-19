@@ -50,6 +50,7 @@
     var backCount=0,backTimer=null;
     var currentMatchIdx=-1;blvIdx=0;var blvLinks=[];
     var blvHideTimer=null;
+    var displayMatches=[];
 
     function $(id){return document.getElementById(id)}
 
@@ -70,9 +71,21 @@
     }
 
     function fmtTime(iso){
+      var m=String(iso).match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+      if(m) return m[4]+':'+m[5]+' '+m[3]+'/'+m[2]+' GMT+7';
       var d=new Date(iso);if(isNaN(d.getTime()))return'';
-      var h=d.getHours(),m=d.getMinutes(),dd=d.getDate(),mo=d.getMonth()+1;
-      return(h<10?'0':'')+h+':'+(m<10?'0':'')+m+' '+(dd<10?'0':'')+dd+'/'+(mo<10?'0':'')+mo;
+      var h=d.getHours(),mi=d.getMinutes(),dd=d.getDate(),mo=d.getMonth()+1;
+      return(h<10?'0':'')+h+':'+(mi<10?'0':'')+mi+' '+(dd<10?'0':'')+dd+'/'+(mo<10?'0':'')+mo+' (local)';
+    }
+    function nearest5(list){
+      var now=Date.now();
+      var arr=list.slice().sort(function(a,b){return new Date(a.kickoffISO)-new Date(b.kickoffISO)});
+      // uu tien live + sap da
+      var scored=arr.map(function(x){return {m:x,score:Math.abs(new Date(x.kickoffISO)-now)-(x.isLive?-1e12:0)}});
+      scored.sort(function(a,b){return a.score-b.score});
+      var top=scored.slice(0,5).map(function(x){return x.m});
+      top.sort(function(a,b){return new Date(a.kickoffISO)-new Date(b.kickoffISO)});
+      return top;
     }
     function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 
@@ -99,10 +112,11 @@
     function buildList(){
       if(!listEl)return;
       listEl.innerHTML='';
-      if(!matches.length){listEl.innerHTML='<div class="empty">Chua co tran nao. Quet lich moi.</div>';return}
-      for(var i=0;i<matches.length;i++){
+      displayMatches=nearest5(matches);
+      if(!displayMatches.length){listEl.innerHTML='<div class="empty">Chua co tran nao. Quet lich moi.</div>';return}
+      for(var i=0;i<displayMatches.length;i++){
         (function(idx){
-          var m=matches[idx];
+          var m=displayMatches[idx];
           var badge=m.isLive?'<span class="live">LIVE</span>':'';
           var row=document.createElement('div');
           row.className='match-row';row.setAttribute('tabindex','0');
@@ -123,7 +137,7 @@
     /* ---------- BLV selector ---------- */
     function showBLVPanel(idx){
       currentMatchIdx=idx;blvIdx=0;
-      var m=matches[idx];if(!m)return;
+      var m=displayMatches[idx];if(!m)return;
       blvLinks=m.links||[];
       var panel=$('blv-panel');
       var bl=$('blv-list');bl.innerHTML='';
@@ -165,7 +179,7 @@
 
     /* ---------- play ---------- */
     function playMatch(idx){
-      var m=matches[idx];if(!m)return;
+      var m=displayMatches[idx];if(!m)return;
       // Kiem tra co streamUrl san
       var url=null;
       for(var j=0;j<(m.links||[]).length;j++){if(m.links[j].streamUrl){url=m.links[j].streamUrl;break}}

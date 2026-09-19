@@ -22,10 +22,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    applicationVariants.configureEach { variant ->
-        variant.outputs.configureEach {
-            outputFileName = "FindFootball-TV-${variant.versionName}-${variant.buildType.name}.apk"
-        }
+    applicationVariants.all {
+        outputFileName = "FindFootball-TV-${versionName}-${buildType.name}.apk"
     }
 }
 

@@ -64,15 +64,19 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (req.method === 'POST' && url.pathname === '/api/crawl') {
-    try {
-      const r = await doCrawl();
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ ok: true, count: r.count, debug: r.debug }));
-    } catch (e) {
-      const code = e && e.code === 409 ? 409 : 500;
-      res.writeHead(code, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: String((e && e.message) || e) }));
+    if (crawling && Date.now() - crawlStartedAt < CRAWL_LOCK_MS) {
+      res.writeHead(409, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Đang crawl, thử lại sau ít phút' }));
+      return;
     }
+    // Chay nen, tra ngay de tranh Render timeout 502 (crawl mat 1-8p)
+    doCrawl().then((r) => {
+      console.log(`Crawl done: ${r.count} matches`);
+    }).catch((e) => {
+      console.error('Crawl failed:', e && e.message || e);
+    });
+    res.writeHead(202, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ ok: true, started: true }));
     return;
   }
 

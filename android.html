@@ -48,7 +48,8 @@
     var statusEl=null,listEl=null,video=null;
     var screen='list';var hls=null;
     var backCount=0,backTimer=null;
-    var currentMatchIdx=-1;var blvIdx=0;var blvLinks=[];
+    var currentMatchIdx=-1;blvIdx=0;var blvLinks=[];
+    var blvHideTimer=null;
 
     function $(id){return document.getElementById(id)}
 
@@ -136,14 +137,15 @@
           bl.appendChild(b);
         })(i);
       }
-      panel.style.display='block';
+      panel.style.display='block';resetBLVTimer();
       var btns=panel.querySelectorAll('.blv-btn');
       if(btns.length)btns[0].focus();
     }
-    function hideBLVPanel(){$('blv-panel').style.display='none'}
+    function hideBLVPanel(){$('blv-panel').style.display='none';clearTimeout(blvHideTimer)}
+    function resetBLVTimer(){clearTimeout(blvHideTimer);blvHideTimer=setTimeout(function(){hideBLVPanel()},10000)}
     function selectBLV(i){
       if(i<0||i>=blvLinks.length)return;
-      blvIdx=i;
+      blvIdx=i;resetBLVTimer();
       var btns=document.querySelectorAll('.blv-btn');
       for(var j=0;j<btns.length;j++)btns[j].className='blv-btn'+(j===i?' active':'');
       if(btns[i])btns[i].focus();

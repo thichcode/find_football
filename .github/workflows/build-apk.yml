@@ -15,13 +15,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get version from build.gradle
+      - name: Get version
         id: version
         run: |
           VERSION=$(grep 'versionName' android/app/build.gradle | sed 's/.*"\(.*\)".*/\1/')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "tag=v$VERSION" >> $GITHUB_OUTPUT
-          echo "Building version: $VERSION"
 
       - name: Check if tag exists
         id: check-tag
@@ -53,18 +52,25 @@ jobs:
         working-directory: android
         run: ./gradlew assembleRelease --no-daemon
 
+      - name: Rename APKs
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
+          mkdir -p release
+          cp android/app/build/outputs/apk/debug/app-debug.apk "release/FindFootball-TV-${VERSION}-debug.apk"
+          cp android/app/build/outputs/apk/release/app-release-unsigned.apk "release/FindFootball-TV-${VERSION}-release.apk" || cp android/app/build/outputs/apk/release/app-release.apk "release/FindFootball-TV-${VERSION}-release.apk" || true
+
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
           name: FindFootball-TV-${{ steps.version.outputs.version }}-debug
-          path: android/app/build/outputs/apk/debug/*.apk
+          path: release/*-debug.apk
           retention-days: 30
 
       - name: Upload Release APK
         uses: actions/upload-artifact@v4
         with:
           name: FindFootball-TV-${{ steps.version.outputs.version }}-release
-          path: android/app/build/outputs/apk/release/*.apk
+          path: release/*-release.apk
           retention-days: 90
 
       - name: Create Release
@@ -73,7 +79,5 @@ jobs:
         with:
           tag_name: ${{ steps.version.outputs.tag }}
           name: ${{ steps.version.outputs.tag }}
-          files: |
-            android/app/build/outputs/apk/release/*.apk
-            android/app/build/outputs/apk/debug/*.apk
+          files: release/*.apk
           generate_release_notes: true

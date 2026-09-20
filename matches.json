@@ -4,7 +4,7 @@
     "away": "Vissel Kobe",
     "league": "Tong hop",
     "kickoffISO": "2026-09-20T15:00:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
@@ -39,7 +39,7 @@
     "away": "Kashiwa Reysol",
     "league": "Tong hop",
     "kickoffISO": "2026-09-20T15:00:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {

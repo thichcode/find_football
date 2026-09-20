@@ -417,7 +417,32 @@ export async function runCrawl() {
   fs.writeFileSync('matches.json', JSON.stringify(merged.slice(0, 100), null, 2));
   const count = Math.min(merged.length, 100);
   console.log(`OK ghi ${count} tran vao matches.json`);
+  // Push len GitHub de giu data khi Render restart
+  await commitToGitHub('matches.json').catch((e) => console.log('GitHub push skip:', e.message));
   return { count, debug };
+}
+
+// Push file len GitHub (can GITHUB_TOKEN env var, scope repo)
+export async function commitToGitHub(filePath) {
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) return;
+  const owner = 'thichcode', repo = 'find_football';
+  const api = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+  const content = fs.readFileSync(filePath, 'utf8');
+  const encoded = Buffer.from(content).toString('base64');
+  let sha = '';
+  try {
+    const r = await fetch(api, { headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github.v3+json' } });
+    if (r.ok) { const d = await r.json(); sha = d.sha || ''; }
+  } catch {}
+  const body = { message: `sync: ${filePath} ${new Date().toISOString()}`, content: encoded };
+  if (sha) body.sha = sha;
+  const res = await fetch(api, {
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error('GitHub ' + res.status);
 }
 
 // Chỉ chạy crawl khi gọi trực tiếp (node crawler.js), để test import được helper.

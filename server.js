@@ -248,3 +248,20 @@ const tg = startTelegram({
 const notifyChats = (text) => { if (tg) tg.notify(text); };
 setTimeout(() => sniffDue(notifyChats).catch(() => {}), 60 * 1000);
 setInterval(() => sniffDue(notifyChats).catch(() => {}), 5 * 60 * 1000);
+
+// Startup: fetch matches.json từ GitHub raw (public repo, khong can token)
+const REPO_RAW = 'https://raw.githubusercontent.com/thichcode/find_football/main/matches.json';
+async function syncFromGitHub() {
+  try {
+    const res = await fetch(REPO_RAW);
+    if (!res.ok) return console.log('GitHub sync skip:', res.status);
+    const text = await res.text();
+    const data = JSON.parse(text);
+    if (!Array.isArray(data) || !data.length) return;
+    fs.writeFileSync(path.join(ROOT, 'matches.json'), JSON.stringify(data.slice(0, 100), null, 2));
+    console.log('GitHub sync OK:', data.length, 'matches');
+  } catch (e) {
+    console.log('GitHub sync fail:', e.message);
+  }
+}
+await syncFromGitHub();

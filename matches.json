@@ -74,7 +74,7 @@
     "away": "Maldives",
     "league": "Tong hop",
     "kickoffISO": "2026-09-24T18:35:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -177,7 +177,7 @@
     "away": "Adelaide",
     "league": "Tong hop",
     "kickoffISO": "2026-09-24T18:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -192,7 +192,7 @@
     "away": "Timor Leste",
     "league": "Tong hop",
     "kickoffISO": "2026-09-24T19:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -227,7 +227,7 @@
     "away": "Republic of the Congo",
     "league": "Tong hop",
     "kickoffISO": "2026-09-24T20:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -448,7 +448,7 @@
     "away": "Hanoi Buffaloes",
     "league": "Tong hop",
     "kickoffISO": "2026-09-24T19:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {

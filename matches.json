@@ -23,7 +23,7 @@
     "away": "Independiente Santa Fe",
     "league": "Tong hop",
     "kickoffISO": "2026-09-26T06:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -42,7 +42,7 @@
     "away": "Louisville City FC",
     "league": "Tong hop",
     "kickoffISO": "2026-09-26T06:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -61,7 +61,7 @@
     "away": "Deportivo Pasto",
     "league": "Tong hop",
     "kickoffISO": "2026-09-26T06:10:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -125,7 +125,7 @@
     "away": "Londrina PR",
     "league": "Tong hop",
     "kickoffISO": "2026-09-26T06:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -144,7 +144,7 @@
     "away": "Guatemala",
     "league": "Tong hop",
     "kickoffISO": "2026-09-26T07:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {

@@ -87,8 +87,20 @@ document.getElementById('refresh').onclick = async (e) => {
     const res = await fetch('/api/crawl', { method: 'POST' });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+    // 202 = crawl chay nen -> poll cho xong
+    if (data.started) {
+      btn.textContent = '⏳ Đang crawl...';
+      let tries = 0;
+      while (tries < 80) {
+        await new Promise(r => setTimeout(r, 3000));
+        tries++;
+        btn.textContent = `⏳ Đang crawl... ${tries * 3}s`;
+        const st = await fetch('/api/crawl-status').then(r => r.json()).catch(() => ({ crawling: false }));
+        if (!st.crawling) break;
+      }
+    }
     await load();
-    alert(`Crawl xong: ${data.count} trận`);
+    alert(`Crawl xong: ${ALL.length} trận`);
   } catch (err) {
     alert('Crawl lỗi — bạn đang mở web bằng node server.js (npm start) chưa? ' + err.message);
   } finally {

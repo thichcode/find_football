@@ -35,18 +35,24 @@ function fmtTime(iso) {
   return isNaN(d) ? '' : d.toLocaleString('vi-VN', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit' });
 }
 
+function todayGMT7() {
+  const d = new Date();
+  const utc = d.getTime() + d.getTimezoneOffset() * 60000;
+  return new Date(utc + 7 * 3600000).toISOString().slice(0, 10);
+}
+
 function render() {
   const q = qEl.value.trim().toLowerCase();
   const lg = leagueEl.value;
   const sc = sourceEl.value;
   const f = favs();
+  const today = todayGMT7();
   const rows = ALL.filter((m) => {
     if (onlyLive && !m.isLive) return false;
     if (lg !== 'all' && m.league !== lg) return false;
     if (sc !== 'all' && !matchHasSource(m, sc)) return false;
-    // Ẩn trận đã đá xong (giờ đá + 120 phút < hiện tại). Trận đang diễn ra vẫn hiện.
-    const t = new Date(m.kickoffISO).getTime();
-    if (!Number.isNaN(t) && t + 120 * 60 * 1000 < Date.now()) return false;
+    // Chi hien tran hom nay (GMT+7) — ca da xong, khong ẩn.
+    if (String(m.kickoffISO).slice(0, 10) !== today) return false;
     if (q && !`${m.home} ${m.away} ${m.league}`.toLowerCase().includes(q)) return false;
     return true;
   }).sort((a, b) => new Date(a.kickoffISO) - new Date(b.kickoffISO));

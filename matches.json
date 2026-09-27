@@ -4,11 +4,11 @@
     "away": "azerbaijan",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T20:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/lithuania-vs-azerbaijan-luc-2000-ngay-27-09-2026/"
       },
       {
@@ -27,11 +27,11 @@
     "away": "ha lan",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T23:00:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/serbia-vs-ha-lan-luc-2300-ngay-27-09-2026/"
       },
       {
@@ -46,11 +46,11 @@
     "away": "xu wales",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T23:00:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/dan-mach-vs-xu-wales-luc-2300-ngay-27-09-2026/"
       },
       {
@@ -65,11 +65,11 @@
     "away": "kosovo",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T23:00:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/ao-vs-kosovo-luc-2300-ngay-27-09-2026/"
       },
       {
@@ -84,11 +84,11 @@
     "away": "nu west ham",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T19:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/nu-manchester-utd-vs-nu-west-ham-luc-1900-ngay-27-09-2026/"
       }
     ]
@@ -98,11 +98,11 @@
     "away": "cordoba",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T19:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/real-valladolid-vs-cordoba-luc-1900-ngay-27-09-2026/"
       }
     ]
@@ -112,11 +112,11 @@
     "away": "zenit st petersburg",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T19:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/shanghai-shenhua-vs-zenit-st-petersburg-luc-1900-ngay-27-09-2026/"
       }
     ]
@@ -126,11 +126,11 @@
     "away": "druzhba maikop",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T19:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/d-makhachkala-b-vs-druzhba-maikop-luc-1900-ngay-27-09-2026/"
       }
     ]
@@ -140,11 +140,11 @@
     "away": "sri lanka",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T19:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/seychelles-vs-sri-lanka-luc-1900-ngay-27-09-2026/"
       }
     ]
@@ -154,11 +154,11 @@
     "away": "nu eintracht frankfurt",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T19:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/karlsruher-sc-women-vs-nu-eintracht-frankfurt-luc-1900-ngay-27-09-2026/"
       }
     ]
@@ -168,11 +168,11 @@
     "away": "bumprom gomel",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T19:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/osipovichy-vs-bumprom-gomel-luc-1900-ngay-27-09-2026/"
       }
     ]
@@ -182,11 +182,11 @@
     "away": "nu bayer leverkusen",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T19:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/nu-viktoria-berlin-vs-nu-bayer-leverkusen-luc-1900-ngay-27-09-2026/"
       }
     ]
@@ -196,11 +196,11 @@
     "away": "den bosch",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T19:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/de-graafschap-vs-den-bosch-luc-1930-ngay-27-09-2026/"
       }
     ]
@@ -210,11 +210,11 @@
     "away": "ahrobiznes volochysk",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T19:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/nyva-ternopil-vs-ahrobiznes-volochysk-luc-1930-ngay-27-09-2026/"
       }
     ]
@@ -224,11 +224,11 @@
     "away": "karlovac",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T19:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/hnk-segesta-sisak-vs-karlovac-luc-1930-ngay-27-09-2026/"
       }
     ]
@@ -238,11 +238,11 @@
     "away": "maharlika",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T19:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/stallion-laguna-fc-vs-maharlika-luc-1930-ngay-27-09-2026/"
       }
     ]
@@ -252,11 +252,11 @@
     "away": "nu everton",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T20:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/nu-liverpool-vs-nu-everton-luc-2000-ngay-27-09-2026/"
       }
     ]
@@ -266,11 +266,11 @@
     "away": "nu aston villa",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T20:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/nu-tottenham-vs-nu-aston-villa-luc-2000-ngay-27-09-2026/"
       }
     ]
@@ -280,11 +280,11 @@
     "away": "nu as roma",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T20:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/nu-sassuolo-vs-nu-as-roma-luc-2000-ngay-27-09-2026/"
       }
     ]
@@ -294,11 +294,11 @@
     "away": "nu bayern munchen",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T20:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/nu-monchengladbach-vs-nu-bayern-munchen-luc-2000-ngay-27-09-2026/"
       }
     ]
@@ -308,11 +308,11 @@
     "away": "nu crystal palace",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T20:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/nu-birmingham-vs-nu-crystal-palace-luc-2000-ngay-27-09-2026/"
       }
     ]
@@ -322,11 +322,11 @@
     "away": "mashuk kmv pyatigorsk",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T20:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/sokol-saratov-vs-mashuk-kmv-pyatigorsk-luc-2000-ngay-27-09-2026/"
       }
     ]
@@ -340,7 +340,7 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/noroeste-vs-ec-sao-jose-sp-luc-0300-ngay-28-09-2026/"
       }
     ]
@@ -350,11 +350,11 @@
     "away": "rodina moscow",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T20:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/partizan-belgrade-vs-rodina-moscow-luc-2000-ngay-27-09-2026/"
       }
     ]
@@ -364,11 +364,11 @@
     "away": "algeria u20",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T20:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/libya-u20-vs-algeria-u20-luc-2000-ngay-27-09-2026/"
       }
     ]
@@ -378,11 +378,11 @@
     "away": "yantra gabrovo",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T20:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/beroe-stara-zagora-vs-yantra-gabrovo-luc-2030-ngay-27-09-2026/"
       }
     ]
@@ -392,11 +392,11 @@
     "away": "frydek mistek",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T20:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/polanka-vs-frydek-mistek-luc-2030-ngay-27-09-2026/"
       }
     ]
@@ -410,7 +410,7 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/nu-sevilla-fc-vs-nu-eibar-luc-2100-ngay-27-09-2026/"
       }
     ]
@@ -424,7 +424,7 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/central-espanol-vs-liverpool-uru-luc-2100-ngay-27-09-2026/"
       }
     ]
@@ -438,7 +438,7 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Socolive",
+        "label": "Link 1",
         "url": "https://socolivezm.tv/truc-tiep/volgar-astrakhan-vs-alania-vladikavkaz-luc-2100-ngay-27-09-2026/"
       }
     ]
@@ -461,7 +461,7 @@
     "away": "Hà Lan",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T23:00:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
@@ -475,7 +475,7 @@
     "away": "Wales",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T23:00:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
@@ -489,7 +489,7 @@
     "away": "Kosovo",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T23:00:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
@@ -503,7 +503,7 @@
     "away": "Andorra",
     "league": "Tong hop",
     "kickoffISO": "2026-09-27T23:00:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {

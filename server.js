@@ -138,7 +138,7 @@ const server = http.createServer(async (req, res) => {
 
 const PORT = Number(process.env.PORT || 3000);
 // Render/fastly: bind 0.0.0.0 để nhận traffic ngoài, local vẫn dùng localhost.
-const HOST = process.env.HOST || '127.0.0.1';
+const HOST = process.env.HOST || '0.0.0.0';
 server.listen(PORT, HOST, () => console.log(`Web: http://${HOST}:${PORT}`));
 
 // Bot Telegram dùng chung logic crawl (chống chạy chồng).
@@ -249,11 +249,12 @@ const notifyChats = (text) => { if (tg) tg.notify(text); };
 setTimeout(() => sniffDue(notifyChats).catch(() => {}), 60 * 1000);
 setInterval(() => sniffDue(notifyChats).catch(() => {}), 5 * 60 * 1000);
 
-// Startup: fetch matches.json từ GitHub raw (public repo, khong can token)
+// Startup: fetch matches.json từ GitHub raw (public repo, khong can token).
+// Fire-and-forget + timeout 15s: KHONG duoc chan server.listen (Render health check 5s).
 const REPO_RAW = 'https://raw.githubusercontent.com/thichcode/find_football/main/matches.json';
 async function syncFromGitHub() {
   try {
-    const res = await fetch(REPO_RAW);
+    const res = await fetch(REPO_RAW, { signal: AbortSignal.timeout(15000) });
     if (!res.ok) return console.log('GitHub sync skip:', res.status);
     const text = await res.text();
     const data = JSON.parse(text);
@@ -264,4 +265,4 @@ async function syncFromGitHub() {
     console.log('GitHub sync fail:', e.message);
   }
 }
-await syncFromGitHub();
+syncFromGitHub().catch(() => {});

@@ -1,5 +1,158 @@
 [
   {
+    "home": "Austin FC",
+    "away": "San Diego FC",
+    "league": "Tong hop",
+    "kickoffISO": "2026-09-27T07:30:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Socolive",
+        "url": "https://socolivexv.com/"
+      }
+    ]
+  },
+  {
+    "home": "FC Dallas",
+    "away": "Los Angeles FC",
+    "league": "Tong hop",
+    "kickoffISO": "2026-09-27T07:30:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Socolive",
+        "url": "https://socolivexv.com/"
+      }
+    ]
+  },
+  {
+    "home": "Houston Dynamo",
+    "away": "Sporting Kansas City",
+    "league": "Tong hop",
+    "kickoffISO": "2026-09-27T07:30:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Socolive",
+        "url": "https://socolivexv.com/"
+      }
+    ]
+  },
+  {
+    "home": "Nashville SC",
+    "away": "Toronto FC",
+    "league": "Tong hop",
+    "kickoffISO": "2026-09-27T07:30:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Socolive",
+        "url": "https://socolivexv.com/"
+      }
+    ]
+  },
+  {
+    "home": "Seattle Sounders",
+    "away": "Minnesota United FC",
+    "league": "Tong hop",
+    "kickoffISO": "2026-09-27T07:30:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Socolive",
+        "url": "https://socolivexv.com/"
+      }
+    ]
+  },
+  {
+    "home": "Real Salt Lake",
+    "away": "New England Revolution",
+    "league": "Tong hop",
+    "kickoffISO": "2026-09-27T08:30:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Socolive",
+        "url": "https://socolivexv.com/"
+      }
+    ]
+  },
+  {
+    "home": "Los Angeles Galaxy",
+    "away": "Colorado Rapids",
+    "league": "Tong hop",
+    "kickoffISO": "2026-09-27T09:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Socolive",
+        "url": "https://socolivexv.com/"
+      }
+    ]
+  },
+  {
+    "home": "San Jose Earthquakes",
+    "away": "Portland Timbers",
+    "league": "Tong hop",
+    "kickoffISO": "2026-09-27T09:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Socolive",
+        "url": "https://socolivexv.com/"
+      }
+    ]
+  },
+  {
+    "home": "Vancouver Whitecaps FC",
+    "away": "Washington D.C. United",
+    "league": "Tong hop",
+    "kickoffISO": "2026-09-27T09:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Socolive",
+        "url": "https://socolivexv.com/"
+      }
+    ]
+  },
+  {
+    "home": "Run Mel Aomori",
+    "away": "Yokogawa Musashino FC",
+    "league": "Tong hop",
+    "kickoffISO": "2026-09-27T11:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Socolive",
+        "url": "https://socolivexv.com/"
+      }
+    ]
+  },
+  {
+    "home": "Viet Nam",
+    "away": "Thai Lan",
+    "kickoffISO": "2026-09-06T19:30:00+07:00",
+    "league": "AFF Cup",
+    "links": [
+      {
+        "label": "Link dự phòng",
+        "url": "https://example.com/vn-vs-thai"
+      }
+    ],
+    "isLive": false
+  },
+  {
     "home": "Gremio Novorizontino",
     "away": "Sao Bernardo",
     "league": "Tong hop",
@@ -542,19 +695,6 @@
       }
     ],
     "blv": "A TÚ"
-  },
-  {
-    "home": "Viet Nam",
-    "away": "Thai Lan",
-    "kickoffISO": "2026-09-06T19:30:00+07:00",
-    "league": "AFF Cup",
-    "links": [
-      {
-        "label": "Link dự phòng",
-        "url": "https://example.com/vn-vs-thai"
-      }
-    ],
-    "isLive": false
   },
   {
     "home": "Japan",
@@ -2495,163 +2635,6 @@
       {
         "label": "GavangTV",
         "url": "https://gavanglinkj.tv/truc-tiep/jordan-u20-vs-tajikistan-u20-ngay-06-09-2026/"
-      }
-    ]
-  },
-  {
-    "home": "stourbridge",
-    "away": "rushall olympic",
-    "league": "Tong hop",
-    "kickoffISO": "2026-09-06T00:00:00+07:00",
-    "isLive": false,
-    "source": "gavang",
-    "links": [
-      {
-        "label": "GavangTV",
-        "url": "https://gavanglinkj.tv/truc-tiep/stourbridge-vs-rushall-olympic-ngay-06-09-2026/"
-      }
-    ]
-  },
-  {
-    "home": "frosinone",
-    "away": "venezia",
-    "league": "Tong hop",
-    "kickoffISO": "2026-09-06T20:00:00+07:00",
-    "isLive": false,
-    "source": "gavang",
-    "links": [
-      {
-        "label": "GavangTV",
-        "url": "https://gavanglinkj.tv/truc-tiep/frosinone-vs-venezia-ngay-06-09-2026/"
-      },
-      {
-        "label": "BLV RYO",
-        "url": "https://socoliveo.tv/truc-tiep/frosinone-vs-venezia-06-09-2026/?blv=602019"
-      },
-      {
-        "label": "BLV BOSS",
-        "url": "https://socoliveo.tv/truc-tiep/frosinone-vs-venezia-06-09-2026/?blv=620504"
-      },
-      {
-        "label": "BLV A MÂN",
-        "url": "https://socoliveo.tv/truc-tiep/frosinone-vs-venezia-06-09-2026/?blv=627718"
-      },
-      {
-        "label": "BLV PEANUT",
-        "url": "https://socoliveo.tv/truc-tiep/frosinone-vs-venezia-06-09-2026/?blv=620084"
-      }
-    ],
-    "blv": "RYO"
-  },
-  {
-    "home": "fc coffrane",
-    "away": "meyrin",
-    "league": "Tong hop",
-    "kickoffISO": "2026-09-06T00:00:00+07:00",
-    "isLive": false,
-    "source": "gavang",
-    "links": [
-      {
-        "label": "GavangTV",
-        "url": "https://gavanglinkj.tv/truc-tiep/fc-coffrane-vs-meyrin-ngay-06-09-2026/"
-      }
-    ]
-  },
-  {
-    "home": "aigles du congo",
-    "away": "apr fc",
-    "league": "Tong hop",
-    "kickoffISO": "2026-09-06T00:00:00+07:00",
-    "isLive": false,
-    "source": "gavang",
-    "links": [
-      {
-        "label": "GavangTV",
-        "url": "https://gavanglinkj.tv/truc-tiep/aigles-du-congo-vs-apr-fc-ngay-06-09-2026/"
-      }
-    ]
-  },
-  {
-    "home": "scottland fc",
-    "away": "nsingizini hotspurs",
-    "league": "Tong hop",
-    "kickoffISO": "2026-09-06T00:00:00+07:00",
-    "isLive": false,
-    "source": "gavang",
-    "links": [
-      {
-        "label": "GavangTV",
-        "url": "https://gavanglinkj.tv/truc-tiep/scottland-fc-vs-nsingizini-hotspurs-ngay-06-09-2026/"
-      }
-    ]
-  },
-  {
-    "home": "cape town city fc",
-    "away": "hungry lions",
-    "league": "Tong hop",
-    "kickoffISO": "2026-09-06T00:00:00+07:00",
-    "isLive": false,
-    "source": "gavang",
-    "links": [
-      {
-        "label": "GavangTV",
-        "url": "https://gavanglinkj.tv/truc-tiep/cape-town-city-fc-vs-hungry-lions-ngay-06-09-2026/"
-      }
-    ]
-  },
-  {
-    "home": "the bees fc",
-    "away": "gomora united fc",
-    "league": "Tong hop",
-    "kickoffISO": "2026-09-06T00:00:00+07:00",
-    "isLive": false,
-    "source": "gavang",
-    "links": [
-      {
-        "label": "GavangTV",
-        "url": "https://gavanglinkj.tv/truc-tiep/the-bees-fc-vs-gomora-united-fc-ngay-06-09-2026/"
-      }
-    ]
-  },
-  {
-    "home": "spvg porz 1919",
-    "away": "vfl vichttal",
-    "league": "Tong hop",
-    "kickoffISO": "2026-09-06T00:00:00+07:00",
-    "isLive": false,
-    "source": "gavang",
-    "links": [
-      {
-        "label": "GavangTV",
-        "url": "https://gavanglinkj.tv/truc-tiep/spvg-porz-1919-vs-vfl-vichttal-ngay-06-09-2026/"
-      }
-    ]
-  },
-  {
-    "home": "germania egestorf",
-    "away": "heeslinger sc",
-    "league": "Tong hop",
-    "kickoffISO": "2026-09-06T00:00:00+07:00",
-    "isLive": false,
-    "source": "gavang",
-    "links": [
-      {
-        "label": "GavangTV",
-        "url": "https://gavanglinkj.tv/truc-tiep/germania-egestorf-vs-heeslinger-sc-ngay-06-09-2026/"
-      }
-    ]
-  },
-  {
-    "home": "fc verden 04",
-    "away": "tus blau weiss lohne",
-    "league": "Tong hop",
-    "kickoffISO": "2026-09-06T00:00:00+07:00",
-    "isLive": false,
-    "source": "gavang",
-    "links": [
-      {
-        "label": "GavangTV",
-        "url": "https://gavanglinkj.tv/truc-tiep/fc-verden-04-vs-tus-blau-weiss-lohne-ngay-06-09-2026/"
       }
     ]
   }

@@ -66,7 +66,7 @@ async function crawlJsonLd(page, src) {
     try { found.push(...eventsFromJsonLd(JSON.parse(b))); } catch { /* skip block lỗi */ }
   }
   const pageUrl = page.url();
-  return found.map((m) => ({ ...m, source: src.id, links: [{ label: src.name, url: pageUrl }] }));
+  return found.map((m) => ({ ...m, source: src.id, links: [{ label: 'Link 1', url: pageUrl }] }));
 }
 
 // Trang phù hợp = trang lịch có tên BLV (mỗi trận gán BLV cụ thể),
@@ -114,7 +114,7 @@ async function crawlBlvCards(page, src) {
     }
     const g = groupMap.get(key);
     if (!g.links.some((l) => l.url === url)) {
-      g.links.push({ label: blvName ? `BLV ${blvName}` : src.name, url });
+      g.links.push({ label: blvName ? `BLV ${blvName}` : `Link ${g.links.length + 1}`, url });
       if (blvName && !g.blv) g.blv = blvName;
     }
   };
@@ -295,7 +295,7 @@ async function tryParseUrl(browser, src, url) {
           kickoffISO: new Date().toISOString(),
           isLive: /live|truc tiep/i.test(x.text),
           source: src.id,
-          links: [{ label: src.name, url: x.url }]
+          links: [{ label: 'Link 1', url: x.url }]
         };
       });
     await page.close().catch(() => {});

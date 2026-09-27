@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import puppeteer from 'puppeteer';
 import { SOURCES } from './sources.js';
-import { dedupeMatches, groupMatches, buildBlvGroups, eventsFromJsonLd } from './lib/normalize.js';
+import { dedupeMatches, groupMatches, buildBlvGroups, eventsFromJsonLd, parseMatchSlug, pickBlvName } from './lib/normalize.js';
 import { scrapeHtml, parseBlvCardsFromHtml, parseJsonLdFromHtml, parseGoogleHosts } from './lib/firecrawl.js';
 
 // URL playlist stream (HLS/DASH) — dùng chung cho probe lẫn auto-sniff.
@@ -88,10 +88,13 @@ async function extractBlv(page) {
 //    aria-label="BLV Link Trực Tiếp <home> vs <away> vào lúc <HH:MM> <DD/MM[/YYYY]>">
 // Template xoilacd.tv tương tự nhưng tên BLV nằm rải rác trong span/img,
 // lẫn với chữ trang trí ("BLV đông nhưng chất"...): lọc theo blocklist (xem normalize.js).
+// Template mới (socolivezm): mọi <a href="/truc-tiep/...">, tên BLV nằm trong
+// text anchor (vd NICK, NEMO), home/away/giờ nằm trong slug URL.
 async function crawlBlvCards(page, src) {
-  const items = await page.$$eval('a.dropdown-item[href*="/truc-tiep/"]', (els) =>
+  const items = await page.$$eval('a[href*="/truc-tiep/"]', (els) =>
     els.map((a) => ({
       label: a.getAttribute('aria-label') || '',
+      text: (a.textContent || '').trim().replace(/\s+/g, ' '),
       texts: [...a.querySelectorAll('span')].map((s) => (s.textContent || '').trim()).filter(Boolean),
       imgs: [...a.querySelectorAll('img')].map((i) => (i.alt || '').trim()).filter(Boolean),
       url: a.href
@@ -116,20 +119,18 @@ async function crawlBlvCards(page, src) {
     }
   };
   if (!groups.length) {
-    // Template kiểu gavang: link overlay rỗng, mọi thông tin nằm trong slug
-    // /truc-tiep/<home>-vs-<away>-ngay-<DD>-<MM>-<YYYY>/ (không có giờ).
-    const hrefs = await page.$$eval('a[href*="/truc-tiep/"]', (els) => els.map((a) => a.href));
-    // Fallback: lấy BLV từ text trang nếu có, gán ngẫu nhiên cho link.
+    // Slug /truc-tiep/<home>-vs-<away>[-luc-HHMM]-ngay-DD-MM-YYYY[/link/N]:
+    // parse trực tiếp từ URL, tên BLV từ text anchor.
     const blvs = await extractBlv(page);
     const blvPool = blvs.length ? blvs : [];
     let blvIdx = 0;
-    for (const href of hrefs) {
-      const m = href.match(/\/truc-tiep\/(.+?)-vs-(.+?)-ngay-(\d{2})-(\d{2})-(\d{4})\/?(?:[?#]|$)/i);
-      if (!m) continue;
-      const iso = `${m[5]}-${m[4]}-${m[3]}T00:00:00+07:00`;
-      const blvName = blvPool[blvIdx % blvPool.length] || '';
+    for (const it of items) {
+      const s = parseMatchSlug(it.url);
+      if (!s) continue;
+      const blvName = pickBlvName([it.text, ...(it.texts || []), ...(it.imgs || [])])
+        || blvPool[blvIdx % blvPool.length] || '';
       blvIdx++;
-      addLink(m[1].replace(/-/g, ' '), m[2].replace(/-/g, ' '), iso, href, blvName);
+      addLink(s.home, s.away, s.iso, it.url, blvName);
     }
   }
   return groups;

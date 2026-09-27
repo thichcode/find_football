@@ -1,7 +1,7 @@
 // tests/test-firecrawl.mjs
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseBlvAria, pickBlvName, buildBlvGroups } from '../lib/normalize.js';
+import { parseBlvAria, pickBlvName, buildBlvGroups, parseMatchSlug } from '../lib/normalize.js';
 import { parseBlvCardsFromHtml, parseJsonLdFromHtml, parseGoogleHosts, scrapeHtml } from '../lib/firecrawl.js';
 
 const SRC = { id: 'socolive', name: 'Socolive' };
@@ -45,6 +45,33 @@ test('parseJsonLdFromHtml đọc BroadcastEvent', () => {
   const rows = parseJsonLdFromHtml(html, 'https://socoliven.tv/', SRC);
   assert.equal(rows.length, 1);
   assert.equal(rows[0].away, 'Arsenal');
+});
+
+test('parseMatchSlug tách slug mới có giờ luc-HHMM', () => {
+  assert.deepEqual(
+    parseMatchSlug('https://socolivezm.tv/truc-tiep/lithuania-vs-azerbaijan-luc-2000-ngay-27-09-2026/'),
+    { home: 'lithuania', away: 'azerbaijan', iso: '2026-09-27T20:00:00+07:00' }
+  );
+  assert.deepEqual(
+    parseMatchSlug('https://socolivezm.tv/truc-tiep/serbia-vs-ha-lan-luc-2300-ngay-27-09-2026/link/1'),
+    { home: 'serbia', away: 'ha lan', iso: '2026-09-27T23:00:00+07:00' }
+  );
+  assert.equal(parseMatchSlug('https://x/1'), null);
+});
+
+const FIXTURE_NEW = `
+<a href="/truc-tiep/lithuania-vs-azerbaijan-luc-2000-ngay-27-09-2026/">NICK</a>
+<a href="/truc-tiep/lithuania-vs-azerbaijan-luc-2000-ngay-27-09-2026/link/1">NEMO</a>
+<a href="/tin-tuc/bong-da">tin bóng đá</a>`;
+
+test('parseBlvCardsFromHtml template mới: text anchor = tên BLV', () => {
+  const rows = parseBlvCardsFromHtml(FIXTURE_NEW, 'https://socolivezm.tv/', SRC);
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].home, 'lithuania');
+  assert.equal(rows[0].kickoffISO, '2026-09-27T20:00:00+07:00');
+  assert.equal(rows[0].links.length, 2);
+  assert.match(rows[0].links[0].label, /NICK/);
+  assert.match(rows[0].links[1].label, /NEMO/);
 });
 
 test('buildBlvGroups bỏ aria không khớp', () => {

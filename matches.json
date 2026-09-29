@@ -8,7 +8,7 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
+        "label": "BLV ROY",
         "url": "https://socolivezo.tv/truc-tiep/thai-lan-vs-viet-nam-luc-1930-ngay-29-09-2026/"
       },
       {
@@ -20,7 +20,7 @@
         "url": "https://socolivezo.tv/truc-tiep/thai-lan-vs-viet-nam-luc-1930-ngay-29-09-2026/link/8"
       }
     ],
-    "blv": "NICK"
+    "blv": "ROY"
   },
   {
     "home": "shenzhen jixiang",
@@ -59,10 +59,11 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
+        "label": "BLV RAVEN",
         "url": "https://socolivezo.tv/truc-tiep/comoros-vs-namibia-luc-1800-ngay-29-09-2026/"
       }
-    ]
+    ],
+    "blv": "RAVEN"
   },
   {
     "home": "hy lap u17",
@@ -129,10 +130,11 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
+        "label": "BLV FABIO",
         "url": "https://socolivezo.tv/truc-tiep/nam-sudan-vs-ai-cap-luc-2000-ngay-29-09-2026/"
       }
-    ]
+    ],
+    "blv": "FABIO"
   },
   {
     "home": "lesotho",
@@ -143,10 +145,11 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
+        "label": "BLV NEMO",
         "url": "https://socolivezo.tv/truc-tiep/lesotho-vs-ma-roc-luc-2000-ngay-29-09-2026/"
       }
-    ]
+    ],
+    "blv": "NEMO"
   },
   {
     "home": "ethiopia",
@@ -157,10 +160,11 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
+        "label": "BLV SILVA",
         "url": "https://socolivezo.tv/truc-tiep/ethiopia-vs-senegal-luc-2000-ngay-29-09-2026/"
       }
-    ]
+    ],
+    "blv": "SILVA"
   },
   {
     "home": "burundi",
@@ -171,10 +175,11 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
+        "label": "BLV XMEN",
         "url": "https://socolivezo.tv/truc-tiep/burundi-vs-algeria-luc-2000-ngay-29-09-2026/"
       }
-    ]
+    ],
+    "blv": "XMEN"
   },
   {
     "home": "madagascar",
@@ -185,10 +190,11 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
+        "label": "BLV BEE",
         "url": "https://socolivezo.tv/truc-tiep/madagascar-vs-tanzania-luc-2000-ngay-29-09-2026/"
       }
-    ]
+    ],
+    "blv": "BEE"
   },
   {
     "home": "mozambique",
@@ -199,10 +205,11 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
+        "label": "BLV TOM",
         "url": "https://socolivezo.tv/truc-tiep/mozambique-vs-sudan-luc-2000-ngay-29-09-2026/"
       }
-    ]
+    ],
+    "blv": "TOM"
   },
   {
     "home": "malawi u23",
@@ -297,10 +304,11 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
+        "label": "BLV JEAN",
         "url": "https://socolivezo.tv/truc-tiep/slovenia-u21-vs-israel-u21-luc-2100-ngay-29-09-2026/"
       }
-    ]
+    ],
+    "blv": "JEAN"
   },
   {
     "home": "anh u19",
@@ -409,10 +417,11 @@
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
+        "label": "BLV POLO",
         "url": "https://socolivezo.tv/truc-tiep/iceland-u21-vs-thuy-si-u21-luc-2200-ngay-29-09-2026/"
       }
-    ]
+    ],
+    "blv": "POLO"
   },
   {
     "home": "al khor sc",

@@ -51,6 +51,7 @@
     var currentMatchIdx=-1;blvIdx=0;var blvLinks=[];
     var blvHideTimer=null;
     var displayMatches=[];
+    var playToken=0,playOk=false,triedIdx={},playSession=false;
 
     function $(id){return document.getElementById(id)}
 
@@ -104,6 +105,8 @@
         '<button id="btn-back-play" style="display:none">Quay lai</button>'+
         '<div id="blv-panel"><div class="blv-title">Chon BLV (len/xuong):</div><div id="blv-list"></div></div>';
       statusEl=$('st');listEl=$('list');video=$('player');
+      video.addEventListener('playing',function(){playOk=true});
+      video.addEventListener('error',function(){autoNextBLV('Loi phat - tu chuyen BLV ke...')});
       $('btn-crawl').addEventListener('click',onCrawl);
       $('btn-crawl2').addEventListener('click',onCrawl);
       $('btn-back-play').addEventListener('click',stopPlayer);
@@ -168,18 +171,31 @@
     }
     function selectBLV(i){
       if(i<0||i>=blvLinks.length)return;
-      highlightBLV(i);
+      highlightBLV(i);triedIdx[i]=1;
       var link=blvLinks[i];
       if(link.streamUrl){openPlayer(link.streamUrl);hideBLVPanel();return}
       if(!link.url)return;
       showLoading('Dang tim stream ('+link.label+')...');
       var done=false;
-      var timer=setTimeout(function(){if(!done){done=true;hideLoading();setStatus('Timeout - chon BLV khac')}},30000);
+      var timer=setTimeout(function(){if(!done){done=true;hideLoading();autoNextBLV('Sniff lau - tu chuyen BLV ke...')}},30000);
       request('POST','/api/sniff',{url:link.url},function(err,r){
         if(done)return;done=true;clearTimeout(timer);
-        if(!err&&r&&r.streamUrl){hideLoading();openPlayer(r.streamUrl);hideBLVPanel();return}
-        hideLoading();setStatus('Khong tim thay stream - chon BLV khac');
+        if(!err&&r&&r.streamUrl){link.streamUrl=r.streamUrl;hideLoading();openPlayer(r.streamUrl);hideBLVPanel();return}
+        hideLoading();autoNextBLV('Khong co stream - tu chuyen BLV ke...');
       });
+    }
+
+    /* Tu dong chuyen BLV ke tiep (chua thu) khi stream hien tai hong */
+    function autoNextBLV(msg){
+      if(!playSession)return;
+      setStatus(msg);
+      var next=-1;
+      for(var k=1;k<=blvLinks.length;k++){
+        var c=(blvIdx+k)%blvLinks.length;
+        if(!triedIdx[c]){next=c;break}
+      }
+      if(next===-1){setStatus('Da thu het BLV - chon tay');return}
+      selectBLV(next);
     }
 
     /* ---------- play ---------- */
@@ -187,26 +203,30 @@
       var m=displayMatches[idx];if(!m)return;
       currentMatchIdx=idx;blvIdx=0;
       blvLinks=m.links||[];
+      triedIdx={};playToken++;playSession=true;
       // Tim streamUrl dau tien
       var url=null,j0=0;
       for(var j=0;j<blvLinks.length;j++){if(blvLinks[j].streamUrl){url=blvLinks[j].streamUrl;j0=j;break}}
-      if(url){blvIdx=j0;openPlayer(url);showBLVPanel(idx);return}
+      if(url){blvIdx=j0;triedIdx[j0]=1;openPlayer(url);showBLVPanel(idx);return}
       // Chua co -> sniff link dau tien roi choi
       var first=blvLinks[0];
       if(!first||!first.url){showBLVPanel(idx);return}
       showLoading('Dang tim stream ('+first.label+')...');
       showBLVPanel(idx);
+      triedIdx[0]=1;
       var done=false;
-      var timer=setTimeout(function(){if(!done){done=true;hideLoading();setStatus('Timeout - chon BLV khac')}},30000);
+      var timer=setTimeout(function(){if(!done){done=true;hideLoading();autoNextBLV('Sniff lau - tu chuyen BLV ke...')}},30000);
       request('POST','/api/sniff',{url:first.url},function(err,r){
         if(done)return;done=true;clearTimeout(timer);
         if(!err&&r&&r.streamUrl){first.streamUrl=r.streamUrl;hideLoading();openPlayer(r.streamUrl);return}
-        hideLoading();setStatus('Khong tim thay stream - chon BLV khac');
+        hideLoading();autoNextBLV('Khong co stream - tu chuyen BLV ke...');
       });
     }
 
     function openPlayer(url){
       screen='player';
+      playOk=false;
+      var token=++playToken;
       var v=$('player');v.style.display='block';
       var listScreen=$('list');if(listScreen)listScreen.style.display='none';
       var hdr=document.querySelector('.list-header');if(hdr)hdr.style.display='none';
@@ -217,12 +237,26 @@
         hls.loadSource(url);
         hls.attachMedia(v);
         hls.on(Hls.Events.MANIFEST_PARSED,function(){v.play().catch(function(){})});
+        hls.on(Hls.Events.ERROR,function(ev,data){
+          if(token!==playToken)return;
+          if(data&&data.fatal)autoNextBLV('Loi stream - tu chuyen BLV ke...');
+        });
       }else if(v.canPlayType('application/vnd.apple.mpegurl')){
         v.src=url;v.play().catch(function(){});
       }
+      // Watchdog 20s: chua phat duoc -> tu chuyen BLV ke
+      setTimeout(function(){
+        if(token!==playToken)return;
+        if(playOk)return;
+        try{
+          if(v&&!v.paused&&!v.ended&&v.currentTime>0)return;
+        }catch(e){}
+        autoNextBLV('Khong xem duoc sau 20s - tu chuyen BLV ke...');
+      },20000);
     }
 
     function stopPlayer(){
+      playToken++;playSession=false;
       if(hls){hls.destroy();hls=null}
       var v=$('player');
       if(v){try{v.pause();v.removeAttribute('src');v.load()}catch(e){}v.style.display='none'}

@@ -64,14 +64,14 @@ const FIXTURE_NEW = `
 <a href="/truc-tiep/lithuania-vs-azerbaijan-luc-2000-ngay-27-09-2026/link/1">NEMO</a>
 <a href="/tin-tuc/bong-da">tin bóng đá</a>`;
 
-test('parseBlvCardsFromHtml template mới: text anchor = tên BLV', () => {
+test('parseBlvCardsFromHtml template mới: text anchor = tên BLV, /link/N gom về URL gốc', () => {
   const rows = parseBlvCardsFromHtml(FIXTURE_NEW, 'https://socolivezm.tv/', SRC);
   assert.equal(rows.length, 1);
   assert.equal(rows[0].home, 'lithuania');
   assert.equal(rows[0].kickoffISO, '2026-09-27T20:00:00+07:00');
-  assert.equal(rows[0].links.length, 2);
+  assert.equal(rows[0].links.length, 1);
+  assert.ok(!rows[0].links.some((l) => /\/link\/\d+/.test(l.url)));
   assert.match(rows[0].links[0].label, /NICK/);
-  assert.match(rows[0].links[1].label, /NEMO/);
 });
 
 test('buildBlvGroups bỏ aria không khớp', () => {

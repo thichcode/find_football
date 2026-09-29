@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import puppeteer from 'puppeteer';
 import { SOURCES } from './sources.js';
-import { dedupeMatches, groupMatches, buildBlvGroups, eventsFromJsonLd, parseMatchSlug, pickBlvName } from './lib/normalize.js';
+import { dedupeMatches, groupMatches, buildBlvGroups, eventsFromJsonLd, parseMatchSlug, pickBlvName, stripLinkSuffix } from './lib/normalize.js';
 import { scrapeHtml, parseBlvCardsFromHtml, parseJsonLdFromHtml, parseGoogleHosts } from './lib/firecrawl.js';
 
 // URL playlist stream (HLS/DASH) — dùng chung cho probe lẫn auto-sniff.
@@ -103,6 +103,7 @@ async function crawlBlvCards(page, src) {
   const groups = buildBlvGroups(items, src.id, src.name);
   const groupMap = new Map(groups.map((g) => [`${g.home}|${g.away}|${g.kickoffISO}`, g]));
   const addLink = (home, away, iso, url, blvName) => {
+    url = stripLinkSuffix(url);
     const key = `${home.trim().toLowerCase()}|${away.trim().toLowerCase()}|${iso}`;
     if (!groupMap.has(key)) {
       const g = {
@@ -113,9 +114,13 @@ async function crawlBlvCards(page, src) {
       groupMap.set(key, g);
     }
     const g = groupMap.get(key);
-    if (!g.links.some((l) => l.url === url)) {
+    const ex = g.links.find((l) => l.url === url);
+    if (!ex) {
       g.links.push({ label: blvName ? `BLV ${blvName}` : `Link ${g.links.length + 1}`, url });
       if (blvName && !g.blv) g.blv = blvName;
+    } else if (blvName && !/^BLV /.test(ex.label)) {
+      ex.label = `BLV ${blvName}`;
+      if (!g.blv) g.blv = blvName;
     }
   };
   if (!groups.length) {

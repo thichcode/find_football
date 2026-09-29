@@ -27,7 +27,7 @@
     "away": "sichuan 318",
     "league": "Tong hop",
     "kickoffISO": "2026-09-29T18:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -41,7 +41,7 @@
     "away": "liaoning shengjing xinrui",
     "league": "Tong hop",
     "kickoffISO": "2026-09-29T18:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -251,7 +251,7 @@
     "away": "sport podbrezova",
     "league": "Tong hop",
     "kickoffISO": "2026-09-29T20:30:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
@@ -265,7 +265,7 @@
     "away": "han quoc u17",
     "league": "Tong hop",
     "kickoffISO": "2026-09-29T20:30:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
@@ -279,7 +279,7 @@
     "away": "chanmari fc",
     "league": "Tong hop",
     "kickoffISO": "2026-09-29T20:30:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {

@@ -42,7 +42,9 @@ app.add_middleware(
 
 API_KEY = os.environ.get("API_KEY", "")
 YT_DLP = os.environ.get("YT_DLP_PATH", "yt-dlp")
-FACEBOOK_FORMAT = "hd/sd/b"
+# Tizen TVs (2017-2020) decode H.264 only: Facebook "hd" is often AV1 which
+# fails with MEDIA_ERR_DECODE on TV. Prefer progressive AVC1, fall back to sd.
+FACEBOOK_FORMAT = "best[acodec!=none][vcodec^=avc1][ext=mp4]/sd/b"
 SOURCE_HOST_SUFFIXES = ("facebook.com", "fb.watch", "tiktok.com", "bilibili.tv", "youtube.com", "youtu.be")
 TIKTOK_CDN_HOST_SUFFIXES = ("tiktok.com", "tiktokcdn.com", "tiktokv.com", "byteoversea.com")
 YOUTUBE_CDN_HOST_SUFFIXES = ("googlevideo.com", "youtube.com")
@@ -223,6 +225,8 @@ def check_api_key(x_api_key: str | None = None) -> None:
         raise HTTPException(status_code=401, detail="Invalid API key")
 
 
+# yt-dlp extractor-internal requests cannot be reliably prevalidated; source
+# allowlisting and the dedicated unprivileged service constrain them operationally.
 def run_yt_dlp(url: str, extra_args: list[str] | None = None) -> subprocess.CompletedProcess:
     cmd = [YT_DLP, "--dump-json", "--no-download"]
     if extra_args:
@@ -241,6 +245,7 @@ def extract_video_url(data: dict) -> str | None:
     url = data.get("url") or ""
     if url and url.startswith("http"):
         return url
+    # Prefer selected (requested) DASH formats over full list
     for fmt in data.get("requested_formats") or []:
         fu = fmt.get("url") or ""
         if fu and fu.startswith("http") and fmt.get("vcodec", "none") != "none":
@@ -423,12 +428,13 @@ def build_bilibili_dash_mpd(source_url: str) -> str:
     if dur_float:
         duration = int(dur_float)
 
+    # escape ampersands in URLs for XML
     ve = video_url.replace("&", "&amp;")
     ae = audio_url.replace("&", "&amp;")
 
     lines = [
         '<?xml version="1.0" encoding="utf-8"?>',
-        '<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011" type="static" minBufferTime="PT2S"',
+        f'<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011" type="static" minBufferTime="PT2S"',
     ]
     if duration > 0:
         h, m = divmod(duration, 3600)
@@ -441,7 +447,7 @@ def build_bilibili_dash_mpd(source_url: str) -> str:
     lines.append(f"        <BaseURL>{ve}</BaseURL>")
     lines.append("      </Representation>")
     lines.append("    </AdaptationSet>")
-    lines.append('    <AdaptationSet mimeType="audio/mp4" contentType="audio" segmentAlignment="true" startWithSAP="1">')
+    lines.append(f'    <AdaptationSet mimeType="audio/mp4" contentType="audio" segmentAlignment="true" startWithSAP="1">')
     lines.append(f'      <Representation bandwidth="{int(abr) * 1000}" codecs="{audio_codec}" id="audio">')
     lines.append(f"        <BaseURL>{ae}</BaseURL>")
     lines.append("      </Representation>")
@@ -561,6 +567,7 @@ async def play(request: Request, url: str, mode: str = Query("proxy"),
     if is_bilibili_url(url):
         if mode == "proxy":
             return await stream_bilibili_merged(url)
+        # redirect mode: browser goes to proxy URL for merged mp4 streaming
         api = x_api_key or api_key or ""
         proxy_url = f"/play?mode=proxy&url={url}&api_key={api}"
         return RedirectResponse(proxy_url, status_code=302)

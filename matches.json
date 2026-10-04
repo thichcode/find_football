@@ -1,12 +1,16 @@
 [
   {
-    "home": "Real Sociedad B",
-    "away": "Granada CF",
+    "home": "real sociedad b",
+    "away": "granada cf",
     "league": "Tong hop",
     "kickoffISO": "2026-10-04T19:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/real-sociedad-b-vs-granada-cf-04-10-2026/"
+      },
       {
         "label": "BLV ALEX",
         "url": "https://socolive-1.live/truc-tiep/real-sociedad-b-vs-granada-cf-04-10-2026/?blv=532081"
@@ -35,13 +39,17 @@
     "blv": "ALEX"
   },
   {
-    "home": "Azerbaijan",
-    "away": "Lithuania",
+    "home": "azerbaijan",
+    "away": "lithuania",
     "league": "Tong hop",
     "kickoffISO": "2026-10-04T20:00:00+07:00",
     "isLive": true,
     "source": "socolive",
     "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/azerbaijan-vs-lithuania-04-10-2026"
+      },
       {
         "label": "BLV CURRY",
         "url": "https://socolive-1.live/truc-tiep/azerbaijan-vs-lithuania-04-10-2026?blv=622240"
@@ -70,13 +78,17 @@
     "blv": "CURRY"
   },
   {
-    "home": "Veles Moscow",
-    "away": "Ulyanovsk",
+    "home": "veles moscow",
+    "away": "ulyanovsk",
     "league": "Tong hop",
     "kickoffISO": "2026-10-04T18:30:00+07:00",
     "isLive": false,
     "source": "socolive",
     "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/veles-moscow-vs-ulyanovsk-04-10-2026/"
+      },
       {
         "label": "BLV XUÂN TÓC ĐỎ",
         "url": "https://socolive-1.live/truc-tiep/veles-moscow-vs-ulyanovsk-04-10-2026/?blv=610518"
@@ -97,13 +109,17 @@
     "blv": "XUÂN TÓC ĐỎ"
   },
   {
-    "home": "FK Vrsac",
-    "away": "Metalac Gornji Milanovac",
+    "home": "fk vrsac",
+    "away": "metalac gornji milanovac",
     "league": "Tong hop",
     "kickoffISO": "2026-10-04T19:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/fk-vrsac-vs-metalac-gornji-milanovac-04-10-2026/"
+      },
       {
         "label": "BLV ANH TÀI",
         "url": "https://socolive-1.live/truc-tiep/fk-vrsac-vs-metalac-gornji-milanovac-04-10-2026/?blv=406865"
@@ -116,13 +132,17 @@
     "blv": "ANH TÀI"
   },
   {
-    "home": "Maharlika",
-    "away": "Philippine Army FC",
+    "home": "maharlika",
+    "away": "philippine army fc",
     "league": "Tong hop",
     "kickoffISO": "2026-10-04T19:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/maharlika-vs-philippine-army-fc-04-10-2026"
+      },
       {
         "label": "BLV VOI",
         "url": "https://socolive-1.live/truc-tiep/maharlika-vs-philippine-army-fc-04-10-2026?blv=552716"
@@ -135,13 +155,17 @@
     "blv": "VOI"
   },
   {
-    "home": "VVV Venlo",
-    "away": "Roda JC",
+    "home": "vvv venlo",
+    "away": "roda jc",
     "league": "Tong hop",
     "kickoffISO": "2026-10-04T19:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/vvv-venlo-vs-roda-jc-04-10-2026"
+      },
       {
         "label": "BLV NGƯỜI CÁ",
         "url": "https://socolive-1.live/truc-tiep/vvv-venlo-vs-roda-jc-04-10-2026?blv=595335"
@@ -162,13 +186,17 @@
     "blv": "NGƯỜI CÁ"
   },
   {
-    "home": "West Ham United Women",
-    "away": "Chelsea FC Women",
+    "home": "west ham united women",
+    "away": "chelsea fc women",
     "league": "Tong hop",
     "kickoffISO": "2026-10-04T20:00:00+07:00",
     "isLive": true,
     "source": "socolive",
     "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/west-ham-united-women-vs-chelsea-fc-women-04-10-2026"
+      },
       {
         "label": "BLV YONE",
         "url": "https://socolive-1.live/truc-tiep/west-ham-united-women-vs-chelsea-fc-women-04-10-2026?blv=372746"
@@ -189,13 +217,17 @@
     "blv": "YONE"
   },
   {
-    "home": "Aston Villa Women",
-    "away": "Crystal Palace Women",
+    "home": "aston villa women",
+    "away": "crystal palace women",
     "league": "Tong hop",
     "kickoffISO": "2026-10-04T20:00:00+07:00",
     "isLive": true,
     "source": "socolive",
     "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/aston-villa-women-vs-crystal-palace-women-04-10-2026"
+      },
       {
         "label": "BLV CHIVAS",
         "url": "https://socolive-1.live/truc-tiep/aston-villa-women-vs-crystal-palace-women-04-10-2026?blv=485739"
@@ -208,13 +240,17 @@
     "blv": "CHIVAS"
   },
   {
-    "home": "Tottenham Hotspur Women",
-    "away": "London City Lionesses Women",
+    "home": "tottenham hotspur women",
+    "away": "london city lionesses women",
     "league": "Tong hop",
     "kickoffISO": "2026-10-04T20:00:00+07:00",
     "isLive": true,
     "source": "socolive",
     "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/tottenham-hotspur-women-vs-london-city-lionesses-women-04-10-2026"
+      },
       {
         "label": "BLV RYO",
         "url": "https://socolive-1.live/truc-tiep/tottenham-hotspur-women-vs-london-city-lionesses-women-04-10-2026?blv=602019"
@@ -227,13 +263,17 @@
     "blv": "RYO"
   },
   {
-    "home": "Everton FC Women",
-    "away": "Birmingham Women",
+    "home": "everton fc women",
+    "away": "birmingham women",
     "league": "Tong hop",
     "kickoffISO": "2026-10-04T20:00:00+07:00",
     "isLive": true,
     "source": "socolive",
     "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/everton-fc-women-vs-birmingham-women-04-10-2026"
+      },
       {
         "label": "BLV RÔSI",
         "url": "https://socolive-1.live/truc-tiep/everton-fc-women-vs-birmingham-women-04-10-2026?blv=139384"
@@ -246,13 +286,17 @@
     "blv": "RÔSI"
   },
   {
-    "home": "VfB Stuttgart Women",
-    "away": "Union Berlin Women",
+    "home": "vfb stuttgart women",
+    "away": "union berlin women",
     "league": "Tong hop",
     "kickoffISO": "2026-10-04T21:00:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/vfb-stuttgart-women-vs-union-berlin-women-04-10-2026"
+      },
       {
         "label": "BLV RAMBO",
         "url": "https://socolive-1.live/truc-tiep/vfb-stuttgart-women-vs-union-berlin-women-04-10-2026?blv=534055"
@@ -265,13 +309,17 @@
     "blv": "RAMBO"
   },
   {
-    "home": "Sporting Gijon",
-    "away": "Celta Vigo B",
+    "home": "sporting gijon",
+    "away": "celta vigo b",
     "league": "Tong hop",
     "kickoffISO": "2026-10-04T21:15:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/sporting-gijon-vs-celta-vigo-b-04-10-2026"
+      },
       {
         "label": "BLV CÒ",
         "url": "https://socolive-1.live/truc-tiep/sporting-gijon-vs-celta-vigo-b-04-10-2026?blv=582342"

@@ -59,6 +59,17 @@ test('parseMatchSlug tách slug mới có giờ luc-HHMM', () => {
   assert.equal(parseMatchSlug('https://x/1'), null);
 });
 
+test('parseMatchSlug chịu slug mới (không -ngay, không -luc, có ?blv=)', () => {
+  assert.deepEqual(
+    parseMatchSlug('https://socolive-1.live/truc-tiep/real-sociedad-b-vs-granada-cf-04-10-2026/?blv=532081'),
+    { home: 'real sociedad b', away: 'granada cf', iso: '2026-10-04T00:00:00+07:00' }
+  );
+  assert.deepEqual(
+    parseMatchSlug('https://socolive-1.live/truc-tiep/vvv-venlo-vs-roda-jc-04-10-2026/?blv=595335'),
+    { home: 'vvv venlo', away: 'roda jc', iso: '2026-10-04T00:00:00+07:00' }
+  );
+});
+
 const FIXTURE_NEW = `
 <a href="/truc-tiep/lithuania-vs-azerbaijan-luc-2000-ngay-27-09-2026/">NICK</a>
 <a href="/truc-tiep/lithuania-vs-azerbaijan-luc-2000-ngay-27-09-2026/link/1">NEMO</a>

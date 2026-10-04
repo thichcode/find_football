@@ -45,6 +45,13 @@ YT_DLP = os.environ.get("YT_DLP_PATH", "yt-dlp")
 # Tizen TVs (2017-2020) decode H.264 only: Facebook "hd" is often AV1 which
 # fails with MEDIA_ERR_DECODE on TV. Prefer progressive AVC1, fall back to sd.
 FACEBOOK_FORMAT = "best[acodec!=none][vcodec^=avc1][ext=mp4]/sd/b"
+# Merge mode: best AVC1 video-only (e.g. 720p+) + best audio, muxed to mp4
+# with stream copy (no re-encode). Used by /play?mode=merge.
+FACEBOOK_MERGE_FORMAT = (
+    "bestvideo[vcodec^=avc1][ext=mp4]+bestaudio[ext=m4a]/"
+    "bestvideo[vcodec^=avc1]+bestaudio/"
+    "best[acodec!=none][vcodec^=avc1]/sd"
+)
 SOURCE_HOST_SUFFIXES = ("facebook.com", "fb.watch", "tiktok.com", "bilibili.tv", "youtube.com", "youtu.be")
 TIKTOK_CDN_HOST_SUFFIXES = ("tiktok.com", "tiktokcdn.com", "tiktokv.com", "byteoversea.com")
 YOUTUBE_CDN_HOST_SUFFIXES = ("googlevideo.com", "youtube.com")
@@ -529,8 +536,8 @@ def dash(url: str, x_api_key: str | None = Header(None), api_key: str | None = Q
     return Response(content=mpd, media_type="application/dash+xml")
 
 
-async def stream_bilibili_merged(source_url: str) -> StreamingResponse:
-    cmd = [YT_DLP, "-f", BILIBILI_FORMAT, "--merge-output-format", "mp4",
+async def stream_merged(source_url: str, format_spec: str) -> StreamingResponse:
+    cmd = [YT_DLP, "-f", format_spec, "--merge-output-format", "mp4",
            "--user-agent", UA, "-o", "-", source_url]
     try:
         process = await asyncio.create_subprocess_exec(
@@ -561,16 +568,19 @@ async def play(request: Request, url: str, mode: str = Query("proxy"),
     check_api_key(x_api_key or api_key)
     if not url or not (url.startswith("http://") or url.startswith("https://")):
         raise HTTPException(status_code=400, detail="Invalid or missing url parameter")
-    if mode not in ("redirect", "proxy"):
+    if mode not in ("redirect", "proxy", "merge"):
         raise HTTPException(status_code=400, detail="Invalid mode")
 
     if is_bilibili_url(url):
         if mode == "proxy":
-            return await stream_bilibili_merged(url)
+            return await stream_merged(url, BILIBILI_FORMAT)
         # redirect mode: browser goes to proxy URL for merged mp4 streaming
         api = x_api_key or api_key or ""
         proxy_url = f"/play?mode=proxy&url={url}&api_key={api}"
         return RedirectResponse(proxy_url, status_code=302)
+
+    if is_facebook_url(url) and mode == "merge":
+        return await stream_merged(url, FACEBOOK_MERGE_FORMAT)
 
     if direct == "1":
         if not url_has_host_suffix(url, VIDEO_CDN_HOST_SUFFIXES):

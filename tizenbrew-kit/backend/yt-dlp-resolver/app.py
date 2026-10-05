@@ -203,6 +203,47 @@ def tiktok_open_url(url: str):
         redirect_count += 1
 
 
+def scrape_facebook_og(url: str) -> dict | None:
+    req = urllib.request.Request(url, headers={
+        "User-Agent": UA,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+    })
+    try:
+        resp = urllib.request.urlopen(req, timeout=15)
+        html = resp.read().decode("utf-8", errors="replace")
+
+        def extract_meta(property_name: str) -> str | None:
+            patterns = [
+                rf'<meta[^>]+property="{property_name}"[^>]+content="([^"]+)"',
+                rf'<meta[^>]+content="([^"]+)"[^>]+property="{property_name}"',
+                rf'<meta[^>]+name="{property_name}"[^>]+content="([^"]+)"',
+                rf'<meta[^>]+content="([^"]+)"[^>]+name="{property_name}"',
+            ]
+            for p in patterns:
+                m = re.search(p, html, re.I)
+                if m:
+                    return m.group(1).replace("&amp;", "&")
+            return None
+
+        video_url = (
+            extract_meta("og:video:secure_url")
+            or extract_meta("og:video:url")
+            or extract_meta("og:video")
+        )
+        if not video_url:
+            return None
+        title = extract_meta("og:title") or "Facebook Reel"
+        thumb = extract_meta("og:image")
+        return {
+            "videoUrl": video_url,
+            "title": title,
+            "thumbnailUrl": thumb,
+        }
+    except Exception:
+        return None
+
+
 # ─── Helpers ──────────────────────────────────────────────────────
 
 class ResolveResult(BaseModel):
@@ -353,10 +394,16 @@ def resolve_and_get_cdn(url: str) -> str:
         except subprocess.TimeoutExpired:
             raise HTTPException(status_code=504, detail="yt-dlp resolve timed out")
         if r.returncode != 0:
+            scraped = scrape_facebook_og(url)
+            if scraped and scraped.get("videoUrl"):
+                return scraped["videoUrl"]
             raise HTTPException(status_code=422, detail=r.stderr.strip()[-500:] or "yt-dlp failed")
         lines = [l.strip() for l in r.stdout.strip().split("\n") if l.strip().startswith("http")]
         if lines:
             return lines[0]
+        scraped = scrape_facebook_og(url)
+        if scraped and scraped.get("videoUrl"):
+            return scraped["videoUrl"]
         raise HTTPException(status_code=422, detail="No video URL found")
 
     if is_bilibili_url(url):
@@ -511,13 +558,34 @@ def resolve(url: str, x_api_key: str | None = Header(None)):
         ]
     r = run_yt_dlp(url, extra_args)
     if r.returncode != 0:
+        if is_facebook_url(url):
+            scraped = scrape_facebook_og(url)
+            if scraped and scraped.get("videoUrl"):
+                return ResolveResponse(ok=True, resolved=ResolveResult(
+                    videoUrl=scraped["videoUrl"], title=scraped.get("title", "") or "Facebook Reel",
+                    thumbnailUrl=scraped.get("thumbnailUrl"),
+                ))
         raise HTTPException(status_code=422, detail=r.stderr.strip() or "yt-dlp failed")
     try:
         data = json.loads(r.stdout.strip())
     except json.JSONDecodeError:
+        if is_facebook_url(url):
+            scraped = scrape_facebook_og(url)
+            if scraped and scraped.get("videoUrl"):
+                return ResolveResponse(ok=True, resolved=ResolveResult(
+                    videoUrl=scraped["videoUrl"], title=scraped.get("title", "") or "Facebook Reel",
+                    thumbnailUrl=scraped.get("thumbnailUrl"),
+                ))
         raise HTTPException(status_code=500, detail="Failed to parse yt-dlp output")
     video_url = extract_video_url(data)
     if not video_url:
+        if is_facebook_url(url):
+            scraped = scrape_facebook_og(url)
+            if scraped and scraped.get("videoUrl"):
+                return ResolveResponse(ok=True, resolved=ResolveResult(
+                    videoUrl=scraped["videoUrl"], title=scraped.get("title", "") or "Facebook Reel",
+                    thumbnailUrl=scraped.get("thumbnailUrl"),
+                ))
         raise HTTPException(status_code=422, detail="No playable video URL found")
     return ResolveResponse(ok=True, resolved=ResolveResult(
         videoUrl=video_url, title=data.get("title", "") or "",

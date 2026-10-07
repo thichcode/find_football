@@ -305,7 +305,46 @@ def extract_video_url(data: dict) -> str | None:
     return None
 
 
-ASIA_REGION_RE = re.compile(r"^video[-.](sgp|sin|hkg|bkk|icn|tpe|vnu|myn|han)[-\d.]", re.I)
+# Facebook embeds the serving edge (IATA airport code, optionally prefixed
+# with "f") in fbcdn hostnames, e.g. video.fhan14-5.fna.fbcdn.net (Hanoi)
+# vs video-den2-1.xx.fbcdn.net (Denver, US). Verified against og:video tags
+# fetched from a Vietnam IP.
+ASIA_EDGE_CODES = (
+    "han", "sgn",  # Vietnam: Hanoi, Ho Chi Minh City
+    "sin", "sgp",  # Singapore
+    "kul",  # Kuala Lumpur
+    "cgk",  # Jakarta
+    "bkk",  # Bangkok
+    "hkg",  # Hong Kong
+    "tpe",  # Taipei
+    "icn", "gmp",  # Seoul
+    "nrt", "kix",  # Tokyo, Osaka
+    "mnl",  # Manila
+)
+US_EDGE_CODES = (
+    "den",  # Denver
+    "lax",  # Los Angeles
+    "sfo", "sjc",  # San Francisco / San Jose
+    "sea",  # Seattle
+    "dfw",  # Dallas
+    "ord",  # Chicago
+    "atl",  # Atlanta
+    "iad", "dca",  # Washington DC
+    "jfk", "ewr",  # New York
+    "bos",  # Boston
+    "mia",  # Miami
+    "phx",  # Phoenix
+    "ash",  # Ashburn
+    "prn",  # Prineville
+    "ftw",  # Fort Worth
+)
+
+ASIA_EDGE_RE = re.compile(
+    r"(?:^|[-.])f?(?:%s)(?=\d|[-.]|$)" % "|".join(ASIA_EDGE_CODES), re.I
+)
+US_EDGE_RE = re.compile(
+    r"(?:^|[-.])(?:%s)(?=\d|[-.]|$)" % "|".join(US_EDGE_CODES), re.I
+)
 
 
 def region_score(url: str) -> float:
@@ -313,8 +352,10 @@ def region_score(url: str) -> float:
         hostname = urlparse(url).hostname or ""
     except ValueError:
         return 0
-    if ASIA_REGION_RE.match(hostname):
+    if ASIA_EDGE_RE.search(hostname):
         return 100
+    if US_EDGE_RE.search(hostname):
+        return -50
     return 0
 
 
@@ -541,7 +582,7 @@ def build_bilibili_dash_mpd(source_url: str) -> str:
 
 @app.get("/health")
 def health():
-    return {"ok": True, "version": "0.4.0"}
+    return {"ok": True, "version": "0.4.1"}
 
 
 @app.get("/resolve", response_model=ResolveResponse)

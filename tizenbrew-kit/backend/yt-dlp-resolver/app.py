@@ -305,6 +305,32 @@ def extract_video_url(data: dict) -> str | None:
     return None
 
 
+ASIA_REGION_RE = re.compile(r"^video[-.](sgp|sin|hkg|bkk|icn|tpe|vnu|myn|han)[-\d.]", re.I)
+
+
+def region_score(url: str) -> float:
+    try:
+        hostname = urlparse(url).hostname or ""
+    except ValueError:
+        return 0
+    if ASIA_REGION_RE.match(hostname):
+        return 100
+    return 0
+
+
+def pick_best_region_url(urls: list[str] | None) -> str | None:
+    if not urls:
+        return None
+    best = urls[0]
+    best_score = region_score(best)
+    for candidate in urls[1:]:
+        score = region_score(candidate)
+        if score > best_score:
+            best = candidate
+            best_score = score
+    return best
+
+
 def url_has_host_suffix(url: str, suffixes: tuple[str, ...]) -> bool:
     try:
         parsed = urlparse(url)
@@ -400,7 +426,7 @@ def resolve_and_get_cdn(url: str) -> str:
             raise HTTPException(status_code=422, detail=r.stderr.strip()[-500:] or "yt-dlp failed")
         lines = [l.strip() for l in r.stdout.strip().split("\n") if l.strip().startswith("http")]
         if lines:
-            return lines[0]
+            return pick_best_region_url(lines) or lines[0]
         scraped = scrape_facebook_og(url)
         if scraped and scraped.get("videoUrl"):
             return scraped["videoUrl"]
@@ -578,6 +604,19 @@ def resolve(url: str, x_api_key: str | None = Header(None)):
                 ))
         raise HTTPException(status_code=500, detail="Failed to parse yt-dlp output")
     video_url = extract_video_url(data)
+    candidates = []
+    for fmt in data.get("requested_formats") or []:
+        fu = fmt.get("url") or ""
+        if fu and fu.startswith("http") and fmt.get("vcodec", "none") != "none":
+            candidates.append(fu)
+    for fmt in data.get("formats") or []:
+        fu = fmt.get("url") or ""
+        if fu and fu.startswith("http") and fmt.get("vcodec", "none") != "none":
+            candidates.append(fu)
+    if candidates:
+        picked = pick_best_region_url(candidates)
+        if picked:
+            video_url = picked
     if not video_url:
         if is_facebook_url(url):
             scraped = scrape_facebook_og(url)

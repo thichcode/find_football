@@ -17,3 +17,6 @@ Thumbs.db
 
 # Brainstorm session files (mockup nội bộ, không cần deploy)
 .superpowers/
+
+__pycache__/
+*.pyc

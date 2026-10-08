@@ -98,3 +98,26 @@ Disk Render là ephemeral. Cơ chế hiện tại:
 | `TELEGRAM_BOT_TOKEN` | Bot Telegram `/crawl` |
 | `ALLOWED_CHAT_IDS` | Chat ID được phép dùng bot |
 | `FIRECRAWL_API_KEY` | Crawl qua Firecrawl khi Puppeteer bị chặn (optional) |
+| `PROXY_USER` + `PROXY_PASS` | **Proxy VN cho resolver** — Facebook gán CDN theo IP request, Render (Mỹ) nên nhận `den2`. Bật proxy VN → nhận edge Hà Nội. Xem bên dưới. |
+
+## Resolver trả CDN Mỹ (`video-den2-...`) — nguyên nhân & cách sửa
+
+Facebook gán CDN edge theo **IP của người request**. Render là datacenter Mỹ → Facebook
+trả `video-den2-x.fbcdn.net` (Denver). `pick_best_region_url()` chỉ chọn được trong các URL
+yt-dlp đã trả về, mà Facebook `--get-url` chỉ trả về **1 URL** → không có gì để chọn.
+
+Cách sửa duy nhất: đổi IP egress sang Việt Nam. Resolver đã hỗ trợ proxy qua env:
+
+| Biến | Ví dụ |
+|---|---|
+| `PROXY_USER` / `PROXY_PASS` | `user` / `pass` (dùng chung host mặc định) |
+| `PROXY_HOST` / `PROXY_PORT` | ghi đè host/port (mặc định `103.195.238.24:443`) |
+| `PROXY_URL` | URL đầy đủ, ghi đè tất cả: `http://user:pass@host:port` |
+| `ENABLE_PROXY=1` | Bật proxy không cần auth |
+
+**Không set gì thì `get_proxy_url()` trả `None`** → hành vi y như cũ, an toàn.
+
+Kiểm tra proxy đang bật: `GET /health` → `{"ok":true,"version":"0.4.2","proxy":"http://103.195.238.24:443"}`
+
+Khi bật proxy mà proxy chết, resolver **tự fallback sang direct** (`is_proxy_error()` nhận diện
+lỗi proxy/407/timeout) nên app không sập — chỉ mất lợi ích edge VN.

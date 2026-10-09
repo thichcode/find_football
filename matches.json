@@ -4,7 +4,7 @@
     "away": "al gharafa sc",
     "league": "Tong hop",
     "kickoffISO": "2026-10-09T00:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -38,7 +38,7 @@
     "away": "abou qir fertilizers sc",
     "league": "Tong hop",
     "kickoffISO": "2026-10-09T00:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -61,7 +61,7 @@
     "away": "al ula fc",
     "league": "Tong hop",
     "kickoffISO": "2026-10-09T00:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -84,7 +84,7 @@
     "away": "bank el ahly",
     "league": "Tong hop",
     "kickoffISO": "2026-10-09T00:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -103,7 +103,7 @@
     "away": "fc universitatea cluj",
     "league": "Tong hop",
     "kickoffISO": "2026-10-09T00:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -214,7 +214,7 @@
     "away": "gremio novorizontino",
     "league": "Tong hop",
     "kickoffISO": "2026-10-09T00:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -274,7 +274,7 @@
     "away": "atletico mineiro mg",
     "league": "Tong hop",
     "kickoffISO": "2026-10-09T00:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {

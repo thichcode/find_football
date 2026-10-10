@@ -141,7 +141,8 @@ YOUTUBE_CDN_HOST_SUFFIXES = ("googlevideo.com", "youtube.com")
 VIDEO_CDN_HOST_SUFFIXES = ("fbcdn.net", "bilivideo.com", *TIKTOK_CDN_HOST_SUFFIXES, *YOUTUBE_CDN_HOST_SUFFIXES)
 
 BILIBILI_FORMAT = "bestvideo[ext=mp4][vcodec^=avc1]+bestaudio/bestvideo+bestaudio/best"
-UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+# Use Tizen 3 TV User-Agent so Facebook serves H.264/AVC instead of AV1 streams
+UA = "Mozilla/5.0 (SMART-TV; LINUX; Tizen 3.0) AppleWebKit/537.36 (KHTML, like Gecko) Version/3.0 TV Safari/537.36"
 TIKTOK_REDIRECT_STATUSES = (301, 302, 303, 307, 308)
 
 
@@ -349,10 +350,23 @@ def scrape_facebook_og(url: str) -> dict | None:
                     return m.group(1).replace("&amp;", "&")
             return None
 
+        def extract_json_url(key: str) -> str | None:
+            m = re.search(rf'\\?"{key}\\?"\s*:\s*\\?"([^"\\]*(?:\\.[^"\\]*)*)\\?"', html, re.I)
+            if m:
+                u = m.group(1).replace(r"\u0025", "%").replace(r"\u0026", "&").replace(r"\u002F", "/").replace("\\", "")
+                return u if u.startswith("http") else None
+            return None
+
         video_url = (
-            extract_meta("og:video:secure_url")
+            extract_json_url("browser_native_sd_url")
+            or extract_json_url("playable_url")
+            or extract_json_url("sd_src")
+            or extract_meta("og:video:secure_url")
             or extract_meta("og:video:url")
             or extract_meta("og:video")
+            or extract_json_url("browser_native_hd_url")
+            or extract_json_url("playable_url_quality_hd")
+            or extract_json_url("hd_src")
         )
         if not video_url:
             return None

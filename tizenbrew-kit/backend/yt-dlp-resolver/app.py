@@ -357,16 +357,18 @@ def scrape_facebook_og(url: str) -> dict | None:
                 return u if u.startswith("http") else None
             return None
 
+        # Uu tien HD truoc SD. UA la Tizen TV nen Facebook tu tra H.264 cho ca HD,
+        # khong can rot xuong SD. SD chi la fallback khi khong co URL HD nao.
         video_url = (
-            extract_json_url("browser_native_sd_url")
-            or extract_json_url("playable_url")
-            or extract_json_url("sd_src")
+            extract_json_url("browser_native_hd_url")
+            or extract_json_url("playable_url_quality_hd")
+            or extract_json_url("hd_src")
             or extract_meta("og:video:secure_url")
             or extract_meta("og:video:url")
             or extract_meta("og:video")
-            or extract_json_url("browser_native_hd_url")
-            or extract_json_url("playable_url_quality_hd")
-            or extract_json_url("hd_src")
+            or extract_json_url("browser_native_sd_url")
+            or extract_json_url("playable_url")
+            or extract_json_url("sd_src")
         )
         if not video_url:
             return None

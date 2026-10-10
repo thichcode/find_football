@@ -126,8 +126,10 @@ app.add_middleware(
 API_KEY = os.environ.get("API_KEY", "")
 YT_DLP = os.environ.get("YT_DLP_PATH", "yt-dlp")
 # Tizen TVs (2017-2020) decode H.264 only: Facebook "hd" is often AV1 which
-# fails with MEDIA_ERR_DECODE on TV. Prefer progressive AVC1, fall back to sd.
-FACEBOOK_FORMAT = "best[acodec!=none][vcodec^=avc1][ext=mp4]/sd/b"
+# fails with MEDIA_ERR_DECODE on TV. Format nay uu tien "hd" truoc (chat luong cao),
+# AVC1 progressive la fallback sau. Worker loc them URL VP9/AV1 (isUnsupportedCodec).
+# Template fb-reels-tv tu retry bang link direct H.264 khi gap loi codec.
+FACEBOOK_FORMAT = "hd/sd/best[acodec!=none][vcodec^=avc1][ext=mp4]/b"
 # Merge mode: best AVC1 video-only (e.g. 720p+) + best audio, muxed to mp4
 # with stream copy (no re-encode). Used by /play?mode=merge.
 FACEBOOK_MERGE_FORMAT = (
@@ -320,8 +322,13 @@ def tiktok_open_url(url: str):
 def scrape_facebook_og(url: str) -> dict | None:
     req = urllib.request.Request(url, headers={
         "User-Agent": UA,
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.9",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+        "Accept-Language": "vi,en-US;q=0.9,en;q=0.8",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-User": "?1",
+        "Upgrade-Insecure-Requests": "1",
     })
     try:
         try:
@@ -358,8 +365,8 @@ def scrape_facebook_og(url: str) -> dict | None:
 
         # Uu tien HD truoc SD. SD chi la fallback khi khong co URL HD nao.
         # Luu y: Facebook tra HD co the la AV1 -> TV Samsung cu khong decode duoc.
-        # Khi do, yt-dlp voi FACEBOOK_FORMAT (best[vcodec^=avc1]) moi lay dung ban H.264;
-        # duong nay la fallback khi yt-dlp fail, nen uu tien chat luong hon.
+        # yt-dlp theo FACEBOOK_FORMAT (AVC1 progressive la fallback) lay dung ban H.264;
+        # duong nay la fallback khi yt-dlp fail, nen uu tien chat luong (HD) hon.
         video_url = (
             extract_json_url("browser_native_hd_url")
             or extract_json_url("playable_url_quality_hd")

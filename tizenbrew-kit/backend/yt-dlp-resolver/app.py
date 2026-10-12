@@ -129,7 +129,7 @@ YT_DLP = os.environ.get("YT_DLP_PATH", "yt-dlp")
 # fails with MEDIA_ERR_DECODE on TV. Format nay uu tien "hd" truoc (chat luong cao),
 # AVC1 progressive la fallback sau. Worker loc them URL VP9/AV1 (isUnsupportedCodec).
 # Template fb-reels-tv tu retry bang link direct H.264 khi gap loi codec.
-FACEBOOK_FORMAT = "hd/sd/best[acodec!=none][vcodec^=avc1][ext=mp4]/b"
+FACEBOOK_FORMAT = "best[acodec!=none][vcodec^=avc1][height>=1080]/best[acodec!=none][vcodec^=avc1][height>=720]/hd/best[acodec!=none][vcodec^=avc1]/sd/b"
 # Merge mode: best AVC1 video-only (e.g. 720p+) + best audio, muxed to mp4
 # with stream copy (no re-encode). Used by /play?mode=merge.
 FACEBOOK_MERGE_FORMAT = (
@@ -363,21 +363,19 @@ def scrape_facebook_og(url: str) -> dict | None:
                 return u if u.startswith("http") else None
             return None
 
-        # Uu tien HD truoc SD. SD chi la fallback khi khong co URL HD nao.
-        # Luu y: Facebook tra HD co the la AV1 -> TV Samsung cu khong decode duoc.
-        # yt-dlp theo FACEBOOK_FORMAT (AVC1 progressive la fallback) lay dung ban H.264;
-        # duong nay la fallback khi yt-dlp fail, nen uu tien chat luong (HD) hon.
-        video_url = (
-            extract_json_url("browser_native_hd_url")
-            or extract_json_url("playable_url_quality_hd")
-            or extract_json_url("hd_src")
-            or extract_meta("og:video:secure_url")
-            or extract_meta("og:video:url")
-            or extract_meta("og:video")
-            or extract_json_url("browser_native_sd_url")
-            or extract_json_url("playable_url")
-            or extract_json_url("sd_src")
-        )
+        candidates = [
+            extract_json_url("browser_native_hd_url"),
+            extract_json_url("playable_url_quality_hd"),
+            extract_json_url("hd_src"),
+            extract_meta("og:video:secure_url"),
+            extract_meta("og:video:url"),
+            extract_meta("og:video"),
+            extract_json_url("browser_native_sd_url"),
+            extract_json_url("playable_url"),
+            extract_json_url("sd_src"),
+        ]
+        valid_urls = [u for u in candidates if u and not is_unsupported_codec(u)]
+        video_url = pick_best_region_url(valid_urls) if valid_urls else next((u for u in candidates if u), None)
         if not video_url:
             return None
         title = extract_meta("og:title") or "Facebook Reel"
@@ -515,16 +513,41 @@ US_EDGE_RE = re.compile(
 )
 
 
+def is_unsupported_codec(url: str) -> bool:
+    if re.search(r"dash_vp9|vp09|dash_av1|av01|audio_only|dash_opus", url, re.I):
+        return True
+    try:
+        parsed = urlparse(url)
+        params = urllib.parse.parse_qs(parsed.query)
+        efg = params.get("efg", [None])[0]
+        if efg:
+            import base64
+            decoded = base64.b64decode(efg).decode("utf-8", errors="replace")
+            if re.search(r"dash_vp9|vp09|dash_av1|av01|audio_only|dash_opus", decoded, re.I):
+                return True
+    except Exception:
+        pass
+    return False
+
+
 def region_score(url: str) -> float:
     try:
         hostname = urlparse(url).hostname or ""
     except ValueError:
         return 0
+    score = 0
     if ASIA_EDGE_RE.search(hostname):
-        return 100
-    if US_EDGE_RE.search(hostname):
-        return -50
-    return 0
+        score = 100
+    elif US_EDGE_RE.search(hostname):
+        score = -50
+    if is_unsupported_codec(url):
+        score -= 1000
+    # Quality bonus: HD/720p/1080p gets extra points over SD
+    if re.search(r"720p|1080p|hd_clean|tag=dash_h264|tag=sve_hd", url, re.I):
+        score += 20
+    elif re.search(r"360p|480p|tag=sve_sd", url, re.I):
+        score += 5
+    return score
 
 
 def pick_best_region_url(urls: list[str] | None) -> str | None:

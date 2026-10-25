@@ -11,10 +11,61 @@ export function isStreamUrl(u) {
   return STREAM_RE.test(String(u || ''));
 }
 
+export const IOS_USER_AGENT = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1';
+
+// Lấy nhanh stream URL trực tiếp qua HTML/ajax mà không cần khởi động Puppeteer
+export async function fastResolveStream(pageUrl) {
+  if (!/^https?:/i.test(String(pageUrl || ''))) return null;
+  try {
+    const res = await fetch(pageUrl, {
+      headers: {
+        'User-Agent': IOS_USER_AGENT,
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      },
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!res.ok) return null;
+    const html = await res.text();
+    const match = html.match(/var\s+list_stream\s*=\s*(\[[\s\S]*?\]);/);
+    if (match) {
+      let listStream;
+      try {
+        listStream = JSON.parse(match[1]);
+      } catch {
+        listStream = JSON.parse(match[1].replace(/\\/g, ''));
+      }
+      const channels = (Array.isArray(listStream) ? listStream.flat() : []).filter(Boolean);
+      for (const ch of channels) {
+        const chUrl = ch.replace(/\\\//g, '/');
+        try {
+          const chRes = await fetch(chUrl, {
+            headers: {
+              'User-Agent': IOS_USER_AGENT,
+              'Referer': pageUrl,
+            },
+            signal: AbortSignal.timeout(4000),
+          });
+          const chHtml = await chRes.text();
+          const m = chHtml.match(/var\s+urlStream\s*=\s*"([^"]+)"/);
+          if (m && m[1] && isStreamUrl(m[1])) {
+            return m[1];
+          }
+        } catch {}
+      }
+    }
+  } catch {}
+  return null;
+}
+
 // Mở trang trận đấu, hứng request playlist đầu tiên (.m3u8/.mpd).
 // Trả về URL stream hoặc null. Chạy browser riêng, tự đóng.
 export async function sniffStreamUrl(pageUrl, timeoutMs = 25000) {
   if (!/^https?:/i.test(String(pageUrl || ''))) return null;
+
+  // Thử trích xuất nhanh trước (chỉ tốn ~300ms, không cần mở browser)
+  const fast = await fastResolveStream(pageUrl).catch(() => null);
+  if (fast) return fast;
+
   const browser = await puppeteer.launch({
     headless: true,
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
@@ -23,12 +74,13 @@ export async function sniffStreamUrl(pageUrl, timeoutMs = 25000) {
   });
   try {
     const page = await browser.newPage();
-    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36').catch(() => {});
+    // Giả lập iPhone/Safari để server trả về stream HLS (.m3u8) thay vì HTTP-FLV
+    await page.setUserAgent(IOS_USER_AGENT).catch(() => {});
     await page.setViewport({ width: 1366, height: 768 }).catch(() => {});
     let found = null;
     const grab = (u) => { if (!found && isStreamUrl(u)) found = u; };
     page.on('request', (req) => grab(req.url()));
-    page.on('response', (res) => grab(res.url()));
+    page.on('response', (res) => grab(req.url()));
     await page.goto(pageUrl, { waitUntil: 'domcontentloaded', timeout: 20000 }).catch(() => {});
     const t0 = Date.now();
     while (!found && Date.now() - t0 < timeoutMs) {
@@ -282,6 +334,15 @@ async function tryParseUrl(browser, src, url) {
         logAttempt(src.id, url, 'jsonld', viaJson, tag);
         return viaJson;
       }
+    }
+    // Đối với nguồn strategy blv, nếu không có BLV (trang SEO) thì không lấy fallback anchor bừa bãi
+    if (src.strategy === 'blv' && blv.length < 3) {
+      console.warn(`WARN source ${src.id}: ${url} khong thay tran (${tag}), thu tiep`);
+      logAttempt(src.id, url, 'empty', [], tag + ' | final=' + finalUrl.slice(0, 100) + ' | ' + diag);
+      await page.close().catch(() => {});
+      const viaFire = await tryFirecrawl(src, url, finalUrl);
+      if (viaFire.length) return viaFire;
+      return [];
     }
     const items = await page.$$eval(src.linkSelector, (els) =>
       els.slice(0, 60).map((a) => ({

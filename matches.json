@@ -1,85 +1,346 @@
 [
   {
-    "home": "crystal palace",
-    "away": "newcastle united",
+    "home": "manchester united",
+    "away": "afc bournemouth",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
+    "kickoffISO": "2026-10-25T21:00:00+07:00",
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/crystal-palace-vs-newcastle-united-ngay-25-10-2026/"
+        "label": "BLV ROY",
+        "url": "https://socolivezag.tv/truc-tiep/manchester-united-vs-afc-bournemouth-luc-2100-ngay-25-10-2026/"
       }
-    ]
+    ],
+    "blv": "ROY"
+  },
+  {
+    "home": "liverpool",
+    "away": "brighton",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T21:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "BLV NICK",
+        "url": "https://socolivezag.tv/truc-tiep/liverpool-vs-brighton-luc-2100-ngay-25-10-2026/"
+      }
+    ],
+    "blv": "NICK"
+  },
+  {
+    "home": "crystal palace",
+    "away": "newcastle united",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T21:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "BLV FABIO",
+        "url": "https://socolivezag.tv/truc-tiep/crystal-palace-vs-newcastle-united-luc-2100-ngay-25-10-2026/"
+      }
+    ],
+    "blv": "FABIO"
   },
   {
     "home": "hull city",
     "away": "brentford",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
+    "kickoffISO": "2026-10-25T21:00:00+07:00",
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/hull-city-vs-brentford-ngay-25-10-2026/"
+        "label": "BLV ASTRA",
+        "url": "https://socolivezag.tv/truc-tiep/hull-city-vs-brentford-luc-2100-ngay-25-10-2026/"
       }
-    ]
+    ],
+    "blv": "ASTRA"
   },
   {
-    "home": "liverpool",
-    "away": "brighton hove albion",
+    "home": "wanderers fc",
+    "away": "ca progreso",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
+    "kickoffISO": "2026-10-25T19:55:00+07:00",
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
         "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/liverpool-vs-brighton-hove-albion-ngay-25-10-2026/"
+        "url": "https://socolivezag.tv/truc-tiep/wanderers-fc-vs-ca-progreso-luc-1955-ngay-25-10-2026/"
       }
     ]
   },
   {
-    "home": "manchester united",
-    "away": "bournemouth afc",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/manchester-united-vs-bournemouth-afc-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "sunderland",
-    "away": "leeds united",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/sunderland-vs-leeds-united-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "athletic club",
+    "home": "athletic bilbao",
     "away": "getafe",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
+    "kickoffISO": "2026-10-25T20:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "BLV FILIP",
+        "url": "https://socolivezag.tv/truc-tiep/athletic-bilbao-vs-getafe-luc-2000-ngay-25-10-2026/"
+      }
+    ],
+    "blv": "FILIP"
+  },
+  {
+    "home": "konyaspor",
+    "away": "genclerbirligi",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:00:00+07:00",
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
         "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/athletic-club-vs-getafe-ngay-25-10-2026/"
+        "url": "https://socolivezag.tv/truc-tiep/konyaspor-vs-genclerbirligi-luc-2000-ngay-25-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "midtjylland",
+    "away": "lyngby bk",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezag.tv/truc-tiep/midtjylland-vs-lyngby-bk-luc-2000-ngay-25-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "silkeborg",
+    "away": "nordsjaelland",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezag.tv/truc-tiep/silkeborg-vs-nordsjaelland-luc-2000-ngay-25-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "hjk helsinki",
+    "away": "kups",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezag.tv/truc-tiep/hjk-helsinki-vs-kups-luc-2000-ngay-25-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "sabadell",
+    "away": "tenerife",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezag.tv/truc-tiep/sabadell-vs-tenerife-luc-2000-ngay-25-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "thun",
+    "away": "lugano",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "BLV POLO",
+        "url": "https://socolivezag.tv/truc-tiep/thun-vs-lugano-luc-2000-ngay-25-10-2026/"
+      }
+    ],
+    "blv": "POLO"
+  },
+  {
+    "home": "fk aktobe lento",
+    "away": "fc kairat",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezag.tv/truc-tiep/fk-aktobe-lento-vs-fc-kairat-luc-2000-ngay-25-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "antalyaspor",
+    "away": "bodrum fk",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezag.tv/truc-tiep/antalyaspor-vs-bodrum-fk-luc-2000-ngay-25-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "neftekhimik fc",
+    "away": "fc leningradets",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezag.tv/truc-tiep/neftekhimik-fc-vs-fc-leningradets-luc-2000-ngay-25-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "gais",
+    "away": "ifk goteborg",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezag.tv/truc-tiep/gais-vs-ifk-goteborg-luc-2000-ngay-25-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "cska moscow",
+    "away": "spartak moscow",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "BLV JEAN",
+        "url": "https://socolivezag.tv/truc-tiep/cska-moscow-vs-spartak-moscow-luc-2000-ngay-25-10-2026/"
+      }
+    ],
+    "blv": "JEAN"
+  },
+  {
+    "home": "nec nijmegen",
+    "away": "groningen",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:30:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "BLV LOGAN",
+        "url": "https://socolivezag.tv/truc-tiep/nec-nijmegen-vs-groningen-luc-2030-ngay-25-10-2026/"
+      }
+    ],
+    "blv": "LOGAN"
+  },
+  {
+    "home": "psv eindhoven",
+    "away": "feyenoord",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:30:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "BLV OLER",
+        "url": "https://socolivezag.tv/truc-tiep/psv-eindhoven-vs-feyenoord-luc-2030-ngay-25-10-2026/"
+      }
+    ],
+    "blv": "OLER"
+  },
+  {
+    "home": "viking",
+    "away": "tromso il",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:30:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezag.tv/truc-tiep/viking-vs-tromso-il-luc-2030-ngay-25-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "sturm graz",
+    "away": "sv ried",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:30:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezag.tv/truc-tiep/sturm-graz-vs-sv-ried-luc-2030-ngay-25-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "neman grodno",
+    "away": "dinamo brest",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:30:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezag.tv/truc-tiep/neman-grodno-vs-dinamo-brest-luc-2030-ngay-25-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "haugesund",
+    "away": "hodd",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:30:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezag.tv/truc-tiep/haugesund-vs-hodd-luc-2030-ngay-25-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "jagiellonia",
+    "away": "wisla plock",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T20:45:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezag.tv/truc-tiep/jagiellonia-vs-wisla-plock-luc-2045-ngay-25-10-2026/"
       }
     ]
   },
@@ -87,321 +348,86 @@
     "home": "atalanta",
     "away": "frosinone",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
+    "kickoffISO": "2026-10-25T21:00:00+07:00",
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/atalanta-vs-frosinone-ngay-25-10-2026/"
+        "label": "BLV JOHAN",
+        "url": "https://socolivezag.tv/truc-tiep/atalanta-vs-frosinone-luc-2100-ngay-25-10-2026/"
       }
-    ]
+    ],
+    "blv": "JOHAN"
   },
   {
     "home": "genoa",
     "away": "venezia",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
+    "kickoffISO": "2026-10-25T21:00:00+07:00",
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/genoa-vs-venezia-ngay-25-10-2026/"
+        "label": "BLV HIRO",
+        "url": "https://socolivezag.tv/truc-tiep/genoa-vs-venezia-luc-2100-ngay-25-10-2026/"
       }
-    ]
+    ],
+    "blv": "HIRO"
   },
   {
     "home": "as monaco",
     "away": "losc lille",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
+    "kickoffISO": "2026-10-25T21:00:00+07:00",
+    "isLive": true,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "BLV NEMO",
+        "url": "https://socolivezag.tv/truc-tiep/as-monaco-vs-losc-lille-luc-2100-ngay-25-10-2026/"
+      }
+    ],
+    "blv": "NEMO"
+  },
+  {
+    "home": "olympiakos",
+    "away": "kalamata f c",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-25T21:00:00+07:00",
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
         "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/as-monaco-vs-losc-lille-ngay-25-10-2026/"
+        "url": "https://socolivezag.tv/truc-tiep/olympiakos-vs-kalamata-f-c-luc-2100-ngay-25-10-2026/"
       }
     ]
   },
   {
-    "home": "tsg hoffenheim",
-    "away": "bayer 04 leverkusen",
+    "home": "motherwell f c",
+    "away": "heart midlothian",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
+    "kickoffISO": "2026-10-25T21:00:00+07:00",
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
         "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/tsg-hoffenheim-vs-bayer-04-leverkusen-ngay-25-10-2026/"
+        "url": "https://socolivezag.tv/truc-tiep/motherwell-f-c-vs-heart-midlothian-luc-2100-ngay-25-10-2026/"
       }
     ]
   },
   {
-    "home": "rc celta",
-    "away": "real betis",
+    "home": "nu liverpool",
+    "away": "nu london lionesses",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
+    "kickoffISO": "2026-10-25T21:00:00+07:00",
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
         "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/rc-celta-vs-real-betis-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "toulouse fc",
-    "away": "troyes",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/toulouse-fc-vs-troyes-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "marseille",
-    "away": "havre athletic club",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/marseille-vs-havre-athletic-club-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "stade rennais fc",
-    "away": "rc strasbourg alsace",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/stade-rennais-fc-vs-rc-strasbourg-alsace-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "angers sco",
-    "away": "lorient",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/angers-sco-vs-lorient-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "aj auxerre",
-    "away": "le mans",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/aj-auxerre-vs-le-mans-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "sc freiburg",
-    "away": "fc bayern munich",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/sc-freiburg-vs-fc-bayern-munich-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "eintracht braunschweig",
-    "away": "hannover 96",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/eintracht-braunschweig-vs-hannover-96-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "psv eindhoven",
-    "away": "feyenoord",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/psv-eindhoven-vs-feyenoord-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "zenit st petersburg",
-    "away": "dynamo makhachkala",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/zenit-st-petersburg-vs-dynamo-makhachkala-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "fc bukovyna chernivtsi",
-    "away": "kryvbas",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/fc-bukovyna-chernivtsi-vs-kryvbas-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "hnk gorica u19",
-    "away": "hajduk split u19",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/hnk-gorica-u19-vs-hajduk-split-u19-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "cd mensajero",
-    "away": "ud san fernando",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/cd-mensajero-vs-ud-san-fernando-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "eiche horn",
-    "away": "ksv vatan sport bremen",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/eiche-horn-vs-ksv-vatan-sport-bremen-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "nk tosk tesanj",
-    "away": "fk rudar kakanj",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/nk-tosk-tesanj-vs-fk-rudar-kakanj-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "kjelsas",
-    "away": "sk trygg lade",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/kjelsas-vs-sk-trygg-lade-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "havelse",
-    "away": "1 fc saarbrucken",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/havelse-vs-1-fc-saarbrucken-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "nyva ternopil",
-    "away": "kulykiv",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/nyva-ternopil-vs-kulykiv-ngay-25-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "escola varsovia warszawa youth",
-    "away": "legia warszawa youth",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-25T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolivet.top/truc-tiep/escola-varsovia-warszawa-youth-vs-legia-warszawa-youth-ngay-25-10-2026/"
+        "url": "https://socolivezag.tv/truc-tiep/nu-liverpool-vs-nu-london-lionesses-luc-2100-ngay-25-10-2026/"
       }
     ]
   },
@@ -419,1752 +445,105 @@
     "isLive": false
   },
   {
-    "home": "aston villa",
-    "away": "manchester city",
+    "home": "vfl osnabruck",
+    "away": "greuther furth",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-24T11:30:00+07:00",
+    "kickoffISO": "2026-10-25T19:30:00+07:00",
     "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
-        "url": "https://socoliveev.tv/truc-tiep/aston-villa-vs-manchester-city-24-10-2026/"
-      },
-      {
-        "label": "BLV TAP",
-        "url": "https://socoliveev.tv/truc-tiep/aston-villa-vs-manchester-city-24-10-2026/?blv=147801"
-      },
-      {
-        "label": "BLV ZIZOU",
-        "url": "https://socoliveev.tv/truc-tiep/aston-villa-vs-manchester-city-24-10-2026/?blv=168740"
-      },
-      {
-        "label": "BLV RICKHANTER",
-        "url": "https://socoliveev.tv/truc-tiep/aston-villa-vs-manchester-city-24-10-2026/?blv=123226"
-      },
-      {
-        "label": "BLV Củ Cải",
-        "url": "https://socoliveev.tv/truc-tiep/aston-villa-vs-manchester-city-24-10-2026/?blv=360663"
-      },
-      {
-        "label": "BLV TẠ BIÊN GIỚI",
-        "url": "https://socoliveev.tv/truc-tiep/aston-villa-vs-manchester-city-24-10-2026/?blv=118206"
-      },
-      {
-        "label": "BLV THOMAS",
-        "url": "https://socoliveev.tv/truc-tiep/aston-villa-vs-manchester-city-24-10-2026/?blv=414317"
-      },
-      {
-        "label": "BLV CR Bưởi",
-        "url": "https://socoliveev.tv/truc-tiep/aston-villa-vs-manchester-city-24-10-2026/?blv=387694"
-      },
-      {
-        "label": "BLV MESSI",
-        "url": "https://socoliveev.tv/truc-tiep/aston-villa-vs-manchester-city-24-10-2026/?blv=494201"
-      },
-      {
-        "label": "BLV A BỆU",
-        "url": "https://socoliveev.tv/truc-tiep/aston-villa-vs-manchester-city-24-10-2026/?blv=484845"
-      },
-      {
-        "label": "BLV CURRY",
-        "url": "https://socoliveev.tv/truc-tiep/aston-villa-vs-manchester-city-24-10-2026/?blv=622240"
-      },
-      {
-        "label": "BLV HEHE",
-        "url": "https://socoliveev.tv/truc-tiep/aston-villa-vs-manchester-city-24-10-2026/?blv=622241"
-      },
-      {
-        "label": "BLV CUỘI",
-        "url": "https://socoliveev.tv/truc-tiep/aston-villa-vs-manchester-city-24-10-2026/?blv=256080"
+        "label": "BLV BEE",
+        "url": "https://socolivezag.tv/truc-tiep/vfl-osnabruck-vs-greuther-furth-luc-1930-ngay-25-10-2026/"
       }
     ],
-    "blv": "TAP"
+    "blv": "BEE"
   },
   {
-    "home": "rayo vallecano",
-    "away": "elche cf",
+    "home": "holstein kiel",
+    "away": "dynamo dresden",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-24T12:00:00+07:00",
+    "kickoffISO": "2026-10-25T19:30:00+07:00",
     "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
-        "url": "https://socoliveev.tv/truc-tiep/rayo-vallecano-vs-elche-cf-24-10-2026/"
-      },
-      {
-        "label": "BLV CHIVAS",
-        "url": "https://socoliveev.tv/truc-tiep/rayo-vallecano-vs-elche-cf-24-10-2026/?blv=485739"
-      },
-      {
-        "label": "BLV LONG",
-        "url": "https://socoliveev.tv/truc-tiep/rayo-vallecano-vs-elche-cf-24-10-2026/?blv=132343"
-      },
-      {
-        "label": "BLV KENCHU",
-        "url": "https://socoliveev.tv/truc-tiep/rayo-vallecano-vs-elche-cf-24-10-2026/?blv=622602"
+        "label": "BLV TONI",
+        "url": "https://socolivezag.tv/truc-tiep/holstein-kiel-vs-dynamo-dresden-luc-1930-ngay-25-10-2026/"
       }
     ],
-    "blv": "CHIVAS"
+    "blv": "TONI"
   },
   {
-    "home": "como",
-    "away": "sassuolo",
+    "home": "e braunschweig",
+    "away": "hannover 96",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-24T13:00:00+07:00",
+    "kickoffISO": "2026-10-25T19:30:00+07:00",
     "isLive": false,
     "source": "socolive",
     "links": [
       {
-        "label": "Link 1",
-        "url": "https://socoliveev.tv/truc-tiep/como-vs-sassuolo-24-10-2026/"
-      },
-      {
-        "label": "BLV CACAO",
-        "url": "https://socoliveev.tv/truc-tiep/como-vs-sassuolo-24-10-2026/?blv=620661"
-      },
-      {
-        "label": "BLV LOKA",
-        "url": "https://socoliveev.tv/truc-tiep/como-vs-sassuolo-24-10-2026/?blv=589848"
-      },
-      {
-        "label": "BLV A PÁO",
-        "url": "https://socoliveev.tv/truc-tiep/como-vs-sassuolo-24-10-2026/?blv=235232"
-      },
-      {
-        "label": "BLV ALEX",
-        "url": "https://socoliveev.tv/truc-tiep/como-vs-sassuolo-24-10-2026/?blv=532081"
-      },
-      {
-        "label": "BLV CÒ",
-        "url": "https://socoliveev.tv/truc-tiep/como-vs-sassuolo-24-10-2026/?blv=582342"
-      },
-      {
-        "label": "BLV CÁO",
-        "url": "https://socoliveev.tv/truc-tiep/como-vs-sassuolo-24-10-2026/?blv=597929"
+        "label": "BLV RAVEN",
+        "url": "https://socolivezag.tv/truc-tiep/e-braunschweig-vs-hannover-96-luc-1930-ngay-25-10-2026/"
       }
     ],
-    "blv": "CACAO"
+    "blv": "RAVEN"
   },
   {
-    "home": "cagliari",
-    "away": "bologna",
+    "home": "albirex niigata",
+    "away": "tampines rovers",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-24T13:00:00+07:00",
+    "kickoffISO": "2026-10-25T18:30:00+07:00",
     "isLive": false,
     "source": "socolive",
     "links": [
       {
         "label": "Link 1",
-        "url": "https://socoliveev.tv/truc-tiep/cagliari-vs-bologna-24-10-2026/"
-      },
-      {
-        "label": "BLV RAMBO",
-        "url": "https://socoliveev.tv/truc-tiep/cagliari-vs-bologna-24-10-2026/?blv=534055"
-      },
-      {
-        "label": "BLV SẾU ĐẦU ĐỎ",
-        "url": "https://socoliveev.tv/truc-tiep/cagliari-vs-bologna-24-10-2026/?blv=627318"
-      }
-    ],
-    "blv": "RAMBO"
-  },
-  {
-    "home": "fc augsburg",
-    "away": "1 fc union berlin",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-24T13:30:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveev.tv/truc-tiep/fc-augsburg-vs-1-fc-union-berlin-24-10-2026/"
-      },
-      {
-        "label": "BLV XO",
-        "url": "https://socoliveev.tv/truc-tiep/fc-augsburg-vs-1-fc-union-berlin-24-10-2026/?blv=472241"
-      },
-      {
-        "label": "BLV GIÓ",
-        "url": "https://socoliveev.tv/truc-tiep/fc-augsburg-vs-1-fc-union-berlin-24-10-2026/?blv=321443"
-      }
-    ],
-    "blv": "XO"
-  },
-  {
-    "home": "fc koln",
-    "away": "schalke 04",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-24T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveev.tv/truc-tiep/fc-koln-vs-schalke-04-24-10-2026/"
+        "url": "https://socolivezag.tv/truc-tiep/albirex-niigata-vs-tampines-rovers-luc-1830-ngay-25-10-2026/"
       }
     ]
   },
   {
-    "home": "FC Köln",
-    "away": "Schalke 04",
+    "home": "racing genk",
+    "away": "standard liege",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-24T13:30:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "BLV ANH TÀI",
-        "url": "https://socoliveev.tv/truc-tiep/fc-koln-vs-schalke-04-24-10-2026/?blv=406865"
-      },
-      {
-        "label": "BLV VINFAST",
-        "url": "https://socoliveev.tv/truc-tiep/fc-koln-vs-schalke-04-24-10-2026/?blv=617313"
-      }
-    ],
-    "blv": "ANH TÀI"
-  },
-  {
-    "home": "sc paderborn 07",
-    "away": "hamburger sv",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-24T13:30:00+07:00",
+    "kickoffISO": "2026-10-25T19:30:00+07:00",
     "isLive": false,
     "source": "socolive",
     "links": [
       {
         "label": "Link 1",
-        "url": "https://socoliveev.tv/truc-tiep/sc-paderborn-07-vs-hamburger-sv-24-10-2026/"
-      },
-      {
-        "label": "BLV XUÂN SON",
-        "url": "https://socoliveev.tv/truc-tiep/sc-paderborn-07-vs-hamburger-sv-24-10-2026/?blv=501412"
-      },
-      {
-        "label": "BLV KINH VÂN",
-        "url": "https://socoliveev.tv/truc-tiep/sc-paderborn-07-vs-hamburger-sv-24-10-2026/?blv=623743"
-      }
-    ],
-    "blv": "XUÂN SON"
-  },
-  {
-    "home": "rb leipzig",
-    "away": "sv 07 elversberg",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-24T13:30:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveev.tv/truc-tiep/rb-leipzig-vs-sv-07-elversberg-24-10-2026/"
-      },
-      {
-        "label": "BLV MP3",
-        "url": "https://socoliveev.tv/truc-tiep/rb-leipzig-vs-sv-07-elversberg-24-10-2026/?blv=621840"
-      },
-      {
-        "label": "BLV TRÀ ĐÁ",
-        "url": "https://socoliveev.tv/truc-tiep/rb-leipzig-vs-sv-07-elversberg-24-10-2026/?blv=603914"
-      },
-      {
-        "label": "BLV TYPN",
-        "url": "https://socoliveev.tv/truc-tiep/rb-leipzig-vs-sv-07-elversberg-24-10-2026/?blv=170430"
-      },
-      {
-        "label": "BLV BÉO",
-        "url": "https://socoliveev.tv/truc-tiep/rb-leipzig-vs-sv-07-elversberg-24-10-2026/?blv=459401"
-      },
-      {
-        "label": "BLV TUẤN CÙI",
-        "url": "https://socoliveev.tv/truc-tiep/rb-leipzig-vs-sv-07-elversberg-24-10-2026/?blv=400722"
-      },
-      {
-        "label": "BLV RÔSI",
-        "url": "https://socoliveev.tv/truc-tiep/rb-leipzig-vs-sv-07-elversberg-24-10-2026/?blv=139384"
-      }
-    ],
-    "blv": "MP3"
-  },
-  {
-    "home": "1 fsv mainz 05",
-    "away": "sv werder bremen",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-24T13:30:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveev.tv/truc-tiep/1-fsv-mainz-05-vs-sv-werder-bremen-24-10-2026/"
-      },
-      {
-        "label": "BLV 5 LỬA",
-        "url": "https://socoliveev.tv/truc-tiep/1-fsv-mainz-05-vs-sv-werder-bremen-24-10-2026/?blv=250874"
-      },
-      {
-        "label": "BLV ĐỖ TÚ TÀI",
-        "url": "https://socoliveev.tv/truc-tiep/1-fsv-mainz-05-vs-sv-werder-bremen-24-10-2026/?blv=607552"
-      }
-    ],
-    "blv": "5 LỬA"
-  },
-  {
-    "home": "arsenal",
-    "away": "everton",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-24T14:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveev.tv/truc-tiep/arsenal-vs-everton-24-10-2026"
-      },
-      {
-        "label": "BLV THOMAS",
-        "url": "https://socoliveev.tv/truc-tiep/arsenal-vs-everton-24-10-2026?blv=414317"
-      },
-      {
-        "label": "BLV CR Bưởi",
-        "url": "https://socoliveev.tv/truc-tiep/arsenal-vs-everton-24-10-2026?blv=387694"
-      },
-      {
-        "label": "BLV MESSI",
-        "url": "https://socoliveev.tv/truc-tiep/arsenal-vs-everton-24-10-2026?blv=494201"
-      },
-      {
-        "label": "BLV RICKHANTER",
-        "url": "https://socoliveev.tv/truc-tiep/arsenal-vs-everton-24-10-2026?blv=123226"
-      },
-      {
-        "label": "BLV Củ Cải",
-        "url": "https://socoliveev.tv/truc-tiep/arsenal-vs-everton-24-10-2026?blv=360663"
-      },
-      {
-        "label": "BLV TẠ BIÊN GIỚI",
-        "url": "https://socoliveev.tv/truc-tiep/arsenal-vs-everton-24-10-2026?blv=118206"
-      },
-      {
-        "label": "BLV CUỘI",
-        "url": "https://socoliveev.tv/truc-tiep/arsenal-vs-everton-24-10-2026?blv=256080"
-      },
-      {
-        "label": "BLV SAO LA",
-        "url": "https://socoliveev.tv/truc-tiep/arsenal-vs-everton-24-10-2026?blv=462413"
-      },
-      {
-        "label": "BLV PIRLO",
-        "url": "https://socoliveev.tv/truc-tiep/arsenal-vs-everton-24-10-2026?blv=351530"
-      },
-      {
-        "label": "BLV A BỆU",
-        "url": "https://socoliveev.tv/truc-tiep/arsenal-vs-everton-24-10-2026?blv=484845"
-      },
-      {
-        "label": "BLV CURRY",
-        "url": "https://socoliveev.tv/truc-tiep/arsenal-vs-everton-24-10-2026?blv=622240"
-      },
-      {
-        "label": "BLV HEHE",
-        "url": "https://socoliveev.tv/truc-tiep/arsenal-vs-everton-24-10-2026?blv=622241"
-      }
-    ],
-    "blv": "THOMAS"
-  },
-  {
-    "home": "coventry city",
-    "away": "fulham",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-24T14:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveev.tv/truc-tiep/coventry-city-vs-fulham-24-10-2026"
-      },
-      {
-        "label": "BLV ĐỐM",
-        "url": "https://socoliveev.tv/truc-tiep/coventry-city-vs-fulham-24-10-2026?blv=434982"
-      },
-      {
-        "label": "BLV QUỐC KHÁNH",
-        "url": "https://socoliveev.tv/truc-tiep/coventry-city-vs-fulham-24-10-2026?blv=602153"
-      },
-      {
-        "label": "BLV HẢI THANH",
-        "url": "https://socoliveev.tv/truc-tiep/coventry-city-vs-fulham-24-10-2026?blv=599634"
-      },
-      {
-        "label": "BLV A MÂN",
-        "url": "https://socoliveev.tv/truc-tiep/coventry-city-vs-fulham-24-10-2026?blv=627718"
-      },
-      {
-        "label": "BLV KAN",
-        "url": "https://socoliveev.tv/truc-tiep/coventry-city-vs-fulham-24-10-2026?blv=283501"
-      },
-      {
-        "label": "BLV LÃO LÂM",
-        "url": "https://socoliveev.tv/truc-tiep/coventry-city-vs-fulham-24-10-2026?blv=527384"
-      }
-    ],
-    "blv": "ĐỐM"
-  },
-  {
-    "home": "racing santander",
-    "away": "rcd espanyol",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-24T14:15:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveev.tv/truc-tiep/racing-santander-vs-rcd-espanyol-24-10-2026"
-      },
-      {
-        "label": "BLV RYO",
-        "url": "https://socoliveev.tv/truc-tiep/racing-santander-vs-rcd-espanyol-24-10-2026?blv=602019"
-      },
-      {
-        "label": "BLV BOSS",
-        "url": "https://socoliveev.tv/truc-tiep/racing-santander-vs-rcd-espanyol-24-10-2026?blv=620504"
-      }
-    ],
-    "blv": "RYO"
-  },
-  {
-    "home": "real madrid",
-    "away": "rb leipzig",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveei.tv/truc-tiep/real-madrid-vs-rb-leipzig-21-10-2026/"
+        "url": "https://socolivezag.tv/truc-tiep/racing-genk-vs-standard-liege-luc-1930-ngay-25-10-2026/"
       }
     ]
   },
   {
-    "home": "aston villa",
-    "away": "viking",
+    "home": "nomme jk kalju",
+    "away": "fc flora tallinn",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-21T00:00:00+07:00",
+    "kickoffISO": "2026-10-25T19:30:00+07:00",
     "isLive": false,
     "source": "socolive",
     "links": [
       {
         "label": "Link 1",
-        "url": "https://socoliveei.tv/truc-tiep/aston-villa-vs-viking-21-10-2026/"
+        "url": "https://socolivezag.tv/truc-tiep/nomme-jk-kalju-vs-fc-flora-tallinn-luc-1930-ngay-25-10-2026/"
       }
     ]
   },
   {
-    "home": "fc bayern munich",
-    "away": "arsenal",
+    "home": "tuloy fc",
+    "away": "mendiola 1991",
     "league": "Tong hop",
-    "kickoffISO": "2026-10-21T00:00:00+07:00",
+    "kickoffISO": "2026-10-25T19:30:00+07:00",
     "isLive": false,
     "source": "socolive",
     "links": [
       {
         "label": "Link 1",
-        "url": "https://socoliveei.tv/truc-tiep/fc-bayern-munich-vs-arsenal-21-10-2026/"
+        "url": "https://socolivezag.tv/truc-tiep/tuloy-fc-vs-mendiola-1991-luc-1930-ngay-25-10-2026/"
       }
     ]
-  },
-  {
-    "home": "real betis",
-    "away": "feyenoord",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveei.tv/truc-tiep/real-betis-vs-feyenoord-21-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "inter milan",
-    "away": "fc shakhtar donetsk",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveei.tv/truc-tiep/inter-milan-vs-fc-shakhtar-donetsk-21-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "levante",
-    "away": "athletic club",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveei.tv/truc-tiep/levante-vs-athletic-club-21-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "club brugge",
-    "away": "rc lens",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveei.tv/truc-tiep/club-brugge-vs-rc-lens-21-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "sporting cp",
-    "away": "lask linz",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveei.tv/truc-tiep/sporting-cp-vs-lask-linz-21-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "montevideo city torque",
-    "away": "atletico mineiro mg",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveei.tv/truc-tiep/montevideo-city-torque-vs-atletico-mineiro-mg-21-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "fc cincinnati",
-    "away": "dc united",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveei.tv/truc-tiep/fc-cincinnati-vs-dc-united-21-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "llaneros fc",
-    "away": "deportivo cali",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveei.tv/truc-tiep/llaneros-fc-vs-deportivo-cali-21-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "columbus crew",
-    "away": "st louis city sc",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-22T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socoliveei.tv/truc-tiep/columbus-crew-vs-st-louis-city-sc-22-10-2026/"
-      },
-      {
-        "label": "BLV CÁO",
-        "url": "https://socoliveei.tv/truc-tiep/columbus-crew-vs-st-louis-city-sc-22-10-2026/?blv=597929"
-      },
-      {
-        "label": "BLV BÚN ĐẬU",
-        "url": "https://socoliveei.tv/truc-tiep/columbus-crew-vs-st-louis-city-sc-22-10-2026/?blv=619561"
-      }
-    ]
-  },
-  {
-    "home": "diraiyah",
-    "away": "al riyadh",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-20T22:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive73.tv/truc-tiep/diraiyah-vs-al-riyadh-20-10-2026/"
-      },
-      {
-        "label": "BLV RÔSI",
-        "url": "https://socolive73.tv/truc-tiep/diraiyah-vs-al-riyadh-20-10-2026/?blv=139384"
-      },
-      {
-        "label": "BLV PEANUT",
-        "url": "https://socolive73.tv/truc-tiep/diraiyah-vs-al-riyadh-20-10-2026/?blv=620084"
-      },
-      {
-        "label": "BLV TRÀ ĐÁ",
-        "url": "https://socolive73.tv/truc-tiep/diraiyah-vs-al-riyadh-20-10-2026/?blv=603914"
-      },
-      {
-        "label": "BLV BOSS",
-        "url": "https://socolive73.tv/truc-tiep/diraiyah-vs-al-riyadh-20-10-2026/?blv=620504"
-      },
-      {
-        "label": "BLV VOI",
-        "url": "https://socolive73.tv/truc-tiep/diraiyah-vs-al-riyadh-20-10-2026/?blv=552716"
-      },
-      {
-        "label": "BLV LONG",
-        "url": "https://socolive73.tv/truc-tiep/diraiyah-vs-al-riyadh-20-10-2026/?blv=132343"
-      }
-    ],
-    "blv": "RÔSI"
-  },
-  {
-    "home": "al taawoun",
-    "away": "al qadsiah",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-20T22:10:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive73.tv/truc-tiep/al-taawoun-vs-al-qadsiah-20-10-2026/"
-      },
-      {
-        "label": "BLV THẠCH TÚ",
-        "url": "https://socolive73.tv/truc-tiep/al-taawoun-vs-al-qadsiah-20-10-2026/?blv=344370"
-      },
-      {
-        "label": "BLV PEWPEW",
-        "url": "https://socolive73.tv/truc-tiep/al-taawoun-vs-al-qadsiah-20-10-2026/?blv=109053"
-      },
-      {
-        "label": "Link 3",
-        "url": "https://socolive73.tv/truc-tiep/al-taawoun-vs-al-qadsiah-20-10-2026/?blv=291277"
-      },
-      {
-        "label": "BLV TYPN",
-        "url": "https://socolive73.tv/truc-tiep/al-taawoun-vs-al-qadsiah-20-10-2026/?blv=170430"
-      },
-      {
-        "label": "BLV TOMIA",
-        "url": "https://socolive73.tv/truc-tiep/al-taawoun-vs-al-qadsiah-20-10-2026/?blv=187579"
-      },
-      {
-        "label": "BLV HẢI THANH",
-        "url": "https://socolive73.tv/truc-tiep/al-taawoun-vs-al-qadsiah-20-10-2026/?blv=599634"
-      }
-    ],
-    "blv": "THẠCH TÚ"
-  },
-  {
-    "home": "fenerbahce",
-    "away": "sk slavia praha",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-20T23:45:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive73.tv/truc-tiep/fenerbahce-vs-sk-slavia-praha-20-10-2026/"
-      },
-      {
-        "label": "BLV A MÂN",
-        "url": "https://socolive73.tv/truc-tiep/fenerbahce-vs-sk-slavia-praha-20-10-2026/?blv=627718"
-      },
-      {
-        "label": "BLV CR Bưởi",
-        "url": "https://socolive73.tv/truc-tiep/fenerbahce-vs-sk-slavia-praha-20-10-2026/?blv=387694"
-      },
-      {
-        "label": "BLV MESSI",
-        "url": "https://socolive73.tv/truc-tiep/fenerbahce-vs-sk-slavia-praha-20-10-2026/?blv=494201"
-      },
-      {
-        "label": "BLV ĐỐM",
-        "url": "https://socolive73.tv/truc-tiep/fenerbahce-vs-sk-slavia-praha-20-10-2026/?blv=434982"
-      },
-      {
-        "label": "BLV QUỐC KHÁNH",
-        "url": "https://socolive73.tv/truc-tiep/fenerbahce-vs-sk-slavia-praha-20-10-2026/?blv=602153"
-      },
-      {
-        "label": "BLV CÒ",
-        "url": "https://socolive73.tv/truc-tiep/fenerbahce-vs-sk-slavia-praha-20-10-2026/?blv=582342"
-      }
-    ],
-    "blv": "A MÂN"
-  },
-  {
-    "home": "sabah baku",
-    "away": "borussia dortmund",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-20T23:45:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive73.tv/truc-tiep/sabah-baku-vs-borussia-dortmund-20-10-2026/"
-      },
-      {
-        "label": "BLV CUỘI",
-        "url": "https://socolive73.tv/truc-tiep/sabah-baku-vs-borussia-dortmund-20-10-2026/?blv=256080"
-      },
-      {
-        "label": "BLV SAO LA",
-        "url": "https://socolive73.tv/truc-tiep/sabah-baku-vs-borussia-dortmund-20-10-2026/?blv=462413"
-      },
-      {
-        "label": "BLV PIRLO",
-        "url": "https://socolive73.tv/truc-tiep/sabah-baku-vs-borussia-dortmund-20-10-2026/?blv=351530"
-      },
-      {
-        "label": "BLV A BỆU",
-        "url": "https://socolive73.tv/truc-tiep/sabah-baku-vs-borussia-dortmund-20-10-2026/?blv=484845"
-      },
-      {
-        "label": "BLV CURRY",
-        "url": "https://socolive73.tv/truc-tiep/sabah-baku-vs-borussia-dortmund-20-10-2026/?blv=622240"
-      },
-      {
-        "label": "BLV HEHE",
-        "url": "https://socolive73.tv/truc-tiep/sabah-baku-vs-borussia-dortmund-20-10-2026/?blv=622241"
-      }
-    ],
-    "blv": "CUỘI"
-  },
-  {
-    "home": "wadi degla sc",
-    "away": "bank el ahly",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive73.tv/truc-tiep/wadi-degla-sc-vs-bank-el-ahly-21-10-2026/"
-      },
-      {
-        "label": "BLV XUÂN SON",
-        "url": "https://socolive73.tv/truc-tiep/wadi-degla-sc-vs-bank-el-ahly-21-10-2026/?blv=501412"
-      },
-      {
-        "label": "BLV LONG",
-        "url": "https://socolive73.tv/truc-tiep/wadi-degla-sc-vs-bank-el-ahly-21-10-2026/?blv=132343"
-      }
-    ],
-    "blv": "XUÂN SON"
-  },
-  {
-    "home": "al nassr",
-    "away": "neom sc",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T01:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive73.tv/truc-tiep/al-nassr-vs-neom-sc-21-10-2026/"
-      },
-      {
-        "label": "BLV LÃO LÂM",
-        "url": "https://socolive73.tv/truc-tiep/al-nassr-vs-neom-sc-21-10-2026/?blv=527384"
-      },
-      {
-        "label": "BLV LUCAS",
-        "url": "https://socolive73.tv/truc-tiep/al-nassr-vs-neom-sc-21-10-2026/?blv=304148"
-      },
-      {
-        "label": "BLV BÉO",
-        "url": "https://socolive73.tv/truc-tiep/al-nassr-vs-neom-sc-21-10-2026/?blv=459401"
-      },
-      {
-        "label": "BLV BÒ TƯƠI",
-        "url": "https://socolive73.tv/truc-tiep/al-nassr-vs-neom-sc-21-10-2026/?blv=620797"
-      },
-      {
-        "label": "BLV CACAO",
-        "url": "https://socolive73.tv/truc-tiep/al-nassr-vs-neom-sc-21-10-2026/?blv=620661"
-      },
-      {
-        "label": "BLV PEWPEW",
-        "url": "https://socolive73.tv/truc-tiep/al-nassr-vs-neom-sc-21-10-2026/?blv=109053"
-      }
-    ],
-    "blv": "LÃO LÂM"
-  },
-  {
-    "home": "manchester city",
-    "away": "aek athens",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T02:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive73.tv/truc-tiep/manchester-city-vs-aek-athens-21-10-2026/"
-      },
-      {
-        "label": "BLV HẢI THANH",
-        "url": "https://socolive73.tv/truc-tiep/manchester-city-vs-aek-athens-21-10-2026/?blv=599634"
-      },
-      {
-        "label": "BLV THẠCH TÚ",
-        "url": "https://socolive73.tv/truc-tiep/manchester-city-vs-aek-athens-21-10-2026/?blv=344370"
-      },
-      {
-        "label": "BLV SAO LA",
-        "url": "https://socolive73.tv/truc-tiep/manchester-city-vs-aek-athens-21-10-2026/?blv=462413"
-      },
-      {
-        "label": "BLV PIRLO",
-        "url": "https://socolive73.tv/truc-tiep/manchester-city-vs-aek-athens-21-10-2026/?blv=351530"
-      },
-      {
-        "label": "BLV A BỆU",
-        "url": "https://socolive73.tv/truc-tiep/manchester-city-vs-aek-athens-21-10-2026/?blv=484845"
-      },
-      {
-        "label": "BLV QUỐC KHÁNH",
-        "url": "https://socolive73.tv/truc-tiep/manchester-city-vs-aek-athens-21-10-2026/?blv=602153"
-      }
-    ],
-    "blv": "HẢI THANH"
-  },
-  {
-    "home": "as roma",
-    "away": "slovan bratislava",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T02:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive73.tv/truc-tiep/as-roma-vs-slovan-bratislava-21-10-2026/"
-      },
-      {
-        "label": "BLV MP3",
-        "url": "https://socolive73.tv/truc-tiep/as-roma-vs-slovan-bratislava-21-10-2026/?blv=621840"
-      },
-      {
-        "label": "BLV A WIN",
-        "url": "https://socolive73.tv/truc-tiep/as-roma-vs-slovan-bratislava-21-10-2026/?blv=536185"
-      },
-      {
-        "label": "BLV VINFAST",
-        "url": "https://socolive73.tv/truc-tiep/as-roma-vs-slovan-bratislava-21-10-2026/?blv=617313"
-      },
-      {
-        "label": "BLV WUKONG",
-        "url": "https://socolive73.tv/truc-tiep/as-roma-vs-slovan-bratislava-21-10-2026/?blv=511367"
-      }
-    ],
-    "blv": "MP3"
-  },
-  {
-    "home": "napoli",
-    "away": "fk bodo glimt",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T02:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive73.tv/truc-tiep/napoli-vs-fk-bodo-glimt-21-10-2026/"
-      },
-      {
-        "label": "BLV XUÂN TÓC ĐỎ",
-        "url": "https://socolive73.tv/truc-tiep/napoli-vs-fk-bodo-glimt-21-10-2026/?blv=610518"
-      },
-      {
-        "label": "BLV ĐỖ TÚ TÀI",
-        "url": "https://socolive73.tv/truc-tiep/napoli-vs-fk-bodo-glimt-21-10-2026/?blv=607552"
-      }
-    ],
-    "blv": "XUÂN TÓC ĐỎ"
-  },
-  {
-    "home": "vfb stuttgart",
-    "away": "atletico madrid",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T02:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive73.tv/truc-tiep/vfb-stuttgart-vs-atletico-madrid-21-10-2026"
-      },
-      {
-        "label": "BLV LONG",
-        "url": "https://socolive73.tv/truc-tiep/vfb-stuttgart-vs-atletico-madrid-21-10-2026?blv=132343"
-      },
-      {
-        "label": "BLV RYO",
-        "url": "https://socolive73.tv/truc-tiep/vfb-stuttgart-vs-atletico-madrid-21-10-2026?blv=602019"
-      },
-      {
-        "label": "BLV BOSS",
-        "url": "https://socolive73.tv/truc-tiep/vfb-stuttgart-vs-atletico-madrid-21-10-2026?blv=620504"
-      },
-      {
-        "label": "BLV XO",
-        "url": "https://socolive73.tv/truc-tiep/vfb-stuttgart-vs-atletico-madrid-21-10-2026?blv=472241"
-      }
-    ],
-    "blv": "LONG"
-  },
-  {
-    "home": "paris saint germain",
-    "away": "fc barcelona",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T02:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive73.tv/truc-tiep/paris-saint-germain-vs-fc-barcelona-21-10-2026/"
-      },
-      {
-        "label": "BLV CUỘI",
-        "url": "https://socolive73.tv/truc-tiep/paris-saint-germain-vs-fc-barcelona-21-10-2026/?blv=256080"
-      },
-      {
-        "label": "BLV CR Bưởi",
-        "url": "https://socolive73.tv/truc-tiep/paris-saint-germain-vs-fc-barcelona-21-10-2026/?blv=387694"
-      },
-      {
-        "label": "BLV MESSI",
-        "url": "https://socolive73.tv/truc-tiep/paris-saint-germain-vs-fc-barcelona-21-10-2026/?blv=494201"
-      },
-      {
-        "label": "BLV RICKHANTER",
-        "url": "https://socolive73.tv/truc-tiep/paris-saint-germain-vs-fc-barcelona-21-10-2026/?blv=123226"
-      },
-      {
-        "label": "BLV CURRY",
-        "url": "https://socolive73.tv/truc-tiep/paris-saint-germain-vs-fc-barcelona-21-10-2026/?blv=622240"
-      },
-      {
-        "label": "BLV HEHE",
-        "url": "https://socolive73.tv/truc-tiep/paris-saint-germain-vs-fc-barcelona-21-10-2026/?blv=622241"
-      }
-    ],
-    "blv": "CUỘI"
-  },
-  {
-    "home": "fc porto",
-    "away": "psv eindhoven",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-21T02:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive73.tv/truc-tiep/fc-porto-vs-psv-eindhoven-21-10-2026/"
-      },
-      {
-        "label": "BLV XUÂN SON",
-        "url": "https://socolive73.tv/truc-tiep/fc-porto-vs-psv-eindhoven-21-10-2026/?blv=501412"
-      },
-      {
-        "label": "BLV TỜ NÚ",
-        "url": "https://socolive73.tv/truc-tiep/fc-porto-vs-psv-eindhoven-21-10-2026/?blv=626633"
-      }
-    ],
-    "blv": "XUÂN SON"
-  },
-  {
-    "home": "macarthur fc",
-    "away": "perth glory",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-17T13:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive2.top/truc-tiep/macarthur-fc-vs-perth-glory-17-10-2026/"
-      },
-      {
-        "label": "BLV SAO LA",
-        "url": "https://socolive2.top/truc-tiep/macarthur-fc-vs-perth-glory-17-10-2026/?blv=462413"
-      },
-      {
-        "label": "BLV MESSI",
-        "url": "https://socolive2.top/truc-tiep/macarthur-fc-vs-perth-glory-17-10-2026/?blv=494201"
-      },
-      {
-        "label": "BLV A BỆU",
-        "url": "https://socolive2.top/truc-tiep/macarthur-fc-vs-perth-glory-17-10-2026/?blv=484845"
-      },
-      {
-        "label": "BLV Củ Cải",
-        "url": "https://socolive2.top/truc-tiep/macarthur-fc-vs-perth-glory-17-10-2026/?blv=360663"
-      },
-      {
-        "label": "BLV TẠ BIÊN GIỚI",
-        "url": "https://socolive2.top/truc-tiep/macarthur-fc-vs-perth-glory-17-10-2026/?blv=118206"
-      },
-      {
-        "label": "BLV A MÂN",
-        "url": "https://socolive2.top/truc-tiep/macarthur-fc-vs-perth-glory-17-10-2026/?blv=627718"
-      }
-    ],
-    "blv": "SAO LA"
-  },
-  {
-    "home": "brisbane roar women",
-    "away": "central coast mariners women",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-17T13:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive2.top/truc-tiep/brisbane-roar-women-vs-central-coast-mariners-women-17-10-2026/"
-      },
-      {
-        "label": "BLV XO",
-        "url": "https://socolive2.top/truc-tiep/brisbane-roar-women-vs-central-coast-mariners-women-17-10-2026/?blv=472241"
-      },
-      {
-        "label": "BLV KINH VÂN",
-        "url": "https://socolive2.top/truc-tiep/brisbane-roar-women-vs-central-coast-mariners-women-17-10-2026/?blv=623743"
-      }
-    ],
-    "blv": "XO"
-  },
-  {
-    "home": "cerezo osaka",
-    "away": "kawasaki frontale",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-17T13:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive2.top/truc-tiep/cerezo-osaka-vs-kawasaki-frontale-17-10-2026/"
-      },
-      {
-        "label": "BLV BÚN ĐẬU",
-        "url": "https://socolive2.top/truc-tiep/cerezo-osaka-vs-kawasaki-frontale-17-10-2026/?blv=619561"
-      },
-      {
-        "label": "BLV HUCK",
-        "url": "https://socolive2.top/truc-tiep/cerezo-osaka-vs-kawasaki-frontale-17-10-2026/?blv=623653"
-      },
-      {
-        "label": "BLV BẢY",
-        "url": "https://socolive2.top/truc-tiep/cerezo-osaka-vs-kawasaki-frontale-17-10-2026/?blv=621843"
-      },
-      {
-        "label": "BLV XUÂN SON",
-        "url": "https://socolive2.top/truc-tiep/cerezo-osaka-vs-kawasaki-frontale-17-10-2026/?blv=501412"
-      }
-    ],
-    "blv": "BÚN ĐẬU"
-  },
-  {
-    "home": "kashima antlers",
-    "away": "v varen nagasaki",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-17T13:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive2.top/truc-tiep/kashima-antlers-vs-v-varen-nagasaki-17-10-2026/"
-      },
-      {
-        "label": "BLV WUKONG",
-        "url": "https://socolive2.top/truc-tiep/kashima-antlers-vs-v-varen-nagasaki-17-10-2026/?blv=511367"
-      },
-      {
-        "label": "BLV SẾU ĐẦU ĐỎ",
-        "url": "https://socolive2.top/truc-tiep/kashima-antlers-vs-v-varen-nagasaki-17-10-2026/?blv=627318"
-      },
-      {
-        "label": "BLV RYO",
-        "url": "https://socolive2.top/truc-tiep/kashima-antlers-vs-v-varen-nagasaki-17-10-2026/?blv=602019"
-      },
-      {
-        "label": "BLV VIP",
-        "url": "https://socolive2.top/truc-tiep/kashima-antlers-vs-v-varen-nagasaki-17-10-2026/?blv=491873"
-      }
-    ],
-    "blv": "WUKONG"
-  },
-  {
-    "home": "mito hollyhock",
-    "away": "urawa red diamonds",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-17T14:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive2.top/truc-tiep/mito-hollyhock-vs-urawa-red-diamonds-17-10-2026/"
-      },
-      {
-        "label": "BLV PEWPEW",
-        "url": "https://socolive2.top/truc-tiep/mito-hollyhock-vs-urawa-red-diamonds-17-10-2026/?blv=109053"
-      },
-      {
-        "label": "BLV TRÀ ĐÁ",
-        "url": "https://socolive2.top/truc-tiep/mito-hollyhock-vs-urawa-red-diamonds-17-10-2026/?blv=603914"
-      },
-      {
-        "label": "BLV LUCAS",
-        "url": "https://socolive2.top/truc-tiep/mito-hollyhock-vs-urawa-red-diamonds-17-10-2026/?blv=304148"
-      },
-      {
-        "label": "BLV NGƯỜI CÁ",
-        "url": "https://socolive2.top/truc-tiep/mito-hollyhock-vs-urawa-red-diamonds-17-10-2026/?blv=595335"
-      }
-    ],
-    "blv": "PEWPEW"
-  },
-  {
-    "home": "ulsan hd fc",
-    "away": "bucheon fc 1995",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-17T14:30:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive2.top/truc-tiep/ulsan-hd-fc-vs-bucheon-fc-1995-17-10-2026/"
-      },
-      {
-        "label": "BLV YONE",
-        "url": "https://socolive2.top/truc-tiep/ulsan-hd-fc-vs-bucheon-fc-1995-17-10-2026/?blv=372746"
-      },
-      {
-        "label": "BLV TYPN",
-        "url": "https://socolive2.top/truc-tiep/ulsan-hd-fc-vs-bucheon-fc-1995-17-10-2026/?blv=170430"
-      },
-      {
-        "label": "BLV QUỐC KHÁNH",
-        "url": "https://socolive2.top/truc-tiep/ulsan-hd-fc-vs-bucheon-fc-1995-17-10-2026/?blv=602153"
-      },
-      {
-        "label": "BLV BÒ TƯƠI",
-        "url": "https://socolive2.top/truc-tiep/ulsan-hd-fc-vs-bucheon-fc-1995-17-10-2026/?blv=620797"
-      }
-    ],
-    "blv": "YONE"
-  },
-  {
-    "home": "garudayaksa fc",
-    "away": "arema fc",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-17T15:30:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive2.top/truc-tiep/garudayaksa-fc-vs-arema-fc-17-10-2026/"
-      },
-      {
-        "label": "BLV RÔSI",
-        "url": "https://socolive2.top/truc-tiep/garudayaksa-fc-vs-arema-fc-17-10-2026/?blv=139384"
-      },
-      {
-        "label": "BLV ASHAHI",
-        "url": "https://socolive2.top/truc-tiep/garudayaksa-fc-vs-arema-fc-17-10-2026/?blv=626841"
-      }
-    ],
-    "blv": "RÔSI"
-  },
-  {
-    "home": "central coast mariners",
-    "away": "newcastle jets",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-17T15:40:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive2.top/truc-tiep/central-coast-mariners-vs-newcastle-jets-17-10-2026/"
-      },
-      {
-        "label": "BLV ZIDANE",
-        "url": "https://socolive2.top/truc-tiep/central-coast-mariners-vs-newcastle-jets-17-10-2026/?blv=168740"
-      },
-      {
-        "label": "BLV RICKHANTER",
-        "url": "https://socolive2.top/truc-tiep/central-coast-mariners-vs-newcastle-jets-17-10-2026/?blv=123226"
-      },
-      {
-        "label": "BLV CURRY",
-        "url": "https://socolive2.top/truc-tiep/central-coast-mariners-vs-newcastle-jets-17-10-2026/?blv=622240"
-      },
-      {
-        "label": "BLV THẠCH TÚ",
-        "url": "https://socolive2.top/truc-tiep/central-coast-mariners-vs-newcastle-jets-17-10-2026/?blv=344370"
-      },
-      {
-        "label": "BLV TAP",
-        "url": "https://socolive2.top/truc-tiep/central-coast-mariners-vs-newcastle-jets-17-10-2026/?blv=147801"
-      },
-      {
-        "label": "BLV TUẤN CÙI",
-        "url": "https://socolive2.top/truc-tiep/central-coast-mariners-vs-newcastle-jets-17-10-2026/?blv=400722"
-      }
-    ],
-    "blv": "ZIDANE"
-  },
-  {
-    "home": "kataller toyama",
-    "away": "shonan bellmare",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-17T16:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive2.top/truc-tiep/kataller-toyama-vs-shonan-bellmare-17-10-2026/"
-      },
-      {
-        "label": "BLV VOI",
-        "url": "https://socolive2.top/truc-tiep/kataller-toyama-vs-shonan-bellmare-17-10-2026/?blv=552716"
-      },
-      {
-        "label": "BLV LONG",
-        "url": "https://socolive2.top/truc-tiep/kataller-toyama-vs-shonan-bellmare-17-10-2026/?blv=132343"
-      }
-    ],
-    "blv": "VOI"
-  },
-  {
-    "home": "kashiwa reysol",
-    "away": "nagoya grampus",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-17T17:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive2.top/truc-tiep/kashiwa-reysol-vs-nagoya-grampus-17-10-2026/"
-      },
-      {
-        "label": "BLV ĐỐM",
-        "url": "https://socolive2.top/truc-tiep/kashiwa-reysol-vs-nagoya-grampus-17-10-2026/?blv=434982"
-      },
-      {
-        "label": "BLV CACAO",
-        "url": "https://socolive2.top/truc-tiep/kashiwa-reysol-vs-nagoya-grampus-17-10-2026/?blv=620661"
-      },
-      {
-        "label": "BLV LOKA",
-        "url": "https://socolive2.top/truc-tiep/kashiwa-reysol-vs-nagoya-grampus-17-10-2026/?blv=589848"
-      },
-      {
-        "label": "BLV RYO",
-        "url": "https://socolive2.top/truc-tiep/kashiwa-reysol-vs-nagoya-grampus-17-10-2026/?blv=602019"
-      }
-    ],
-    "blv": "ĐỐM"
-  },
-  {
-    "home": "thanh hoa",
-    "away": "thep xanh nam dinh fc",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-17T17:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive2.top/truc-tiep/thanh-hoa-vs-thep-xanh-nam-dinh-fc-17-10-2026"
-      },
-      {
-        "label": "BLV BÉO",
-        "url": "https://socolive2.top/truc-tiep/thanh-hoa-vs-thep-xanh-nam-dinh-fc-17-10-2026?blv=459401"
-      },
-      {
-        "label": "BLV BÒ TƯƠI",
-        "url": "https://socolive2.top/truc-tiep/thanh-hoa-vs-thep-xanh-nam-dinh-fc-17-10-2026?blv=620797"
-      },
-      {
-        "label": "BLV LÃO LÂM",
-        "url": "https://socolive2.top/truc-tiep/thanh-hoa-vs-thep-xanh-nam-dinh-fc-17-10-2026?blv=527384"
-      },
-      {
-        "label": "BLV T REX",
-        "url": "https://socolive2.top/truc-tiep/thanh-hoa-vs-thep-xanh-nam-dinh-fc-17-10-2026?blv=619672"
-      }
-    ],
-    "blv": "BÉO"
-  },
-  {
-    "home": "erzurumspor fk",
-    "away": "eyupspor",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-17T17:30:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive2.top/truc-tiep/erzurumspor-fk-vs-eyupspor-17-10-2026"
-      },
-      {
-        "label": "BLV 5 LỬA",
-        "url": "https://socolive2.top/truc-tiep/erzurumspor-fk-vs-eyupspor-17-10-2026?blv=250874"
-      },
-      {
-        "label": "BLV PEANUT",
-        "url": "https://socolive2.top/truc-tiep/erzurumspor-fk-vs-eyupspor-17-10-2026?blv=620084"
-      }
-    ],
-    "blv": "5 LỬA"
-  },
-  {
-    "home": "galatasaray",
-    "away": "fc barcelona",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-14T02:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive84.tv/truc-tiep/galatasaray-vs-fc-barcelona-14-10-2026/"
-      },
-      {
-        "label": "BLV CÒ",
-        "url": "https://socolive84.tv/truc-tiep/galatasaray-vs-fc-barcelona-14-10-2026/?blv=582342"
-      },
-      {
-        "label": "BLV THẠCH TÚ",
-        "url": "https://socolive84.tv/truc-tiep/galatasaray-vs-fc-barcelona-14-10-2026/?blv=344370"
-      },
-      {
-        "label": "BLV PEWPEW",
-        "url": "https://socolive84.tv/truc-tiep/galatasaray-vs-fc-barcelona-14-10-2026/?blv=109053"
-      },
-      {
-        "label": "BLV LÃO LÂM",
-        "url": "https://socolive84.tv/truc-tiep/galatasaray-vs-fc-barcelona-14-10-2026/?blv=527384"
-      },
-      {
-        "label": "BLV LUCAS",
-        "url": "https://socolive84.tv/truc-tiep/galatasaray-vs-fc-barcelona-14-10-2026/?blv=304148"
-      },
-      {
-        "label": "BLV QUỐC KHÁNH",
-        "url": "https://socolive84.tv/truc-tiep/galatasaray-vs-fc-barcelona-14-10-2026/?blv=602153"
-      }
-    ],
-    "blv": "CÒ"
-  },
-  {
-    "home": "atletico madrid",
-    "away": "manchester united",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-14T02:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive84.tv/truc-tiep/atletico-madrid-vs-manchester-united-14-10-2026/"
-      },
-      {
-        "label": "BLV RICKHANTER",
-        "url": "https://socolive84.tv/truc-tiep/atletico-madrid-vs-manchester-united-14-10-2026/?blv=123226"
-      },
-      {
-        "label": "BLV CURRY",
-        "url": "https://socolive84.tv/truc-tiep/atletico-madrid-vs-manchester-united-14-10-2026/?blv=622240"
-      },
-      {
-        "label": "BLV HEHE",
-        "url": "https://socolive84.tv/truc-tiep/atletico-madrid-vs-manchester-united-14-10-2026/?blv=622241"
-      },
-      {
-        "label": "BLV THOMAS",
-        "url": "https://socolive84.tv/truc-tiep/atletico-madrid-vs-manchester-united-14-10-2026/?blv=414317"
-      },
-      {
-        "label": "BLV CR Bưởi",
-        "url": "https://socolive84.tv/truc-tiep/atletico-madrid-vs-manchester-united-14-10-2026/?blv=387694"
-      },
-      {
-        "label": "BLV MESSI",
-        "url": "https://socolive84.tv/truc-tiep/atletico-madrid-vs-manchester-united-14-10-2026/?blv=494201"
-      }
-    ],
-    "blv": "RICKHANTER"
-  },
-  {
-    "home": "inter milan",
-    "away": "club brugge",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-14T02:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive84.tv/truc-tiep/inter-milan-vs-club-brugge-14-10-2026/"
-      },
-      {
-        "label": "BLV ĐỖ TÚ TÀI",
-        "url": "https://socolive84.tv/truc-tiep/inter-milan-vs-club-brugge-14-10-2026/?blv=607552"
-      },
-      {
-        "label": "BLV RYO",
-        "url": "https://socolive84.tv/truc-tiep/inter-milan-vs-club-brugge-14-10-2026/?blv=602019"
-      },
-      {
-        "label": "BLV KENCHU",
-        "url": "https://socolive84.tv/truc-tiep/inter-milan-vs-club-brugge-14-10-2026/?blv=622602"
-      }
-    ],
-    "blv": "ĐỖ TÚ TÀI"
-  },
-  {
-    "home": "viking",
-    "away": "fc bayern munich",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-14T02:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive84.tv/truc-tiep/viking-vs-fc-bayern-munich-14-10-2026/"
-      },
-      {
-        "label": "BLV CACAO",
-        "url": "https://socolive84.tv/truc-tiep/viking-vs-fc-bayern-munich-14-10-2026/?blv=620661"
-      },
-      {
-        "label": "BLV PEANUT",
-        "url": "https://socolive84.tv/truc-tiep/viking-vs-fc-bayern-munich-14-10-2026/?blv=620084"
-      },
-      {
-        "label": "BLV A WIN",
-        "url": "https://socolive84.tv/truc-tiep/viking-vs-fc-bayern-munich-14-10-2026/?blv=536185"
-      },
-      {
-        "label": "BLV A TÚ",
-        "url": "https://socolive84.tv/truc-tiep/viking-vs-fc-bayern-munich-14-10-2026/?blv=557845"
-      },
-      {
-        "label": "BLV COCA",
-        "url": "https://socolive84.tv/truc-tiep/viking-vs-fc-bayern-munich-14-10-2026/?blv=327159"
-      },
-      {
-        "label": "BLV LONG",
-        "url": "https://socolive84.tv/truc-tiep/viking-vs-fc-bayern-munich-14-10-2026/?blv=132343"
-      }
-    ],
-    "blv": "CACAO"
-  },
-  {
-    "home": "arsenal",
-    "away": "losc lille",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-14T02:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive84.tv/truc-tiep/arsenal-vs-losc-lille-14-10-2026/"
-      },
-      {
-        "label": "BLV BÉO",
-        "url": "https://socolive84.tv/truc-tiep/arsenal-vs-losc-lille-14-10-2026/?blv=459401"
-      },
-      {
-        "label": "BLV BÒ TƯƠI",
-        "url": "https://socolive84.tv/truc-tiep/arsenal-vs-losc-lille-14-10-2026/?blv=620797"
-      },
-      {
-        "label": "BLV NGƯỜI CÁ",
-        "url": "https://socolive84.tv/truc-tiep/arsenal-vs-losc-lille-14-10-2026/?blv=595335"
-      },
-      {
-        "label": "BLV BẢY",
-        "url": "https://socolive84.tv/truc-tiep/arsenal-vs-losc-lille-14-10-2026/?blv=621843"
-      },
-      {
-        "label": "Link 5",
-        "url": "https://socolive84.tv/truc-tiep/arsenal-vs-losc-lille-14-10-2026/?blv=291277"
-      },
-      {
-        "label": "BLV A BỆU",
-        "url": "https://socolive84.tv/truc-tiep/arsenal-vs-losc-lille-14-10-2026/?blv=484845"
-      }
-    ],
-    "blv": "BÉO"
-  },
-  {
-    "home": "villarreal cf",
-    "away": "napoli",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-14T02:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive84.tv/truc-tiep/villarreal-cf-vs-napoli-14-10-2026/"
-      },
-      {
-        "label": "BLV TRÀ ĐÁ",
-        "url": "https://socolive84.tv/truc-tiep/villarreal-cf-vs-napoli-14-10-2026/?blv=603914"
-      },
-      {
-        "label": "BLV VINFAST",
-        "url": "https://socolive84.tv/truc-tiep/villarreal-cf-vs-napoli-14-10-2026/?blv=617313"
-      },
-      {
-        "label": "BLV XUÂN SON",
-        "url": "https://socolive84.tv/truc-tiep/villarreal-cf-vs-napoli-14-10-2026/?blv=501412"
-      },
-      {
-        "label": "BLV TUẤN CÙI",
-        "url": "https://socolive84.tv/truc-tiep/villarreal-cf-vs-napoli-14-10-2026/?blv=400722"
-      }
-    ],
-    "blv": "TRÀ ĐÁ"
-  },
-  {
-    "home": "rb leipzig",
-    "away": "psv eindhoven",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-14T02:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive84.tv/truc-tiep/rb-leipzig-vs-psv-eindhoven-14-10-2026/"
-      },
-      {
-        "label": "BLV WUKONG",
-        "url": "https://socolive84.tv/truc-tiep/rb-leipzig-vs-psv-eindhoven-14-10-2026/?blv=511367"
-      },
-      {
-        "label": "BLV SẾU ĐẦU ĐỎ",
-        "url": "https://socolive84.tv/truc-tiep/rb-leipzig-vs-psv-eindhoven-14-10-2026/?blv=627318"
-      }
-    ],
-    "blv": "WUKONG"
-  },
-  {
-    "home": "athletic club",
-    "away": "londrina pr",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-14T05:30:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive84.tv/truc-tiep/athletic-club-vs-londrina-pr-14-10-2026/"
-      },
-      {
-        "label": "BLV CHAN ĐÊ",
-        "url": "https://socolive84.tv/truc-tiep/athletic-club-vs-londrina-pr-14-10-2026/?blv=621887"
-      },
-      {
-        "label": "BLV ASHAHI",
-        "url": "https://socolive84.tv/truc-tiep/athletic-club-vs-londrina-pr-14-10-2026/?blv=626841"
-      },
-      {
-        "label": "BLV A WIN",
-        "url": "https://socolive84.tv/truc-tiep/athletic-club-vs-londrina-pr-14-10-2026/?blv=536185"
-      }
-    ],
-    "blv": "CHAN ĐÊ"
-  },
-  {
-    "home": "club deportivo tapatio",
-    "away": "tepatitlan fc",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-14T00:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive84.tv/truc-tiep/club-deportivo-tapatio-vs-tepatitlan-fc-14-10-2026/"
-      }
-    ]
-  },
-  {
-    "home": "Club Deportivo Tapatío",
-    "away": "Tepatitlan FC",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-14T06:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "BLV VIP",
-        "url": "https://socolive84.tv/truc-tiep/club-deportivo-tapatio-vs-tepatitlan-fc-14-10-2026/?blv=491873"
-      },
-      {
-        "label": "BLV CÁO",
-        "url": "https://socolive84.tv/truc-tiep/club-deportivo-tapatio-vs-tepatitlan-fc-14-10-2026/?blv=597929"
-      },
-      {
-        "label": "BLV A TINH",
-        "url": "https://socolive84.tv/truc-tiep/club-deportivo-tapatio-vs-tepatitlan-fc-14-10-2026/?blv=598119"
-      }
-    ],
-    "blv": "VIP"
-  },
-  {
-    "home": "atletico bucaramanga",
-    "away": "aguilas doradas",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-14T06:30:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive84.tv/truc-tiep/atletico-bucaramanga-vs-aguilas-doradas-14-10-2026/"
-      },
-      {
-        "label": "BLV HUCK",
-        "url": "https://socolive84.tv/truc-tiep/atletico-bucaramanga-vs-aguilas-doradas-14-10-2026/?blv=623653"
-      },
-      {
-        "label": "BLV KAN",
-        "url": "https://socolive84.tv/truc-tiep/atletico-bucaramanga-vs-aguilas-doradas-14-10-2026/?blv=283501"
-      },
-      {
-        "label": "BLV YONE",
-        "url": "https://socolive84.tv/truc-tiep/atletico-bucaramanga-vs-aguilas-doradas-14-10-2026/?blv=372746"
-      }
-    ],
-    "blv": "HUCK"
-  },
-  {
-    "home": "cs cartagines",
-    "away": "puntarenas fc",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-14T07:00:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive84.tv/truc-tiep/cs-cartagines-vs-puntarenas-fc-14-10-2026/"
-      },
-      {
-        "label": "BLV T REX",
-        "url": "https://socolive84.tv/truc-tiep/cs-cartagines-vs-puntarenas-fc-14-10-2026/?blv=619672"
-      },
-      {
-        "label": "BLV CHIVAS",
-        "url": "https://socolive84.tv/truc-tiep/cs-cartagines-vs-puntarenas-fc-14-10-2026/?blv=485739"
-      },
-      {
-        "label": "BLV BÚN ĐẬU",
-        "url": "https://socolive84.tv/truc-tiep/cs-cartagines-vs-puntarenas-fc-14-10-2026/?blv=619561"
-      }
-    ],
-    "blv": "T REX"
-  },
-  {
-    "home": "boca juniors",
-    "away": "vasco da gama saf rj",
-    "league": "Tong hop",
-    "kickoffISO": "2026-10-14T07:30:00+07:00",
-    "isLive": false,
-    "source": "socolive",
-    "links": [
-      {
-        "label": "Link 1",
-        "url": "https://socolive84.tv/truc-tiep/boca-juniors-vs-vasco-da-gama-saf-rj-14-10-2026/"
-      },
-      {
-        "label": "BLV ASHAHI",
-        "url": "https://socolive84.tv/truc-tiep/boca-juniors-vs-vasco-da-gama-saf-rj-14-10-2026/?blv=626841"
-      },
-      {
-        "label": "BLV A PÁO",
-        "url": "https://socolive84.tv/truc-tiep/boca-juniors-vs-vasco-da-gama-saf-rj-14-10-2026/?blv=235232"
-      },
-      {
-        "label": "BLV ALEX",
-        "url": "https://socolive84.tv/truc-tiep/boca-juniors-vs-vasco-da-gama-saf-rj-14-10-2026/?blv=532081"
-      },
-      {
-        "label": "BLV VOI",
-        "url": "https://socolive84.tv/truc-tiep/boca-juniors-vs-vasco-da-gama-saf-rj-14-10-2026/?blv=552716"
-      },
-      {
-        "label": "BLV ENZO",
-        "url": "https://socolive84.tv/truc-tiep/boca-juniors-vs-vasco-da-gama-saf-rj-14-10-2026/?blv=380460"
-      },
-      {
-        "label": "BLV CHAN ĐÊ",
-        "url": "https://socolive84.tv/truc-tiep/boca-juniors-vs-vasco-da-gama-saf-rj-14-10-2026/?blv=621887"
-      }
-    ],
-    "blv": "ASHAHI"
   },
   {
     "home": "fc livyi bereh",
@@ -2332,6 +711,1383 @@
       {
         "label": "Link 1",
         "url": "https://socolive-1.wiki/truc-tiep/real-valladolid-cf-vs-albacete-balompie-sad-12-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "Real Valladolid CF",
+    "away": "Albacete Balompié SAD",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-12T19:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "BLV THOMAS",
+        "url": "https://socolive-1.wiki/truc-tiep/real-valladolid-cf-vs-albacete-balompie-sad-12-10-2026/?blv=414317"
+      },
+      {
+        "label": "BLV TAP",
+        "url": "https://socolive-1.wiki/truc-tiep/real-valladolid-cf-vs-albacete-balompie-sad-12-10-2026/?blv=147801"
+      },
+      {
+        "label": "BLV RICKHANTER",
+        "url": "https://socolive-1.wiki/truc-tiep/real-valladolid-cf-vs-albacete-balompie-sad-12-10-2026/?blv=123226"
+      },
+      {
+        "label": "BLV Củ Cải",
+        "url": "https://socolive-1.wiki/truc-tiep/real-valladolid-cf-vs-albacete-balompie-sad-12-10-2026/?blv=360663"
+      },
+      {
+        "label": "BLV TẠ BIÊN GIỚI",
+        "url": "https://socolive-1.wiki/truc-tiep/real-valladolid-cf-vs-albacete-balompie-sad-12-10-2026/?blv=118206"
+      },
+      {
+        "label": "BLV LION",
+        "url": "https://socolive-1.wiki/truc-tiep/real-valladolid-cf-vs-albacete-balompie-sad-12-10-2026/?blv=603255"
+      }
+    ],
+    "blv": "THOMAS"
+  },
+  {
+    "home": "cagliari u20",
+    "away": "monza u20",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-12T20:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.wiki/truc-tiep/cagliari-u20-vs-monza-u20-12-10-2026/"
+      },
+      {
+        "label": "BLV CACAO",
+        "url": "https://socolive-1.wiki/truc-tiep/cagliari-u20-vs-monza-u20-12-10-2026/?blv=620661"
+      },
+      {
+        "label": "BLV MP3",
+        "url": "https://socolive-1.wiki/truc-tiep/cagliari-u20-vs-monza-u20-12-10-2026/?blv=621840"
+      },
+      {
+        "label": "BLV TRÀ ĐÁ",
+        "url": "https://socolive-1.wiki/truc-tiep/cagliari-u20-vs-monza-u20-12-10-2026/?blv=603914"
+      }
+    ],
+    "blv": "CACAO"
+  },
+  {
+    "home": "sassuolo u20",
+    "away": "albinoleffe u20",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-12T20:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.wiki/truc-tiep/sassuolo-u20-vs-albinoleffe-u20-12-10-2026"
+      },
+      {
+        "label": "BLV VIP",
+        "url": "https://socolive-1.wiki/truc-tiep/sassuolo-u20-vs-albinoleffe-u20-12-10-2026?blv=491873"
+      },
+      {
+        "label": "BLV BÉO",
+        "url": "https://socolive-1.wiki/truc-tiep/sassuolo-u20-vs-albinoleffe-u20-12-10-2026?blv=459401"
+      },
+      {
+        "label": "BLV KINH VÂN",
+        "url": "https://socolive-1.wiki/truc-tiep/sassuolo-u20-vs-albinoleffe-u20-12-10-2026?blv=623743"
+      }
+    ],
+    "blv": "VIP"
+  },
+  {
+    "home": "pakhtakor",
+    "away": "al qadsiah",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-12T20:45:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.wiki/truc-tiep/pakhtakor-vs-al-qadsiah-12-10-2026"
+      },
+      {
+        "label": "BLV CUỘI",
+        "url": "https://socolive-1.wiki/truc-tiep/pakhtakor-vs-al-qadsiah-12-10-2026?blv=256080"
+      },
+      {
+        "label": "BLV SAO LA",
+        "url": "https://socolive-1.wiki/truc-tiep/pakhtakor-vs-al-qadsiah-12-10-2026?blv=462413"
+      },
+      {
+        "label": "BLV ZIDANE",
+        "url": "https://socolive-1.wiki/truc-tiep/pakhtakor-vs-al-qadsiah-12-10-2026?blv=168740"
+      },
+      {
+        "label": "BLV A BỆU",
+        "url": "https://socolive-1.wiki/truc-tiep/pakhtakor-vs-al-qadsiah-12-10-2026?blv=484845"
+      },
+      {
+        "label": "BLV CURRY",
+        "url": "https://socolive-1.wiki/truc-tiep/pakhtakor-vs-al-qadsiah-12-10-2026?blv=622240"
+      },
+      {
+        "label": "BLV HEHE",
+        "url": "https://socolive-1.wiki/truc-tiep/pakhtakor-vs-al-qadsiah-12-10-2026?blv=622241"
+      }
+    ],
+    "blv": "CUỘI"
+  },
+  {
+    "home": "el mokawloon el arab",
+    "away": "zed fc",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-12T21:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.wiki/truc-tiep/el-mokawloon-el-arab-vs-zed-fc-12-10-2026"
+      },
+      {
+        "label": "BLV FIREMAN",
+        "url": "https://socolive-1.wiki/truc-tiep/el-mokawloon-el-arab-vs-zed-fc-12-10-2026?blv=250874"
+      },
+      {
+        "label": "BLV PEWPEW",
+        "url": "https://socolive-1.wiki/truc-tiep/el-mokawloon-el-arab-vs-zed-fc-12-10-2026?blv=109053"
+      },
+      {
+        "label": "BLV A PÁO",
+        "url": "https://socolive-1.wiki/truc-tiep/el-mokawloon-el-arab-vs-zed-fc-12-10-2026?blv=235232"
+      },
+      {
+        "label": "BLV ALEX",
+        "url": "https://socolive-1.wiki/truc-tiep/el-mokawloon-el-arab-vs-zed-fc-12-10-2026?blv=532081"
+      }
+    ],
+    "blv": "FIREMAN"
+  },
+  {
+    "home": "braga u23",
+    "away": "maritimo u23",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-12T21:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.wiki/truc-tiep/braga-u23-vs-maritimo-u23-12-10-2026"
+      },
+      {
+        "label": "BLV ANH TÀI",
+        "url": "https://socolive-1.wiki/truc-tiep/braga-u23-vs-maritimo-u23-12-10-2026?blv=406865"
+      },
+      {
+        "label": "BLV T REX",
+        "url": "https://socolive-1.wiki/truc-tiep/braga-u23-vs-maritimo-u23-12-10-2026?blv=619672"
+      }
+    ],
+    "blv": "ANH TÀI"
+  },
+  {
+    "home": "modern sport fc",
+    "away": "enppi",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-12T21:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.wiki/truc-tiep/modern-sport-fc-vs-enppi-12-10-2026"
+      },
+      {
+        "label": "BLV WUKONG",
+        "url": "https://socolive-1.wiki/truc-tiep/modern-sport-fc-vs-enppi-12-10-2026?blv=511367"
+      },
+      {
+        "label": "BLV PEANUT",
+        "url": "https://socolive-1.wiki/truc-tiep/modern-sport-fc-vs-enppi-12-10-2026?blv=620084"
+      },
+      {
+        "label": "BLV CÁO",
+        "url": "https://socolive-1.wiki/truc-tiep/modern-sport-fc-vs-enppi-12-10-2026?blv=597929"
+      },
+      {
+        "label": "BLV BÚN ĐẬU",
+        "url": "https://socolive-1.wiki/truc-tiep/modern-sport-fc-vs-enppi-12-10-2026?blv=619561"
+      }
+    ],
+    "blv": "WUKONG"
+  },
+  {
+    "home": "al wakrah sc",
+    "away": "al gharafa sc",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T00:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive75.tv/truc-tiep/al-wakrah-sc-vs-al-gharafa-sc-09-10-2026/"
+      },
+      {
+        "label": "BLV HEHE",
+        "url": "https://socolive75.tv/truc-tiep/al-wakrah-sc-vs-al-gharafa-sc-09-10-2026/?blv=622241"
+      },
+      {
+        "label": "BLV CACAO",
+        "url": "https://socolive75.tv/truc-tiep/al-wakrah-sc-vs-al-gharafa-sc-09-10-2026/?blv=620661"
+      },
+      {
+        "label": "BLV PEWPEW",
+        "url": "https://socolive75.tv/truc-tiep/al-wakrah-sc-vs-al-gharafa-sc-09-10-2026/?blv=109053"
+      },
+      {
+        "label": "BLV KENCHU",
+        "url": "https://socolive75.tv/truc-tiep/al-wakrah-sc-vs-al-gharafa-sc-09-10-2026/?blv=622602"
+      },
+      {
+        "label": "BLV QUỐC KHÁNH",
+        "url": "https://socolive75.tv/truc-tiep/al-wakrah-sc-vs-al-gharafa-sc-09-10-2026/?blv=602153"
+      }
+    ]
+  },
+  {
+    "home": "ghazl el mahallah",
+    "away": "abou qir fertilizers sc",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T00:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive75.tv/truc-tiep/ghazl-el-mahallah-vs-abou-qir-fertilizers-sc-09-10-2026/"
+      },
+      {
+        "label": "BLV XUÂN TÓC ĐỎ",
+        "url": "https://socolive75.tv/truc-tiep/ghazl-el-mahallah-vs-abou-qir-fertilizers-sc-09-10-2026/?blv=610518"
+      },
+      {
+        "label": "BLV SẾU ĐẦU ĐỎ",
+        "url": "https://socolive75.tv/truc-tiep/ghazl-el-mahallah-vs-abou-qir-fertilizers-sc-09-10-2026/?blv=627318"
+      }
+    ],
+    "blv": "XUÂN TÓC ĐỎ"
+  },
+  {
+    "home": "al okhdood",
+    "away": "al ula fc",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T00:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive75.tv/truc-tiep/al-okhdood-vs-al-ula-fc-09-10-2026/"
+      },
+      {
+        "label": "BLV CHIVAS",
+        "url": "https://socolive75.tv/truc-tiep/al-okhdood-vs-al-ula-fc-09-10-2026/?blv=485739"
+      },
+      {
+        "label": "BLV GIÓ",
+        "url": "https://socolive75.tv/truc-tiep/al-okhdood-vs-al-ula-fc-09-10-2026/?blv=321443"
+      }
+    ],
+    "blv": "CHIVAS"
+  },
+  {
+    "home": "modern sport fc",
+    "away": "bank el ahly",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T00:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive75.tv/truc-tiep/modern-sport-fc-vs-bank-el-ahly-09-10-2026/"
+      },
+      {
+        "label": "BLV TRÀ ĐÁ",
+        "url": "https://socolive75.tv/truc-tiep/modern-sport-fc-vs-bank-el-ahly-09-10-2026/?blv=603914"
+      }
+    ],
+    "blv": "TRÀ ĐÁ"
+  },
+  {
+    "home": "cfr cluj",
+    "away": "fc universitatea cluj",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T00:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive75.tv/truc-tiep/cfr-cluj-vs-fc-universitatea-cluj-09-10-2026"
+      },
+      {
+        "label": "BLV THẠCH TÚ",
+        "url": "https://socolive75.tv/truc-tiep/cfr-cluj-vs-fc-universitatea-cluj-09-10-2026?blv=344370"
+      },
+      {
+        "label": "BLV MP3",
+        "url": "https://socolive75.tv/truc-tiep/cfr-cluj-vs-fc-universitatea-cluj-09-10-2026?blv=621840"
+      },
+      {
+        "label": "BLV LÃO LÂM",
+        "url": "https://socolive75.tv/truc-tiep/cfr-cluj-vs-fc-universitatea-cluj-09-10-2026?blv=527384"
+      },
+      {
+        "label": "BLV A TÚ",
+        "url": "https://socolive75.tv/truc-tiep/cfr-cluj-vs-fc-universitatea-cluj-09-10-2026?blv=557845"
+      },
+      {
+        "label": "BLV BÉO",
+        "url": "https://socolive75.tv/truc-tiep/cfr-cluj-vs-fc-universitatea-cluj-09-10-2026?blv=459401"
+      },
+      {
+        "label": "BLV CÒ",
+        "url": "https://socolive75.tv/truc-tiep/cfr-cluj-vs-fc-universitatea-cluj-09-10-2026?blv=582342"
+      }
+    ]
+  },
+  {
+    "home": "independiente yumbo",
+    "away": "tigres zipaquira",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T03:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive75.tv/truc-tiep/independiente-yumbo-vs-tigres-zipaquira-09-10-2026"
+      },
+      {
+        "label": "BLV BOSS",
+        "url": "https://socolive75.tv/truc-tiep/independiente-yumbo-vs-tigres-zipaquira-09-10-2026?blv=620504"
+      },
+      {
+        "label": "BLV XUÂN SON",
+        "url": "https://socolive75.tv/truc-tiep/independiente-yumbo-vs-tigres-zipaquira-09-10-2026?blv=501412"
+      },
+      {
+        "label": "BLV TUẤN CÙI",
+        "url": "https://socolive75.tv/truc-tiep/independiente-yumbo-vs-tigres-zipaquira-09-10-2026?blv=400722"
+      }
+    ],
+    "blv": "BOSS"
+  },
+  {
+    "home": "atletico fc",
+    "away": "real cartagena",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T03:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive75.tv/truc-tiep/atletico-fc-vs-real-cartagena-09-10-2026"
+      },
+      {
+        "label": "BLV WUKONG",
+        "url": "https://socolive75.tv/truc-tiep/atletico-fc-vs-real-cartagena-09-10-2026?blv=511367"
+      },
+      {
+        "label": "BLV ĐỖ TÚ TÀI",
+        "url": "https://socolive75.tv/truc-tiep/atletico-fc-vs-real-cartagena-09-10-2026?blv=607552"
+      },
+      {
+        "label": "BLV ANH TÀI",
+        "url": "https://socolive75.tv/truc-tiep/atletico-fc-vs-real-cartagena-09-10-2026?blv=406865"
+      }
+    ],
+    "blv": "WUKONG"
+  },
+  {
+    "home": "ceara",
+    "away": "criciuma",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T05:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive75.tv/truc-tiep/ceara-vs-criciuma-09-10-2026"
+      },
+      {
+        "label": "BLV VOI",
+        "url": "https://socolive75.tv/truc-tiep/ceara-vs-criciuma-09-10-2026?blv=552716"
+      }
+    ],
+    "blv": "VOI"
+  },
+  {
+    "home": "nautico pe",
+    "away": "gremio novorizontino",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T00:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive75.tv/truc-tiep/nautico-pe-vs-gremio-novorizontino-09-10-2026"
+      }
+    ]
+  },
+  {
+    "home": "Nautico (PE)",
+    "away": "Gremio Novorizontino",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T05:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "BLV A TINH",
+        "url": "https://socolive75.tv/truc-tiep/nautico-pe-vs-gremio-novorizontino-09-10-2026?blv=598119"
+      }
+    ],
+    "blv": "A TINH"
+  },
+  {
+    "home": "santos fc sp",
+    "away": "flamengo rj",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T05:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive75.tv/truc-tiep/santos-fc-sp-vs-flamengo-rj-09-10-2026"
+      },
+      {
+        "label": "BLV YONE",
+        "url": "https://socolive75.tv/truc-tiep/santos-fc-sp-vs-flamengo-rj-09-10-2026?blv=372746"
+      },
+      {
+        "label": "BLV VIP",
+        "url": "https://socolive75.tv/truc-tiep/santos-fc-sp-vs-flamengo-rj-09-10-2026?blv=491873"
+      },
+      {
+        "label": "BLV CHAN ĐÊ",
+        "url": "https://socolive75.tv/truc-tiep/santos-fc-sp-vs-flamengo-rj-09-10-2026?blv=621887"
+      },
+      {
+        "label": "BLV ASHAHI",
+        "url": "https://socolive75.tv/truc-tiep/santos-fc-sp-vs-flamengo-rj-09-10-2026?blv=626841"
+      }
+    ],
+    "blv": "YONE"
+  },
+  {
+    "home": "athletico paranaense pr",
+    "away": "atletico mineiro mg",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T00:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive75.tv/truc-tiep/athletico-paranaense-pr-vs-atletico-mineiro-mg-09-10-2026"
+      }
+    ]
+  },
+  {
+    "home": "Athletico Paranaense – PR",
+    "away": "Atlético Mineiro – MG",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T06:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "BLV LOKA",
+        "url": "https://socolive75.tv/truc-tiep/athletico-paranaense-pr-vs-atletico-mineiro-mg-09-10-2026?blv=589848"
+      },
+      {
+        "label": "BLV COCA",
+        "url": "https://socolive75.tv/truc-tiep/athletico-paranaense-pr-vs-atletico-mineiro-mg-09-10-2026?blv=327159"
+      },
+      {
+        "label": "BLV HẢI THANH",
+        "url": "https://socolive75.tv/truc-tiep/athletico-paranaense-pr-vs-atletico-mineiro-mg-09-10-2026?blv=599634"
+      },
+      {
+        "label": "BLV THOMAS",
+        "url": "https://socolive75.tv/truc-tiep/athletico-paranaense-pr-vs-atletico-mineiro-mg-09-10-2026?blv=414317"
+      }
+    ],
+    "blv": "LOKA"
+  },
+  {
+    "home": "atletico nacional medellin",
+    "away": "deportes tolima",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-09T06:05:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive75.tv/truc-tiep/atletico-nacional-medellin-vs-deportes-tolima-09-10-2026"
+      },
+      {
+        "label": "BLV A WIN",
+        "url": "https://socolive75.tv/truc-tiep/atletico-nacional-medellin-vs-deportes-tolima-09-10-2026?blv=536185"
+      },
+      {
+        "label": "BLV T REX",
+        "url": "https://socolive75.tv/truc-tiep/atletico-nacional-medellin-vs-deportes-tolima-09-10-2026?blv=619672"
+      }
+    ],
+    "blv": "A WIN"
+  },
+  {
+    "home": "dep independiente medellin",
+    "away": "independiente santa fe",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-06T07:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/dep-independiente-medellin-vs-independiente-santa-fe-06-10-2026/"
+      },
+      {
+        "label": "BLV CACAO",
+        "url": "https://socolive-1.live/truc-tiep/dep-independiente-medellin-vs-independiente-santa-fe-06-10-2026/?blv=620661"
+      },
+      {
+        "label": "BLV LOGAN",
+        "url": "https://socolive-1.live/truc-tiep/dep-independiente-medellin-vs-independiente-santa-fe-06-10-2026/?blv=552832"
+      },
+      {
+        "label": "BLV YONE",
+        "url": "https://socolive-1.live/truc-tiep/dep-independiente-medellin-vs-independiente-santa-fe-06-10-2026/?blv=372746"
+      },
+      {
+        "label": "BLV RICKHANTER",
+        "url": "https://socolive-1.live/truc-tiep/dep-independiente-medellin-vs-independiente-santa-fe-06-10-2026/?blv=123226"
+      }
+    ],
+    "blv": "CACAO"
+  },
+  {
+    "home": "grenada",
+    "away": "bonaire",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-06T07:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/grenada-vs-bonaire-06-10-2026/"
+      },
+      {
+        "label": "BLV CHAN ĐÊ",
+        "url": "https://socolive-1.live/truc-tiep/grenada-vs-bonaire-06-10-2026/?blv=621887"
+      },
+      {
+        "label": "BLV ASHAHI",
+        "url": "https://socolive-1.live/truc-tiep/grenada-vs-bonaire-06-10-2026/?blv=626841"
+      }
+    ],
+    "blv": "CHAN ĐÊ"
+  },
+  {
+    "home": "guatemala",
+    "away": "suriname",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-06T07:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/guatemala-vs-suriname-06-10-2026/"
+      },
+      {
+        "label": "BLV MESSI",
+        "url": "https://socolive-1.live/truc-tiep/guatemala-vs-suriname-06-10-2026/?blv=494201"
+      },
+      {
+        "label": "BLV VIP",
+        "url": "https://socolive-1.live/truc-tiep/guatemala-vs-suriname-06-10-2026/?blv=491873"
+      },
+      {
+        "label": "BLV TOMIA",
+        "url": "https://socolive-1.live/truc-tiep/guatemala-vs-suriname-06-10-2026/?blv=187579"
+      },
+      {
+        "label": "BLV A TINH",
+        "url": "https://socolive-1.live/truc-tiep/guatemala-vs-suriname-06-10-2026/?blv=598119"
+      }
+    ],
+    "blv": "MESSI"
+  },
+  {
+    "home": "bermuda",
+    "away": "barbados",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-06T07:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/bermuda-vs-barbados-06-10-2026/"
+      },
+      {
+        "label": "BLV CHIVAS",
+        "url": "https://socolive-1.live/truc-tiep/bermuda-vs-barbados-06-10-2026/?blv=485739"
+      },
+      {
+        "label": "BLV CÒ",
+        "url": "https://socolive-1.live/truc-tiep/bermuda-vs-barbados-06-10-2026/?blv=582342"
+      }
+    ],
+    "blv": "CHIVAS"
+  },
+  {
+    "home": "ca banfield",
+    "away": "ca rosario central",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-06T07:15:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/ca-banfield-vs-ca-rosario-central-06-10-2026/"
+      },
+      {
+        "label": "BLV CR Bưởi",
+        "url": "https://socolive-1.live/truc-tiep/ca-banfield-vs-ca-rosario-central-06-10-2026/?blv=387694"
+      },
+      {
+        "label": "Link 2",
+        "url": "https://socolive-1.live/truc-tiep/ca-banfield-vs-ca-rosario-central-06-10-2026/?blv=291277"
+      },
+      {
+        "label": "BLV ĐỐM",
+        "url": "https://socolive-1.live/truc-tiep/ca-banfield-vs-ca-rosario-central-06-10-2026/?blv=434982"
+      },
+      {
+        "label": "BLV COCA",
+        "url": "https://socolive-1.live/truc-tiep/ca-banfield-vs-ca-rosario-central-06-10-2026/?blv=327159"
+      },
+      {
+        "label": "BLV ENZO",
+        "url": "https://socolive-1.live/truc-tiep/ca-banfield-vs-ca-rosario-central-06-10-2026/?blv=380460"
+      },
+      {
+        "label": "BLV CUỘI",
+        "url": "https://socolive-1.live/truc-tiep/ca-banfield-vs-ca-rosario-central-06-10-2026/?blv=256080"
+      }
+    ],
+    "blv": "CR Bưởi"
+  },
+  {
+    "home": "honduras",
+    "away": "jamaica",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-06T09:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/honduras-vs-jamaica-06-10-2026/"
+      },
+      {
+        "label": "BLV PIRLO",
+        "url": "https://socolive-1.live/truc-tiep/honduras-vs-jamaica-06-10-2026/?blv=351530"
+      },
+      {
+        "label": "BLV RICKHANTER",
+        "url": "https://socolive-1.live/truc-tiep/honduras-vs-jamaica-06-10-2026/?blv=123226"
+      },
+      {
+        "label": "BLV Củ Cải",
+        "url": "https://socolive-1.live/truc-tiep/honduras-vs-jamaica-06-10-2026/?blv=360663"
+      },
+      {
+        "label": "BLV TẠ BIÊN GIỚI",
+        "url": "https://socolive-1.live/truc-tiep/honduras-vs-jamaica-06-10-2026/?blv=118206"
+      },
+      {
+        "label": "BLV THOMAS",
+        "url": "https://socolive-1.live/truc-tiep/honduras-vs-jamaica-06-10-2026/?blv=414317"
+      },
+      {
+        "label": "BLV TAP",
+        "url": "https://socolive-1.live/truc-tiep/honduras-vs-jamaica-06-10-2026/?blv=147801"
+      }
+    ],
+    "blv": "PIRLO"
+  },
+  {
+    "home": "changchun xidu",
+    "away": "guangzhou dandelion alpha",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-06T14:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/changchun-xidu-vs-guangzhou-dandelion-alpha-06-10-2026/"
+      },
+      {
+        "label": "BLV CACAO",
+        "url": "https://socolive-1.live/truc-tiep/changchun-xidu-vs-guangzhou-dandelion-alpha-06-10-2026/?blv=620661"
+      },
+      {
+        "label": "BLV TAP",
+        "url": "https://socolive-1.live/truc-tiep/changchun-xidu-vs-guangzhou-dandelion-alpha-06-10-2026/?blv=147801"
+      },
+      {
+        "label": "BLV TOMIA",
+        "url": "https://socolive-1.live/truc-tiep/changchun-xidu-vs-guangzhou-dandelion-alpha-06-10-2026/?blv=187579"
+      },
+      {
+        "label": "BLV TẠ BIÊN GIỚI",
+        "url": "https://socolive-1.live/truc-tiep/changchun-xidu-vs-guangzhou-dandelion-alpha-06-10-2026/?blv=118206"
+      }
+    ],
+    "blv": "CACAO"
+  },
+  {
+    "home": "shanghai second",
+    "away": "wenzhou professional",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-06T14:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/shanghai-second-vs-wenzhou-professional-06-10-2026/"
+      },
+      {
+        "label": "BLV LÃO LÂM",
+        "url": "https://socolive-1.live/truc-tiep/shanghai-second-vs-wenzhou-professional-06-10-2026/?blv=527384"
+      },
+      {
+        "label": "BLV ALEX",
+        "url": "https://socolive-1.live/truc-tiep/shanghai-second-vs-wenzhou-professional-06-10-2026/?blv=532081"
+      }
+    ],
+    "blv": "LÃO LÂM"
+  },
+  {
+    "home": "beijing it",
+    "away": "chengdu rongcheng b",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-06T14:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/beijing-it-vs-chengdu-rongcheng-b-06-10-2026/"
+      },
+      {
+        "label": "BLV BOSS",
+        "url": "https://socolive-1.live/truc-tiep/beijing-it-vs-chengdu-rongcheng-b-06-10-2026/?blv=620504"
+      },
+      {
+        "label": "BLV CÁO",
+        "url": "https://socolive-1.live/truc-tiep/beijing-it-vs-chengdu-rongcheng-b-06-10-2026/?blv=597929"
+      },
+      {
+        "label": "BLV KINH VÂN",
+        "url": "https://socolive-1.live/truc-tiep/beijing-it-vs-chengdu-rongcheng-b-06-10-2026/?blv=623743"
+      }
+    ],
+    "blv": "BOSS"
+  },
+  {
+    "home": "qingdao red lions",
+    "away": "wuhan three towns b",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-06T14:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/qingdao-red-lions-vs-wuhan-three-towns-b-06-10-2026/"
+      },
+      {
+        "label": "BLV KAN",
+        "url": "https://socolive-1.live/truc-tiep/qingdao-red-lions-vs-wuhan-three-towns-b-06-10-2026/?blv=283501"
+      },
+      {
+        "label": "BLV RÔSI",
+        "url": "https://socolive-1.live/truc-tiep/qingdao-red-lions-vs-wuhan-three-towns-b-06-10-2026/?blv=139384"
+      },
+      {
+        "label": "BLV ZIDANE",
+        "url": "https://socolive-1.live/truc-tiep/qingdao-red-lions-vs-wuhan-three-towns-b-06-10-2026/?blv=168740"
+      }
+    ],
+    "blv": "KAN"
+  },
+  {
+    "home": "lam dong",
+    "away": "song lam nghe an",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-06T15:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/lam-dong-vs-song-lam-nghe-an-06-10-2026/"
+      },
+      {
+        "label": "BLV A BỆU",
+        "url": "https://socolive-1.live/truc-tiep/lam-dong-vs-song-lam-nghe-an-06-10-2026/?blv=484845"
+      },
+      {
+        "label": "BLV QUỐC KHÁNH",
+        "url": "https://socolive-1.live/truc-tiep/lam-dong-vs-song-lam-nghe-an-06-10-2026/?blv=602153"
+      },
+      {
+        "label": "BLV HẢI THANH",
+        "url": "https://socolive-1.live/truc-tiep/lam-dong-vs-song-lam-nghe-an-06-10-2026/?blv=599634"
+      },
+      {
+        "label": "BLV THOMAS",
+        "url": "https://socolive-1.live/truc-tiep/lam-dong-vs-song-lam-nghe-an-06-10-2026/?blv=414317"
+      },
+      {
+        "label": "BLV LOGAN",
+        "url": "https://socolive-1.live/truc-tiep/lam-dong-vs-song-lam-nghe-an-06-10-2026/?blv=552832"
+      },
+      {
+        "label": "BLV LION",
+        "url": "https://socolive-1.live/truc-tiep/lam-dong-vs-song-lam-nghe-an-06-10-2026/?blv=603255"
+      }
+    ],
+    "blv": "A BỆU"
+  },
+  {
+    "home": "hubei istar",
+    "away": "lanzhou longyuan athletic",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-06T16:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/hubei-istar-vs-lanzhou-longyuan-athletic-06-10-2026/"
+      },
+      {
+        "label": "BLV VOI",
+        "url": "https://socolive-1.live/truc-tiep/hubei-istar-vs-lanzhou-longyuan-athletic-06-10-2026/?blv=552716"
+      },
+      {
+        "label": "BLV TẠ BIÊN GIỚI",
+        "url": "https://socolive-1.live/truc-tiep/hubei-istar-vs-lanzhou-longyuan-athletic-06-10-2026/?blv=118206"
+      }
+    ],
+    "blv": "VOI"
+  },
+  {
+    "home": "real sociedad b",
+    "away": "granada cf",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-04T19:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/real-sociedad-b-vs-granada-cf-04-10-2026/"
+      },
+      {
+        "label": "BLV ALEX",
+        "url": "https://socolive-1.live/truc-tiep/real-sociedad-b-vs-granada-cf-04-10-2026/?blv=532081"
+      },
+      {
+        "label": "BLV TOMIA",
+        "url": "https://socolive-1.live/truc-tiep/real-sociedad-b-vs-granada-cf-04-10-2026/?blv=187579"
+      },
+      {
+        "label": "BLV HẢI THANH",
+        "url": "https://socolive-1.live/truc-tiep/real-sociedad-b-vs-granada-cf-04-10-2026/?blv=599634"
+      },
+      {
+        "label": "BLV THẠCH TÚ",
+        "url": "https://socolive-1.live/truc-tiep/real-sociedad-b-vs-granada-cf-04-10-2026/?blv=344370"
+      },
+      {
+        "label": "BLV CR Bưởi",
+        "url": "https://socolive-1.live/truc-tiep/real-sociedad-b-vs-granada-cf-04-10-2026/?blv=387694"
+      },
+      {
+        "label": "BLV LÃO LÂM",
+        "url": "https://socolive-1.live/truc-tiep/real-sociedad-b-vs-granada-cf-04-10-2026/?blv=527384"
+      }
+    ],
+    "blv": "ALEX"
+  },
+  {
+    "home": "azerbaijan",
+    "away": "lithuania",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-04T20:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/azerbaijan-vs-lithuania-04-10-2026"
+      },
+      {
+        "label": "BLV CURRY",
+        "url": "https://socolive-1.live/truc-tiep/azerbaijan-vs-lithuania-04-10-2026?blv=622240"
+      },
+      {
+        "label": "BLV HEHE",
+        "url": "https://socolive-1.live/truc-tiep/azerbaijan-vs-lithuania-04-10-2026?blv=622241"
+      },
+      {
+        "label": "BLV THOMAS",
+        "url": "https://socolive-1.live/truc-tiep/azerbaijan-vs-lithuania-04-10-2026?blv=414317"
+      },
+      {
+        "label": "BLV SAO LA",
+        "url": "https://socolive-1.live/truc-tiep/azerbaijan-vs-lithuania-04-10-2026?blv=462413"
+      },
+      {
+        "label": "BLV PIRLO",
+        "url": "https://socolive-1.live/truc-tiep/azerbaijan-vs-lithuania-04-10-2026?blv=351530"
+      },
+      {
+        "label": "BLV ĐỐM",
+        "url": "https://socolive-1.live/truc-tiep/azerbaijan-vs-lithuania-04-10-2026?blv=434982"
+      }
+    ],
+    "blv": "CURRY"
+  },
+  {
+    "home": "veles moscow",
+    "away": "ulyanovsk",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-04T18:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/veles-moscow-vs-ulyanovsk-04-10-2026/"
+      },
+      {
+        "label": "BLV XUÂN TÓC ĐỎ",
+        "url": "https://socolive-1.live/truc-tiep/veles-moscow-vs-ulyanovsk-04-10-2026/?blv=610518"
+      },
+      {
+        "label": "BLV LOGAN",
+        "url": "https://socolive-1.live/truc-tiep/veles-moscow-vs-ulyanovsk-04-10-2026/?blv=552832"
+      },
+      {
+        "label": "BLV A PÁO",
+        "url": "https://socolive-1.live/truc-tiep/veles-moscow-vs-ulyanovsk-04-10-2026/?blv=235232"
+      },
+      {
+        "label": "BLV LUCAS",
+        "url": "https://socolive-1.live/truc-tiep/veles-moscow-vs-ulyanovsk-04-10-2026/?blv=304148"
+      }
+    ],
+    "blv": "XUÂN TÓC ĐỎ"
+  },
+  {
+    "home": "fk vrsac",
+    "away": "metalac gornji milanovac",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-04T19:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/fk-vrsac-vs-metalac-gornji-milanovac-04-10-2026/"
+      },
+      {
+        "label": "BLV ANH TÀI",
+        "url": "https://socolive-1.live/truc-tiep/fk-vrsac-vs-metalac-gornji-milanovac-04-10-2026/?blv=406865"
+      },
+      {
+        "label": "BLV VINFAST",
+        "url": "https://socolive-1.live/truc-tiep/fk-vrsac-vs-metalac-gornji-milanovac-04-10-2026/?blv=617313"
+      }
+    ],
+    "blv": "ANH TÀI"
+  },
+  {
+    "home": "maharlika",
+    "away": "philippine army fc",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-04T19:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/maharlika-vs-philippine-army-fc-04-10-2026"
+      },
+      {
+        "label": "BLV VOI",
+        "url": "https://socolive-1.live/truc-tiep/maharlika-vs-philippine-army-fc-04-10-2026?blv=552716"
+      },
+      {
+        "label": "BLV BÚN ĐẬU",
+        "url": "https://socolive-1.live/truc-tiep/maharlika-vs-philippine-army-fc-04-10-2026?blv=619561"
+      }
+    ],
+    "blv": "VOI"
+  },
+  {
+    "home": "vvv venlo",
+    "away": "roda jc",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-04T19:30:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/vvv-venlo-vs-roda-jc-04-10-2026"
+      },
+      {
+        "label": "BLV NGƯỜI CÁ",
+        "url": "https://socolive-1.live/truc-tiep/vvv-venlo-vs-roda-jc-04-10-2026?blv=595335"
+      },
+      {
+        "label": "BLV BẢY",
+        "url": "https://socolive-1.live/truc-tiep/vvv-venlo-vs-roda-jc-04-10-2026?blv=621843"
+      },
+      {
+        "label": "BLV TUẤN CÙI",
+        "url": "https://socolive-1.live/truc-tiep/vvv-venlo-vs-roda-jc-04-10-2026?blv=400722"
+      },
+      {
+        "label": "BLV BÉO",
+        "url": "https://socolive-1.live/truc-tiep/vvv-venlo-vs-roda-jc-04-10-2026?blv=459401"
+      }
+    ],
+    "blv": "NGƯỜI CÁ"
+  },
+  {
+    "home": "west ham united women",
+    "away": "chelsea fc women",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-04T20:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/west-ham-united-women-vs-chelsea-fc-women-04-10-2026"
+      },
+      {
+        "label": "BLV YONE",
+        "url": "https://socolive-1.live/truc-tiep/west-ham-united-women-vs-chelsea-fc-women-04-10-2026?blv=372746"
+      },
+      {
+        "label": "BLV A TÚ",
+        "url": "https://socolive-1.live/truc-tiep/west-ham-united-women-vs-chelsea-fc-women-04-10-2026?blv=557845"
+      },
+      {
+        "label": "BLV XUÂN SON",
+        "url": "https://socolive-1.live/truc-tiep/west-ham-united-women-vs-chelsea-fc-women-04-10-2026?blv=501412"
+      },
+      {
+        "label": "BLV GIÓ",
+        "url": "https://socolive-1.live/truc-tiep/west-ham-united-women-vs-chelsea-fc-women-04-10-2026?blv=321443"
+      }
+    ],
+    "blv": "YONE"
+  },
+  {
+    "home": "aston villa women",
+    "away": "crystal palace women",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-04T20:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/aston-villa-women-vs-crystal-palace-women-04-10-2026"
+      },
+      {
+        "label": "BLV CHIVAS",
+        "url": "https://socolive-1.live/truc-tiep/aston-villa-women-vs-crystal-palace-women-04-10-2026?blv=485739"
+      },
+      {
+        "label": "BLV LONG",
+        "url": "https://socolive-1.live/truc-tiep/aston-villa-women-vs-crystal-palace-women-04-10-2026?blv=132343"
+      }
+    ],
+    "blv": "CHIVAS"
+  },
+  {
+    "home": "tottenham hotspur women",
+    "away": "london city lionesses women",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-04T20:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/tottenham-hotspur-women-vs-london-city-lionesses-women-04-10-2026"
+      },
+      {
+        "label": "BLV RYO",
+        "url": "https://socolive-1.live/truc-tiep/tottenham-hotspur-women-vs-london-city-lionesses-women-04-10-2026?blv=602019"
+      },
+      {
+        "label": "BLV T REX",
+        "url": "https://socolive-1.live/truc-tiep/tottenham-hotspur-women-vs-london-city-lionesses-women-04-10-2026?blv=619672"
+      }
+    ],
+    "blv": "RYO"
+  },
+  {
+    "home": "everton fc women",
+    "away": "birmingham women",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-04T20:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/everton-fc-women-vs-birmingham-women-04-10-2026"
+      },
+      {
+        "label": "BLV RÔSI",
+        "url": "https://socolive-1.live/truc-tiep/everton-fc-women-vs-birmingham-women-04-10-2026?blv=139384"
+      },
+      {
+        "label": "BLV MP3",
+        "url": "https://socolive-1.live/truc-tiep/everton-fc-women-vs-birmingham-women-04-10-2026?blv=621840"
+      }
+    ],
+    "blv": "RÔSI"
+  },
+  {
+    "home": "vfb stuttgart women",
+    "away": "union berlin women",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-04T21:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/vfb-stuttgart-women-vs-union-berlin-women-04-10-2026"
+      },
+      {
+        "label": "BLV RAMBO",
+        "url": "https://socolive-1.live/truc-tiep/vfb-stuttgart-women-vs-union-berlin-women-04-10-2026?blv=534055"
+      },
+      {
+        "label": "BLV ĐỖ TÚ TÀI",
+        "url": "https://socolive-1.live/truc-tiep/vfb-stuttgart-women-vs-union-berlin-women-04-10-2026?blv=607552"
+      }
+    ],
+    "blv": "RAMBO"
+  },
+  {
+    "home": "sporting gijon",
+    "away": "celta vigo b",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-04T21:15:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolive-1.live/truc-tiep/sporting-gijon-vs-celta-vigo-b-04-10-2026"
+      },
+      {
+        "label": "BLV CÒ",
+        "url": "https://socolive-1.live/truc-tiep/sporting-gijon-vs-celta-vigo-b-04-10-2026?blv=582342"
+      },
+      {
+        "label": "BLV A MÂN",
+        "url": "https://socolive-1.live/truc-tiep/sporting-gijon-vs-celta-vigo-b-04-10-2026?blv=627718"
+      },
+      {
+        "label": "BLV TAP",
+        "url": "https://socolive-1.live/truc-tiep/sporting-gijon-vs-celta-vigo-b-04-10-2026?blv=147801"
+      },
+      {
+        "label": "Link 4",
+        "url": "https://socolive-1.live/truc-tiep/sporting-gijon-vs-celta-vigo-b-04-10-2026?blv=291277"
+      },
+      {
+        "label": "BLV A BỆU",
+        "url": "https://socolive-1.live/truc-tiep/sporting-gijon-vs-celta-vigo-b-04-10-2026?blv=484845"
+      },
+      {
+        "label": "BLV QUỐC KHÁNH",
+        "url": "https://socolive-1.live/truc-tiep/sporting-gijon-vs-celta-vigo-b-04-10-2026?blv=602153"
+      }
+    ],
+    "blv": "CÒ"
+  },
+  {
+    "home": "yokogawa musa",
+    "away": "azul claro numazu",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-03T11:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezzff.cc/truc-tiep/yokogawa-musa-vs-azul-claro-numazu-luc-1100-ngay-03-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "vonds ichihara",
+    "away": "grulla morioka",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-03T11:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezzff.cc/truc-tiep/vonds-ichihara-vs-grulla-morioka-luc-1100-ngay-03-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "nu ngu nagoya",
+    "away": "nu nittaidai smg",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-03T11:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezzff.cc/truc-tiep/nu-ngu-nagoya-vs-nu-nittaidai-smg-luc-1100-ngay-03-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "nu diosa izumo",
+    "away": "nu renofa yamaguchi",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-03T11:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezzff.cc/truc-tiep/nu-diosa-izumo-vs-nu-renofa-yamaguchi-luc-1100-ngay-03-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "nu speranza osaka",
+    "away": "nu diavorosso hiroshima",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-03T11:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezzff.cc/truc-tiep/nu-speranza-osaka-vs-nu-diavorosso-hiroshima-luc-1100-ngay-03-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "nu osa rheia",
+    "away": "nu nankatsu",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-03T11:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezzff.cc/truc-tiep/nu-osa-rheia-vs-nu-nankatsu-luc-1100-ngay-03-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "fiji",
+    "away": "vanuatu",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-03T11:00:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezzff.cc/truc-tiep/fiji-vs-vanuatu-luc-1100-ngay-03-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "nu gyeongju",
+    "away": "nu boeun sangmu",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-03T11:55:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezzff.cc/truc-tiep/nu-gyeongju-vs-nu-boeun-sangmu-luc-1155-ngay-03-10-2026/"
+      }
+    ]
+  },
+  {
+    "home": "nu changnyeong",
+    "away": "nu seoul amazones",
+    "league": "Tong hop",
+    "kickoffISO": "2026-10-03T11:55:00+07:00",
+    "isLive": false,
+    "source": "socolive",
+    "links": [
+      {
+        "label": "Link 1",
+        "url": "https://socolivezzff.cc/truc-tiep/nu-changnyeong-vs-nu-seoul-amazones-luc-1155-ngay-03-10-2026/"
       }
     ]
   }

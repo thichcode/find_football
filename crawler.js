@@ -47,8 +47,12 @@ export async function fastResolveStream(pageUrl) {
     if (blvId) {
       try {
         const res = await fetch('https://biz.vnres.co/api/live/livingRoom', {
-          headers: { 'Accept': 'application/json' },
-          signal: AbortSignal.timeout(5000),
+          headers: {
+            'Accept': 'application/json',
+            'User-Agent': IOS_USER_AGENT,
+            'Referer': pageUrl,
+          },
+          signal: AbortSignal.timeout(6000),
         });
         if (res.ok) {
           const data = await res.json();

@@ -87,6 +87,41 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Chẩn đoán nhanh stream resolver
+  if (req.method === 'GET' && url.pathname === '/api/debug-sniff') {
+    const targetUrl = url.searchParams.get('url') || 'https://socolivenp.top/truc-tiep/chelsea-vs-manchester-united-31-10-2026/?blv=118206';
+    const diag = { targetUrl };
+    try {
+      const u = new URL(targetUrl);
+      const blvId = u.searchParams.get('blv') || u.searchParams.get('houseId');
+      diag.blvId = blvId;
+      const t0 = Date.now();
+      const res = await fetch('https://biz.vnres.co/api/live/livingRoom', {
+        headers: { 'Accept': 'application/json', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' },
+        signal: AbortSignal.timeout(5000),
+      });
+      diag.bizTimeMs = Date.now() - t0;
+      diag.bizStatus = res.status;
+      const text = await res.text();
+      diag.bizTextLength = text.length;
+      try {
+        const data = JSON.parse(text);
+        const rows = Array.isArray(data) ? data : (data && Array.isArray(data.data) ? data.data : []);
+        diag.rowCount = rows.length;
+        const found = rows.find((r) => String(r.id) === String(blvId));
+        diag.found = found;
+      } catch (e) {
+        diag.jsonError = e.message;
+        diag.bizSample = text.slice(0, 300);
+      }
+    } catch (e) {
+      diag.error = e.message;
+    }
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(diag, null, 2));
+    return;
+  }
+
   // Sniff stream 1 link trận theo yêu cầu: {url} -> {ok, streamUrl}.
   if (req.method === 'POST' && url.pathname === '/api/sniff') {
     try {

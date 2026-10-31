@@ -80,7 +80,7 @@ export async function sniffStreamUrl(pageUrl, timeoutMs = 25000) {
     let found = null;
     const grab = (u) => { if (!found && isStreamUrl(u)) found = u; };
     page.on('request', (req) => grab(req.url()));
-    page.on('response', (res) => grab(req.url()));
+    page.on('response', (res) => grab(res.url()));
     await page.goto(pageUrl, { waitUntil: 'domcontentloaded', timeout: 20000 }).catch(() => {});
     const t0 = Date.now();
     while (!found && Date.now() - t0 < timeoutMs) {

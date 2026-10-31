@@ -13,44 +13,93 @@ export function isStreamUrl(u) {
 
 export const IOS_USER_AGENT = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1';
 
-// Lấy nhanh stream URL trực tiếp qua HTML/ajax mà không cần khởi động Puppeteer
+// Lấy nhanh stream URL trực tiếp qua API livingRoom / HTML streamData / template cũ
 export async function fastResolveStream(pageUrl) {
   if (!/^https?:/i.test(String(pageUrl || ''))) return null;
   try {
-    const res = await fetch(pageUrl, {
-      headers: {
-        'User-Agent': IOS_USER_AGENT,
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      },
-      signal: AbortSignal.timeout(6000),
-    });
-    if (!res.ok) return null;
-    const html = await res.text();
-    const match = html.match(/var\s+list_stream\s*=\s*(\[[\s\S]*?\]);/);
-    if (match) {
-      let listStream;
+    const u = new URL(pageUrl);
+    let blvId = u.searchParams.get('blv') || u.searchParams.get('houseId');
+    let html = '';
+
+    // 1. Thử giải mã qua API livingRoom (socolive template mới 2026)
+    if (!blvId) {
       try {
-        listStream = JSON.parse(match[1]);
-      } catch {
-        listStream = JSON.parse(match[1].replace(/\\/g, ''));
-      }
-      const channels = (Array.isArray(listStream) ? listStream.flat() : []).filter(Boolean);
-      for (const ch of channels) {
-        const chUrl = ch.replace(/\\\//g, '/');
-        try {
-          const chRes = await fetch(chUrl, {
-            headers: {
-              'User-Agent': IOS_USER_AGENT,
-              'Referer': pageUrl,
-            },
-            signal: AbortSignal.timeout(4000),
-          });
-          const chHtml = await chRes.text();
-          const m = chHtml.match(/var\s+urlStream\s*=\s*"([^"]+)"/);
-          if (m && m[1] && isStreamUrl(m[1])) {
-            return m[1];
+        const res = await fetch(pageUrl, {
+          headers: { 'User-Agent': IOS_USER_AGENT },
+          signal: AbortSignal.timeout(5000),
+        });
+        if (res.ok) {
+          html = await res.text();
+          const idx = html.indexOf('streamData = ');
+          if (idx !== -1) {
+            const end = html.indexOf('};', idx);
+            if (end !== -1) {
+              const data = JSON.parse(html.slice(idx + 'streamData = '.length, end + 1));
+              if (data.anchors && data.anchors[0] && data.anchors[0].uid) {
+                blvId = data.anchors[0].uid;
+              }
+            }
           }
-        } catch {}
+        }
+      } catch {}
+    }
+
+    if (blvId) {
+      try {
+        const res = await fetch('https://biz.vnres.co/api/live/livingRoom', {
+          headers: { 'Accept': 'application/json' },
+          signal: AbortSignal.timeout(5000),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          const rows = Array.isArray(data) ? data : (data && Array.isArray(data.data) ? data.data : []);
+          const found = rows.find((r) => String(r.id) === String(blvId));
+          if (found && found.stream) {
+            const directStream = String(found.stream)
+              .replace(/^https:\/\/pull[0-9]+\.scstream\.net\//i, 'https://pull.niues.live/')
+              .replace(/\.flv(?=([?#]|$))/i, '.m3u8');
+            if (isStreamUrl(directStream)) return directStream;
+          }
+        }
+      } catch {}
+    }
+
+    // 2. Dự phòng: template cũ (list_stream)
+    if (!html) {
+      const res = await fetch(pageUrl, {
+        headers: {
+          'User-Agent': IOS_USER_AGENT,
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        },
+        signal: AbortSignal.timeout(5000),
+      }).catch(() => null);
+      if (res && res.ok) html = await res.text().catch(() => '');
+    }
+
+    if (html) {
+      const match = html.match(/var\s+list_stream\s*=\s*(\[[\s\S]*?\]);/);
+      if (match) {
+        let listStream;
+        try {
+          listStream = JSON.parse(match[1]);
+        } catch {
+          listStream = JSON.parse(match[1].replace(/\\/g, ''));
+        }
+        const channels = (Array.isArray(listStream) ? listStream.flat() : []).filter(Boolean);
+        for (const ch of channels) {
+          const chUrl = ch.replace(/\\\//g, '/');
+          try {
+            const chRes = await fetch(chUrl, {
+              headers: { 'User-Agent': IOS_USER_AGENT, 'Referer': pageUrl },
+              signal: AbortSignal.timeout(4000),
+            });
+            const chHtml = await chRes.text();
+            const m = chHtml.match(/var\s+urlStream\s*=\s*"([^"]+)"/);
+            if (m && m[1] && isStreamUrl(m[1])) {
+              return m[1];
+            }
+          } catch {}
+        }
       }
     }
   } catch {}

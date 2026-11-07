@@ -496,6 +496,59 @@ async function crawlSource(browser, src, discovered) {
   return [];
 }
 
+// Thay thế origin của các link Socolive bằng domain mới nhất
+export function replaceMatchDomains(matches, newDomain) {
+  if (!newDomain || !Array.isArray(matches)) return matches;
+  let targetOrigin = '';
+  try {
+    targetOrigin = new URL(newDomain).origin;
+  } catch {
+    return matches;
+  }
+
+  return matches.map((m) => {
+    if (!Array.isArray(m.links)) return m;
+    const links = m.links.map((l) => {
+      try {
+        const u = new URL(l.url);
+        if (/socolive/i.test(u.hostname)) {
+          return {
+            ...l,
+            url: `${targetOrigin}${u.pathname}${u.search}${u.hash}`,
+          };
+        }
+      } catch {}
+      return l;
+    });
+
+    const seen = new Set();
+    const uniqueLinks = [];
+    for (const l of links) {
+      if (!seen.has(l.url)) {
+        seen.add(l.url);
+        uniqueLinks.push(l);
+      }
+    }
+    return { ...m, links: uniqueLinks };
+  });
+}
+
+// Tự động cập nhật scheduleUrl trong sources.js
+export function updateSourceScheduleUrl(filePath, sourceId, newUrl) {
+  try {
+    if (!fs.existsSync(filePath)) return;
+    let fileContent = fs.readFileSync(filePath, 'utf8');
+    const re = new RegExp(`(id:\\s*['"]${sourceId}['"][\\s\\S]*?scheduleUrl:\\s*['"])([^'"]+)(['"])`);
+    if (re.test(fileContent)) {
+      fileContent = fileContent.replace(re, `$1${newUrl}$3`);
+      fs.writeFileSync(filePath, fileContent, 'utf8');
+      console.log(`Auto-updated ${filePath} scheduleUrl -> ${newUrl}`);
+    }
+  } catch (e) {
+    console.warn(`Could not update ${filePath}:`, e.message);
+  }
+}
+
 // Chạy toàn bộ quy trình crawl, trả về {count, debug}. Dùng chung cho CLI và nút web.
 export async function runCrawl() {
   // Container (Render/Docker) chạy root nên cần --no-sandbox.
@@ -518,21 +571,53 @@ export async function runCrawl() {
   saveDiscovered(discovered);
 
   // Gom debug theo nguồn: url nào thắng + toàn bộ attempt.
+  let winnerOrigin = '';
   const debug = SOURCES.map((src) => {
     const tries = attemptLog.filter((a) => a.source === src.id);
     const won = tries.find((a) => a.count > 0);
+    if (won && won.url) {
+      try {
+        const origin = new URL(won.url).origin;
+        if (src.id === 'socolive') {
+          winnerOrigin = origin;
+          if (src.scheduleUrl && new URL(src.scheduleUrl).origin !== origin) {
+            updateSourceScheduleUrl('sources.js', 'socolive', `${origin}/`);
+          }
+        }
+      } catch {}
+    }
     return { source: src.id, usedUrl: won ? won.url : null, strategy: won ? won.strategy : null, attempts: tries };
   });
 
   const manual = JSON.parse(fs.readFileSync('manual-links.json', 'utf8'));
   const prev = JSON.parse(fs.readFileSync('matches.json', 'utf8'));
-  const merged = groupMatches(dedupeMatches([...all, ...manual, ...prev]));
+  const combined = [...all, ...manual, ...prev];
+  const normalized = winnerOrigin ? replaceMatchDomains(combined, winnerOrigin) : combined;
+  const merged = groupMatches(dedupeMatches(normalized));
+
   // Tính lại cờ LIVE từ giờ đá (không kế thừa flag cũ đã hết hạn):
   // live = đã đá mà chưa quá 120 phút.
   const now = Date.now();
   for (const m of merged) {
     const t = new Date(m.kickoffISO).getTime();
     m.isLive = !Number.isNaN(t) && t <= now && now - t < 120 * 60 * 1000;
+  }
+
+  // Tự động giải mã stream .m3u8 cho các trận đang đá
+  for (const m of merged) {
+    if (m.isLive && Array.isArray(m.links)) {
+      for (const l of m.links) {
+        if (!l.streamUrl && l.url) {
+          try {
+            const s = await fastResolveStream(l.url);
+            if (s) {
+              l.streamUrl = s;
+              console.log(`Auto-resolved stream: ${m.home} vs ${m.away} -> ${s}`);
+            }
+          } catch {}
+        }
+      }
+    }
   }
   fs.writeFileSync('matches.json', JSON.stringify(merged.slice(0, 100), null, 2));
   const count = Math.min(merged.length, 100);

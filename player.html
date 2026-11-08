@@ -6,20 +6,27 @@
 <title>Player — FindFootball</title>
 <style>
   body { background: #141414; color: #eee; font-family: system-ui, sans-serif; margin: 0; padding: 16px; }
-  a { color: #7db4ff; }
+  a { color: #7db4ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
   #wrap { max-width: 960px; margin: 0 auto; }
-  video { width: 100%; max-height: 70vh; background: #000; }
+  .top-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .back-btn { display: inline-flex; align-items: center; gap: 4px; padding: 8px 14px; background: #1a1e26; border: 1px solid #333; border-radius: 8px; color: #eee; font-size: 14px; }
+  .back-btn:hover { background: #252b36; }
+  video { width: 100%; max-height: 70vh; background: #000; border-radius: 8px; }
   .row { display: flex; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
-  input, select, button { padding: 8px; font-size: 14px; }
+  input, select, button { padding: 8px; font-size: 14px; border-radius: 6px; }
   input, select { flex: 1; min-width: 200px; background: #222; color: #eee; border: 1px solid #444; }
-  button { cursor: pointer; }
-  #status { min-height: 1.5em; color: #ffb84d; }
-  .hint { color: #999; font-size: 13px; }
+  button { cursor: pointer; background: #2563eb; color: #fff; border: 1px solid #3b82f6; font-weight: 600; }
+  button:hover { background: #1d4ed8; }
+  #status { min-height: 1.5em; color: #ffb84d; font-size: 14px; }
+  .hint { color: #999; font-size: 13px; line-height: 1.5; }
 </style>
 </head>
 <body>
 <div id="wrap">
-  <p><a href="index.html">← Lịch đấu</a></p>
+  <div class="top-nav">
+    <a href="index.html" class="back-btn">← Lịch đấu FindFootball</a>
+  </div>
   <h2 id="title">Player</h2>
   <video id="v" controls playsinline></video>
   <div class="row">
@@ -30,7 +37,7 @@
     <select id="saved"><option value="">— Hoặc chọn stream đã lưu —</option></select>
   </div>
   <p id="status"></p>
-  <p class="hint">Token stream hết hạn sau vài tiếng — mỗi lần xem sniff lại link mới. Nếu báo lỗi CORS/403, chạy qua <code>/api/proxy?url=</code> (bước 2).</p>
+  <p class="hint">Token stream hết hạn sau vài tiếng — mỗi lần xem sniff lại link mới. Nếu báo lỗi CORS/403, stream cần được chạy qua proxy.</p>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.18/dist/hls.min.js"></script>
 <script>
@@ -49,12 +56,40 @@
     if (!url) return;
     if (hls) { hls.destroy(); hls = null; }
     titleEl.textContent = label || 'Player';
-    if (/\.m3u8(\?|#|$)/i.test(url) && window.Hls && Hls.isSupported()) {
-      hls = new Hls();
-      hls.on(Hls.Events.ERROR, (_, data) => { say('Lỗi phát: ' + (data.details || data.type)); });
-      hls.loadSource(url);
-      hls.attachMedia(v);
-      say('Đang tải stream…');
+    if (/\.m3u8(\?|#|$)/i.test(url)) {
+      if (window.Hls && Hls.isSupported()) {
+        hls = new Hls();
+        hls.on(Hls.Events.ERROR, (_, data) => { say('Lỗi phát: ' + (data.details || data.type)); });
+        hls.loadSource(url);
+        hls.attachMedia(v);
+        say('Đang tải stream…');
+      } else if (v.canPlayType('application/vnd.apple.mpegurl')) {
+        v.src = url;
+        say('Phát stream HLS (native iOS/Safari)…');
+      } else {
+        v.src = url;
+        say('Phát trực tiếp (native)…');
+      }
+    } else if (/^https?:/i.test(url) && !/\.(mp4|webm)(\?|#|$)/i.test(url)) {
+      say('Đang dò link .m3u8 từ link trận...');
+      fetch('/api/sniff', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url }),
+      })
+      .then((r) => r.json())
+      .then((res) => {
+        if (res && res.streamUrl) {
+          srcEl.value = res.streamUrl;
+          play(res.streamUrl, label);
+        } else {
+          say('Không tìm thấy stream .m3u8 tự động từ link này. Bạn thử mở link web trực tiếp.');
+        }
+      })
+      .catch((err) => {
+        say('Lỗi khi dò stream: ' + err.message);
+      });
+      return;
     } else {
       v.src = url;
       say('Phát trực tiếp (native)…');
@@ -89,7 +124,10 @@
     if (o && o.value) { srcEl.value = o.value; play(o.value, o.textContent); }
   };
 
-  if (q.get('src')) { srcEl.value = q.get('src'); play(q.get('src'), q.get('t') || 'Player'); }
+  if (q.get('src')) {
+    srcEl.value = q.get('src');
+    play(q.get('src'), q.get('t') || 'Player');
+  }
 })();
 </script>
 </body>

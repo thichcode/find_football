@@ -62,9 +62,15 @@ function render() {
     const div = document.createElement('div');
     div.className = 'card';
     const star = f.includes(m.home) ? '★' : '☆';
+    const linksHtml = (m.links || []).map((l) => {
+      const playTarget = l.streamUrl || l.url;
+      const title = `${m.home} vs ${m.away} (${l.label})`;
+      return `<span class="play-tag"><a href="${l.url}" class="web-link" target="_blank" rel="noopener" title="Mở trang web">${l.label}</a><a href="player.html?src=${encodeURIComponent(playTarget)}&t=${encodeURIComponent(title)}" class="play-btn-link" target="_blank" rel="noopener" title="Phát trên Player">▶ Phát</a></span>`;
+    }).join('');
+
     div.innerHTML = `<span class="fav" data-t="${m.home}">${star}</span>
       <div>${m.isLive ? '<span class="live">🔴 LIVE</span> ' : ''}<b>${fmtTime(m.kickoffISO)}</b> — ${m.home} vs ${m.away} <small>(${m.league})</small></div>
-      <div>${(m.links || []).map((l) => `<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>` + (l.streamUrl ? `<a href="player.html?src=${encodeURIComponent(l.streamUrl)}&t=${encodeURIComponent(m.home + ' vs ' + m.away)}" target="_blank" rel="noopener">▶</a>` : '')).join('')}<a href="${googleUrl(m)}" target="_blank" rel="noopener">🔍 Google</a></div>`;
+      <div class="links-row">${linksHtml}<a href="${googleUrl(m)}" class="google-link" target="_blank" rel="noopener">🔍 Google</a></div>`;
     div.querySelector('.fav').onclick = (e) => toggleFav(e.target.dataset.t);
     listEl.appendChild(div);
   }

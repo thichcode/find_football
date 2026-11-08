@@ -1,8 +1,18 @@
 body { font-family: system-ui, sans-serif; margin: 0; background: #0f1115; color: #eee; }
-header { display: flex; gap: 8px; padding: 12px; position: sticky; top: 0; background: #0f1115; }
-input, select, button { padding: 8px 10px; border-radius: 8px; border: 1px solid #333; background: #1a1e26; color: #eee; }
+header { display: flex; gap: 8px; padding: 12px; position: sticky; top: 0; background: #0f1115; flex-wrap: wrap; z-index: 10; }
+input, select, button, .btn { padding: 8px 10px; border-radius: 8px; border: 1px solid #333; background: #1a1e26; color: #eee; text-decoration: none; font-size: 14px; cursor: pointer; display: inline-flex; align-items: center; }
+input:focus, select:focus, button:focus, .btn:focus { outline: none; border-color: #3b82f6; }
+.btn-player { background: #1d4ed8; color: #fff; border-color: #2563eb; font-weight: 600; }
+.btn-player:hover { background: #2563eb; }
 main { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
 .card { border: 1px solid #2a2f3a; border-radius: 10px; padding: 10px; background: #171b22; }
 .live { background: #e53e3e; color: #fff; border-radius: 12px; padding: 2px 8px; font-size: 12px; }
-.card a { color: #7dd3fc; margin-right: 8px; }
+.links-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.play-tag { display: inline-flex; align-items: center; background: #1e293b; border: 1px solid #334155; border-radius: 6px; overflow: hidden; font-size: 13px; }
+.play-tag a { padding: 4px 8px; text-decoration: none; margin-right: 0; }
+.play-tag .web-link { color: #94a3b8; border-right: 1px solid #334155; }
+.play-tag .web-link:hover { background: #334155; color: #fff; }
+.play-tag .play-btn-link { background: #0284c7; color: #fff; font-weight: 600; display: inline-flex; align-items: center; gap: 2px; }
+.play-tag .play-btn-link:hover { background: #0369a1; }
+.google-link { color: #7dd3fc; text-decoration: none; font-size: 13px; margin-left: 4px; }
 .fav { float: right; cursor: pointer; }

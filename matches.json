@@ -35,7 +35,7 @@
     "away": "persik kediri",
     "league": "Tong hop",
     "kickoffISO": "2026-11-08T15:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -58,7 +58,7 @@
     "away": "bhayangkara presisi indonesia fc",
     "league": "Tong hop",
     "kickoffISO": "2026-11-08T15:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -290,7 +290,7 @@
     "away": "ac milan",
     "league": "Tong hop",
     "kickoffISO": "2026-11-08T21:00:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {
@@ -321,7 +321,7 @@
     "away": "bournemouth afc",
     "league": "Tong hop",
     "kickoffISO": "2026-11-08T21:00:00+07:00",
-    "isLive": false,
+    "isLive": true,
     "source": "socolive",
     "links": [
       {

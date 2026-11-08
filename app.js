@@ -63,9 +63,11 @@ function render() {
     div.className = 'card';
     const star = f.includes(m.home) ? '★' : '☆';
     const linksHtml = (m.links || []).map((l) => {
-      const playTarget = l.streamUrl || l.url;
       const title = `${m.home} vs ${m.away} (${l.label})`;
-      return `<span class="play-tag"><a href="${l.url}" class="web-link" target="_blank" rel="noopener" title="Mở trang web">${l.label}</a><a href="player.html?src=${encodeURIComponent(playTarget)}&t=${encodeURIComponent(title)}" class="play-btn-link" target="_blank" rel="noopener" title="Phát trên Player">▶ Phát</a></span>`;
+      if (l.streamUrl) {
+        return `<span class="play-tag"><a href="${l.url}" class="web-link" target="_blank" rel="noopener" title="Mở trang web">${l.label}</a><a href="player.html?src=${encodeURIComponent(l.streamUrl)}&t=${encodeURIComponent(title)}" class="play-btn-link" target="_blank" rel="noopener" title="Phát stream m3u8 trên Player">▶ Phát</a></span>`;
+      }
+      return `<a href="${l.url}" class="card-link" target="_blank" rel="noopener">${l.label}</a>`;
     }).join('');
 
     div.innerHTML = `<span class="fav" data-t="${m.home}">${star}</span>

@@ -37,7 +37,7 @@
     <select id="saved"><option value="">— Hoặc chọn stream đã lưu —</option></select>
   </div>
   <p id="status"></p>
-  <p class="hint">Token stream hết hạn sau vài tiếng — mỗi lần xem sniff lại link mới. Nếu báo lỗi CORS/403, stream cần được chạy qua proxy.</p>
+  <p class="hint">Player chỉ phát trực tiếp link định dạng <code>.m3u8</code>. Nếu link là trang web, hãy mở trang web đó xem hoặc trích xuất link .m3u8.</p>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.18/dist/hls.min.js"></script>
 <script>
@@ -59,7 +59,7 @@
     if (/\.m3u8(\?|#|$)/i.test(url)) {
       if (window.Hls && Hls.isSupported()) {
         hls = new Hls();
-        hls.on(Hls.Events.ERROR, (_, data) => { say('Lỗi phát: ' + (data.details || data.type)); });
+        hls.on(Hls.Events.ERROR, (_, data) => { say('Lỗi phát stream: ' + (data.details || data.type)); });
         hls.loadSource(url);
         hls.attachMedia(v);
         say('Đang tải stream…');
@@ -70,31 +70,10 @@
         v.src = url;
         say('Phát trực tiếp (native)…');
       }
-    } else if (/^https?:/i.test(url) && !/\.(mp4|webm)(\?|#|$)/i.test(url)) {
-      say('Đang dò link .m3u8 từ link trận...');
-      fetch('/api/sniff', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url }),
-      })
-      .then((r) => r.json())
-      .then((res) => {
-        if (res && res.streamUrl) {
-          srcEl.value = res.streamUrl;
-          play(res.streamUrl, label);
-        } else {
-          say('Không tìm thấy stream .m3u8 tự động từ link này. Bạn thử mở link web trực tiếp.');
-        }
-      })
-      .catch((err) => {
-        say('Lỗi khi dò stream: ' + err.message);
-      });
-      return;
+      v.play().catch(() => {});
     } else {
-      v.src = url;
-      say('Phát trực tiếp (native)…');
+      say('Link này không phải stream .m3u8 (đây là link trang web). Vui lòng dán link .m3u8 để phát.');
     }
-    v.play().catch(() => {});
   }
 
   document.getElementById('play').onclick = () => play(srcEl.value.trim(), 'Link dán tay');

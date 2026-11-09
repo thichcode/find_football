@@ -11,10 +11,14 @@ main { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
 .card-link { color: #7dd3fc; margin-right: 8px; text-decoration: none; font-size: 14px; }
 .card-link:hover { text-decoration: underline; }
 .play-tag { display: inline-flex; align-items: center; background: #1e293b; border: 1px solid #334155; border-radius: 6px; overflow: hidden; font-size: 13px; margin-right: 4px; }
-.play-tag a { padding: 4px 8px; text-decoration: none; margin-right: 0; }
+.play-tag a, .play-tag button { padding: 4px 8px; text-decoration: none; margin-right: 0; border: none; border-radius: 0; font-size: 13px; font-family: inherit; }
 .play-tag .web-link { color: #94a3b8; border-right: 1px solid #334155; }
 .play-tag .web-link:hover { background: #334155; color: #fff; }
-.play-tag .play-btn-link { background: #0284c7; color: #fff; font-weight: 600; display: inline-flex; align-items: center; gap: 2px; }
-.play-tag .play-btn-link:hover { background: #0369a1; }
+.play-tag .play-btn-link { background: #16a34a; color: #fff; font-weight: 600; display: inline-flex; align-items: center; gap: 2px; }
+.play-tag .play-btn-link:hover { background: #15803d; }
+.play-tag .get-btn { background: #2563eb; color: #fff; cursor: pointer; font-weight: 500; display: inline-flex; align-items: center; gap: 2px; }
+.play-tag .get-btn:hover { background: #1d4ed8; }
+.play-tag .get-btn.loading { background: #334155; color: #fbbf24; cursor: wait; }
+.play-tag .get-btn.error { background: #7f1d1d; color: #fca5a5; }
 .google-link { color: #7dd3fc; text-decoration: none; font-size: 13px; margin-left: 4px; }
 .fav { float: right; cursor: pointer; }

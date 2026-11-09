@@ -41,6 +41,54 @@ function todayGMT7() {
   return new Date(utc + 7 * 3600000).toISOString().slice(0, 10);
 }
 
+// Xử lý nút Lấy link m3u8
+async function handleGetLink(btn, pageUrl, title) {
+  btn.disabled = true;
+  btn.classList.add('loading');
+  btn.textContent = '⏳ Đang lấy...';
+
+  try {
+    const res = await fetch('/api/sniff', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: pageUrl }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+
+    if (data.streamUrl) {
+      // Cập nhật lại trong danh sách ALL
+      for (const m of ALL) {
+        for (const l of (m.links || [])) {
+          if (l.url === pageUrl) l.streamUrl = data.streamUrl;
+        }
+      }
+
+      // Tạo nút Phát thay thế nút Get link
+      const playA = document.createElement('a');
+      playA.className = 'play-btn-link';
+      playA.href = `player.html?src=${encodeURIComponent(data.streamUrl)}&t=${encodeURIComponent(title)}`;
+      playA.target = '_blank';
+      playA.rel = 'noopener';
+      playA.title = 'Phát stream m3u8 trên Player';
+      playA.textContent = '▶ Phát';
+      btn.replaceWith(playA);
+    } else {
+      btn.classList.remove('loading');
+      btn.classList.add('error');
+      btn.disabled = false;
+      btn.textContent = '❌ Thử lại';
+      alert('Chưa dò được stream m3u8 cho BLV này (có thể trận chưa đá hoặc nguồn chưa mở luồng). Bạn thử lại sau hoặc bấm tên BLV để mở trang web.');
+    }
+  } catch (err) {
+    btn.classList.remove('loading');
+    btn.classList.add('error');
+    btn.disabled = false;
+    btn.textContent = '❌ Thử lại';
+    alert('Lỗi lấy stream: ' + err.message);
+  }
+}
+
 function render() {
   const q = qEl.value.trim().toLowerCase();
   const lg = leagueEl.value;
@@ -62,17 +110,55 @@ function render() {
     const div = document.createElement('div');
     div.className = 'card';
     const star = f.includes(m.home) ? '★' : '☆';
-    const linksHtml = (m.links || []).map((l) => {
-      const title = `${m.home} vs ${m.away} (${l.label})`;
-      if (l.streamUrl) {
-        return `<span class="play-tag"><a href="${l.url}" class="web-link" target="_blank" rel="noopener" title="Mở trang web">${l.label}</a><a href="player.html?src=${encodeURIComponent(l.streamUrl)}&t=${encodeURIComponent(title)}" class="play-btn-link" target="_blank" rel="noopener" title="Phát stream m3u8 trên Player">▶ Phát</a></span>`;
-      }
-      return `<a href="${l.url}" class="card-link" target="_blank" rel="noopener">${l.label}</a>`;
-    }).join('');
 
     div.innerHTML = `<span class="fav" data-t="${m.home}">${star}</span>
       <div>${m.isLive ? '<span class="live">🔴 LIVE</span> ' : ''}<b>${fmtTime(m.kickoffISO)}</b> — ${m.home} vs ${m.away} <small>(${m.league})</small></div>
-      <div class="links-row">${linksHtml}<a href="${googleUrl(m)}" class="google-link" target="_blank" rel="noopener">🔍 Google</a></div>`;
+      <div class="links-row"></div>`;
+
+    const linksRow = div.querySelector('.links-row');
+    for (const l of (m.links || [])) {
+      const title = `${m.home} vs ${m.away} (${l.label})`;
+      const tag = document.createElement('span');
+      tag.className = 'play-tag';
+
+      const webA = document.createElement('a');
+      webA.className = 'web-link';
+      webA.href = l.url;
+      webA.target = '_blank';
+      webA.rel = 'noopener';
+      webA.title = 'Mở trang web';
+      webA.textContent = l.label;
+      tag.appendChild(webA);
+
+      if (l.streamUrl) {
+        const playA = document.createElement('a');
+        playA.className = 'play-btn-link';
+        playA.href = `player.html?src=${encodeURIComponent(l.streamUrl)}&t=${encodeURIComponent(title)}`;
+        playA.target = '_blank';
+        playA.rel = 'noopener';
+        playA.title = 'Phát stream m3u8 trên Player';
+        playA.textContent = '▶ Phát';
+        tag.appendChild(playA);
+      } else {
+        const getBtn = document.createElement('button');
+        getBtn.className = 'get-btn';
+        getBtn.title = 'Lấy link m3u8 để phát';
+        getBtn.textContent = '⚡ Lấy m3u8';
+        getBtn.onclick = () => handleGetLink(getBtn, l.url, title);
+        tag.appendChild(getBtn);
+      }
+
+      linksRow.appendChild(tag);
+    }
+
+    const gA = document.createElement('a');
+    gA.className = 'google-link';
+    gA.href = googleUrl(m);
+    gA.target = '_blank';
+    gA.rel = 'noopener';
+    gA.textContent = '🔍 Google';
+    linksRow.appendChild(gA);
+
     div.querySelector('.fav').onclick = (e) => toggleFav(e.target.dataset.t);
     listEl.appendChild(div);
   }

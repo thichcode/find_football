@@ -128,6 +128,12 @@ const server = http.createServer(async (req, res) => {
       const body = await readJsonBody(req);
       const pageUrl = String((body && body.url) || '').trim();
       if (!/^https?:/i.test(pageUrl)) throw new Error('url không hợp lệ');
+      const existing = findStreamUrl(pageUrl);
+      if (existing) {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ok: true, streamUrl: existing, cached: true }));
+        return;
+      }
       const streamUrl = await sniffStreamUrl(pageUrl).catch(() => null);
       if (streamUrl) saveStreamUrl(pageUrl, streamUrl);
       res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -214,6 +220,16 @@ function readJsonBody(req) {
     req.on('end', () => { try { resolve(JSON.parse(buf || '{}')); } catch (e) { reject(e); } });
     req.on('error', reject);
   });
+}
+
+function findStreamUrl(pageUrl) {
+  const matches = readMatches();
+  for (const m of matches) {
+    for (const l of (m.links || [])) {
+      if (l.url === pageUrl && l.streamUrl) return l.streamUrl;
+    }
+  }
+  return null;
 }
 
 // Lưu streamUrl vào đúng link có url trùng pageUrl. Trả true nếu lưu được.

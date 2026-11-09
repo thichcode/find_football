@@ -3,7 +3,7 @@
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
-import { runCrawl, sniffStreamUrl } from './crawler.js';
+import { runCrawl, sniffStreamUrl, isStreamUrl } from './crawler.js';
 import { startTelegram } from './telegram.js';
 
 const ROOT = process.cwd();
@@ -127,7 +127,16 @@ const server = http.createServer(async (req, res) => {
     try {
       const body = await readJsonBody(req);
       const pageUrl = String((body && body.url) || '').trim();
+      const directStream = String((body && body.streamUrl) || '').trim();
       if (!/^https?:/i.test(pageUrl)) throw new Error('url không hợp lệ');
+
+      if (directStream && isStreamUrl(directStream)) {
+        saveStreamUrl(pageUrl, directStream);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ok: true, streamUrl: directStream, saved: true }));
+        return;
+      }
+
       const existing = findStreamUrl(pageUrl);
       if (existing) {
         res.writeHead(200, { 'Content-Type': 'application/json' });

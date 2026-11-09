@@ -41,33 +41,82 @@ function todayGMT7() {
   return new Date(utc + 7 * 3600000).toISOString().slice(0, 10);
 }
 
+// Giải mã nhanh link stream trực tiếp từ trình duyệt của người dùng (tránh bị Cloudflare chặn IP server)
+async function resolveStreamFromClient(pageUrl, matchLinks) {
+  try {
+    const u = new URL(pageUrl);
+    let blvId = u.searchParams.get('blv') || u.searchParams.get('houseId');
+    if (!blvId && Array.isArray(matchLinks)) {
+      for (const l of matchLinks) {
+        try {
+          const lu = new URL(l.url);
+          const bid = lu.searchParams.get('blv') || lu.searchParams.get('houseId');
+          if (bid) { blvId = bid; break; }
+        } catch {}
+      }
+    }
+    if (!blvId) return null;
+
+    const res = await fetch('https://biz.vnres.co/api/live/livingRoom', {
+      headers: { 'Accept': 'application/json' },
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const rows = Array.isArray(data) ? data : (data && Array.isArray(data.data) ? data.data : []);
+    const found = rows.find((r) => String(r.id) === String(blvId));
+    if (found && found.stream) {
+      const stream = String(found.stream)
+        .replace(/^https:\/\/pull[0-9]+\.scstream\.net\//i, 'https://pull.niues.live/')
+        .replace(/\.flv(?=([?#]|$))/i, '.m3u8');
+      if (/\.(m3u8|mpd)(\?|#|$)/i.test(stream)) return stream;
+    }
+  } catch (e) {
+    console.warn('Client resolve error:', e);
+  }
+  return null;
+}
+
 // Xử lý nút Lấy link m3u8
-async function handleGetLink(btn, pageUrl, title) {
+async function handleGetLink(btn, pageUrl, title, matchLinks) {
   btn.disabled = true;
   btn.classList.add('loading');
   btn.textContent = '⏳ Đang lấy...';
 
   try {
-    const res = await fetch('/api/sniff', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url: pageUrl }),
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+    // 1. Thử giải mã trực tiếp từ client (tránh Cloudflare chặn server Render)
+    let streamUrl = await resolveStreamFromClient(pageUrl, matchLinks);
 
-    if (data.streamUrl) {
+    // 2. Nếu client chưa giải được, fallback gọi qua API server
+    if (!streamUrl) {
+      const res = await fetch('/api/sniff', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: pageUrl }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (data && data.streamUrl) streamUrl = data.streamUrl;
+    } else {
+      // Báo server lưu lại cache cho các thiết bị khác
+      fetch('/api/sniff', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: pageUrl, streamUrl }),
+      }).catch(() => {});
+    }
+
+    if (streamUrl) {
       // Cập nhật lại trong danh sách ALL
       for (const m of ALL) {
         for (const l of (m.links || [])) {
-          if (l.url === pageUrl) l.streamUrl = data.streamUrl;
+          if (l.url === pageUrl) l.streamUrl = streamUrl;
         }
       }
 
       // Tạo nút Phát thay thế nút Get link
       const playA = document.createElement('a');
       playA.className = 'play-btn-link';
-      playA.href = `player.html?src=${encodeURIComponent(data.streamUrl)}&t=${encodeURIComponent(title)}`;
+      playA.href = `player.html?src=${encodeURIComponent(streamUrl)}&t=${encodeURIComponent(title)}`;
       playA.target = '_blank';
       playA.rel = 'noopener';
       playA.title = 'Phát stream m3u8 trên Player';
@@ -78,7 +127,7 @@ async function handleGetLink(btn, pageUrl, title) {
       btn.classList.add('error');
       btn.disabled = false;
       btn.textContent = '❌ Thử lại';
-      alert('Chưa dò được stream m3u8 cho BLV này (có thể trận chưa đá hoặc nguồn chưa mở luồng). Bạn thử lại sau hoặc bấm tên BLV để mở trang web.');
+      alert('Chưa dò được stream m3u8 cho BLV này (có thể BLV chưa lên sóng hoặc server chưa mở luồng). Bạn thử lại sau hoặc bấm tên BLV để mở trang web.');
     }
   } catch (err) {
     btn.classList.remove('loading');
@@ -144,7 +193,7 @@ function render() {
         getBtn.className = 'get-btn';
         getBtn.title = 'Lấy link m3u8 để phát';
         getBtn.textContent = '⚡ Lấy m3u8';
-        getBtn.onclick = () => handleGetLink(getBtn, l.url, title);
+        getBtn.onclick = () => handleGetLink(getBtn, l.url, title, m.links);
         tag.appendChild(getBtn);
       }
 

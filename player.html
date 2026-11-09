@@ -37,7 +37,7 @@
     <select id="saved"><option value="">— Hoặc chọn stream đã lưu —</option></select>
   </div>
   <p id="status"></p>
-  <p class="hint">Player chỉ phát trực tiếp link định dạng <code>.m3u8</code>. Nếu link là trang web, hãy mở trang web đó xem hoặc trích xuất link .m3u8.</p>
+  <p class="hint">Player chỉ phát trực tiếp link định dạng <code>.m3u8</code>. Nếu link là trang web, hệ thống sẽ tự dò stream .m3u8 từ BLV.</p>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.18/dist/hls.min.js"></script>
 <script>
@@ -51,6 +51,29 @@
 
   const q = new URLSearchParams(location.search);
   const say = (t) => { statusEl.textContent = t; };
+
+  async function resolveStreamFromClient(pageUrl) {
+    try {
+      const u = new URL(pageUrl);
+      const blvId = u.searchParams.get('blv') || u.searchParams.get('houseId');
+      if (!blvId) return null;
+      const res = await fetch('https://biz.vnres.co/api/live/livingRoom', {
+        headers: { 'Accept': 'application/json' },
+        signal: AbortSignal.timeout(6000),
+      });
+      if (!res.ok) return null;
+      const data = await res.json();
+      const rows = Array.isArray(data) ? data : (data && Array.isArray(data.data) ? data.data : []);
+      const found = rows.find((r) => String(r.id) === String(blvId));
+      if (found && found.stream) {
+        const stream = String(found.stream)
+          .replace(/^https:\/\/pull[0-9]+\.scstream\.net\//i, 'https://pull.niues.live/')
+          .replace(/\.flv(?=([?#]|$))/i, '.m3u8');
+        if (/\.(m3u8|mpd)(\?|#|$)/i.test(stream)) return stream;
+      }
+    } catch {}
+    return null;
+  }
 
   function play(url, label) {
     if (!url) return;
@@ -71,8 +94,23 @@
         say('Phát trực tiếp (native)…');
       }
       v.play().catch(() => {});
+    } else if (/^https?:/i.test(url)) {
+      say('Đang dò link .m3u8 từ link trận...');
+      resolveStreamFromClient(url).then((streamUrl) => {
+        if (streamUrl) {
+          srcEl.value = streamUrl;
+          play(streamUrl, label);
+          fetch('/api/sniff', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url, streamUrl }),
+          }).catch(() => {});
+        } else {
+          say('Không tìm thấy stream .m3u8 từ link này. Vui lòng mở trang web hoặc dán link .m3u8.');
+        }
+      });
     } else {
-      say('Link này không phải stream .m3u8 (đây là link trang web). Vui lòng dán link .m3u8 để phát.');
+      say('Link không hợp lệ.');
     }
   }
 

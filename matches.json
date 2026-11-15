@@ -4,7 +4,7 @@
     "away": "al sharjah",
     "league": "Tong hop",
     "kickoffISO": "2026-11-15T19:50:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -35,7 +35,7 @@
     "away": "ad ceuta",
     "league": "Tong hop",
     "kickoffISO": "2026-11-15T20:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -74,7 +74,7 @@
     "away": "armenia",
     "league": "Tong hop",
     "kickoffISO": "2026-11-15T21:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -113,7 +113,7 @@
     "away": "montenegro",
     "league": "Tong hop",
     "kickoffISO": "2026-11-15T21:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -189,7 +189,7 @@
     "away": "Khor Fakkan SSC",
     "league": "Tong hop",
     "kickoffISO": "2026-11-15T19:50:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -216,7 +216,7 @@
     "away": "vitesse arnhem",
     "league": "Tong hop",
     "kickoffISO": "2026-11-15T20:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -247,7 +247,7 @@
     "away": "vihren sandanski",
     "league": "Tong hop",
     "kickoffISO": "2026-11-15T20:30:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -270,7 +270,7 @@
     "away": "academica coimbra",
     "league": "Tong hop",
     "kickoffISO": "2026-11-15T21:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -293,7 +293,7 @@
     "away": "birmingham women",
     "league": "Tong hop",
     "kickoffISO": "2026-11-15T21:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -316,7 +316,7 @@
     "away": "shinnik yaroslavl",
     "league": "Tong hop",
     "kickoffISO": "2026-11-15T21:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
@@ -339,7 +339,7 @@
     "away": "charlton women",
     "league": "Tong hop",
     "kickoffISO": "2026-11-15T21:00:00+07:00",
-    "isLive": true,
+    "isLive": false,
     "source": "socolive",
     "links": [
       {
